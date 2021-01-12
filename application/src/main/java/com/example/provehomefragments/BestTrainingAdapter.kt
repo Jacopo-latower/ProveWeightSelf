@@ -25,6 +25,9 @@ class BestTrainingAdapter(var data:List<TrainingItem>):RecyclerView.Adapter<Best
         }
     }
 
+    //CIAOOOOOOOO SONO ANDROID STUDIO E FACCIO SCHIFOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    //Più o meno come GITHUB
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_layout, parent,false)
