@@ -39,6 +39,6 @@ class TrainingFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rv_best_trainings.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        rv_best_trainings.adapter = BestTrainingsAdapter(data)
+        rv_best_trainings.adapter = BestTrainingAdapter(data)
     }
 }
