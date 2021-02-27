@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val homeFrag = HomeFragment()
         val trainingFrag = TrainingFragment()
         val recipeFrag = Fragment()

@@ -17,17 +17,19 @@ class BestTrainingAdapter(var data:List<TrainingItem>):RecyclerView.Adapter<Best
         val type:TextView = v.findViewById(R.id.type_training)
         val difficulty:TextView = v.findViewById(R.id.difficulty)
 
-        fun bind(i:TrainingItem){
+        fun bind(i:TrainingItem, callback:(Int) -> Unit){
             img.setImageResource(i.image)
             duration.text = "${i.duration} minuti"
             type.text = i.type
             difficulty.text = i.difficulty
+
+            img.setOnClickListener{callback(adapterPosition)}
+        }
+
+        fun unbind(){
+            img.setOnClickListener(null)
         }
     }
-
-    //CIAOOOOOOOO SONO ANDROID STUDIO E FACCIO SCHIFOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    //Più o meno come GITHUB
-    //concordo
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -37,10 +39,19 @@ class BestTrainingAdapter(var data:List<TrainingItem>):RecyclerView.Adapter<Best
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position]){pos:Int -> getTrainingPage(pos)}
+    }
+
+    override fun onViewRecycled(holder: MyViewHolder) {
+        holder.unbind()
     }
 
     override fun getItemCount(): Int {
         return data.size
+    }
+
+    fun getTrainingPage(p:Int){
+        println("Sei nella pagina dell'allenamento numero $p")
+        //implementare cambio fragment qui
     }
 }
