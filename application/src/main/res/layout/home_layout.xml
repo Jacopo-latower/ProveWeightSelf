@@ -29,10 +29,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/tv_step_counter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contapassi: 276 passi"
+        android:text="Contapassi: 0"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
