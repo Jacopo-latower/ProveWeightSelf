@@ -1,6 +1,5 @@
 package com.example.provehomefragments
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
@@ -8,11 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.*
-import org.w3c.dom.Text
+
+// interface implemented by the main activity to notify changes
+interface FragHomeObserver{
+    fun stepResetNotify()
+    fun fragCreatedNotify()
+}
 
 class HomeFragment : Fragment() {
 
@@ -34,7 +37,28 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        stepCounter = view.findViewById<TextView>(R.id.tv_step_counter)
+        stepCounter = view.findViewById(R.id.tv_step_counter)
+
+        //Notify to the main activity that the fragment has been created
+        val observer = activity as? FragHomeObserver
+        observer?.fragCreatedNotify()
+
+        //Initialized the listener for the text view to reset the steps
+        resetSteps()
     }
 
+    private fun resetSteps(){
+        //if the user click on the textView, notify to him that the long tap is requested
+        stepCounter?.setOnClickListener{
+            Toast.makeText(activity, "Long Tap to reset", Toast.LENGTH_SHORT).show()
+        }
+        //if the user long tap the textView, notify to the main activity to reset the values with "stepResetNotify()"
+        stepCounter?.setOnLongClickListener{
+            //Callback to the main activity
+            val observer = activity as? FragHomeObserver
+            observer?.stepResetNotify()
+
+            true
+        }
+    }
 }

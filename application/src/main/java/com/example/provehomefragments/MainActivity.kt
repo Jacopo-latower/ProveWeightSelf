@@ -9,41 +9,53 @@ import android.hardware.SensorManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
-class MainActivity : AppCompatActivity(), SensorEventListener {
+class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver {
 
     var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag
 
     private var ACTIVITY_PERMISSION_CODE = 1
     private var sensorManager:SensorManager?= null
 
-    private var running = false
+    private var running = false //the sensor/stepcounter is active or not
     private var totalSteps = 0f
     private var previousTotalSteps = 0f
 
-    var homeFrag : HomeFragment? = null
+    private var homeFrag : HomeFragment? = null
+    private var trainingFrag : TrainingFragment? = null
+    private var recipeFrag : Fragment? = null //not implemented yet -> create RecipeFragment()
+    // **THINGS TO DO**
+    //private var weightFrag: WeightFragment? = null
+    //private var userFrag: UserFragment? = null
+
+    private var tvStepCounter : TextView? = null //textView for the step counter;
+    // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager //sensor manager for the stepcounter
+
+        requestUserPermission() //ask if the user give the permission for the step counter
+        loadData() //load the previous total steps in the preferences; the default value is 0f
 
         homeFrag = HomeFragment()
-        val trainingFrag = TrainingFragment()
-        val recipeFrag = Fragment()
+        trainingFrag = TrainingFragment()
+        recipeFrag = Fragment()
 
         if(null == savedInstanceState) { //to prevent rotation problems
             showFragment(homeFrag!!) //initialize the app with the home fragment
         }
+
         val homeBtn:Button = findViewById(R.id.home_btn)
         homeBtn.setOnClickListener {
             showFragment(homeFrag!!)
@@ -52,28 +64,25 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         val trainingBtn:Button = findViewById(R.id.training_button)
         trainingBtn.setOnClickListener {
-            showFragment(trainingFrag)
+            showFragment(trainingFrag!!)
             activeFrag = 1
         }
 
         val recipeBtn:Button = findViewById(R.id.recipe_btn)
         recipeBtn.setOnClickListener {
-            showFragment(recipeFrag)
+            showFragment(recipeFrag!!)
             activeFrag = 2
         }
 
-        requestUserPermission() //ask if the user give the permission for the step counter
-        loadData()
     }
 
+    //Set up for the sensor listener
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onResume() {
         super.onResume()
 
-        resetSteps() //initialization of the listeners for the steps reset
-
-        running = true
         val stepSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+        running = true
 
         if(stepSensor == null){
             Toast.makeText(this, "No sensor detected", Toast.LENGTH_SHORT).show()
@@ -82,22 +91,21 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
-
-    //switch to the selected fragment
+    //Switch to the selected fragment
     private fun showFragment(f:Fragment){
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, f)
                 .commit()
     }
 
+    //Request permission to user
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun requestUserPermission(){
-        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACTIVITY_RECOGNITION), ACTIVITY_PERMISSION_CODE)
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACTIVITY_RECOGNITION), ACTIVITY_PERMISSION_CODE)
     }
 
+    //What to visualize if the permission is granted or denied
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if(requestCode==ACTIVITY_PERMISSION_CODE){
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
@@ -107,32 +115,37 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
     }
 
+    //update the steps when the user is walking
     override fun onSensorChanged(event: SensorEvent?) {
         if(running){
+            tvStepCounter = findViewById(R.id.tv_step_counter)
             totalSteps = event!!.values[0]
             val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
-            val tv = findViewById<TextView>(R.id.tv_step_counter)
-            tv.text = ("Contapassi: $currentSteps")
+            tvStepCounter?.text = ("Contapassi: $currentSteps")
         }
     }
 
+    //not used for the moment
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         //Not used for the moment
     }
 
-    private fun resetSteps(){
-        val tv = findViewById<TextView>(R.id.tv_step_counter)
-       tv.setOnClickListener{
-            Toast.makeText(this, "Long Tap to reset", Toast.LENGTH_SHORT).show()
-        }
-        tv.setOnLongClickListener{
-            previousTotalSteps = totalSteps
-            tv.text = ("Contapassi: 0")
-            saveData()
-
-            true
-        }
+    //Callback from the fragment to notify the step reset
+    override fun stepResetNotify() {
+        tvStepCounter = findViewById(R.id.tv_step_counter)
+        previousTotalSteps = totalSteps
+        tvStepCounter?.text = ("Contapassi: 0")
+        saveData()
     }
+
+    //Callback from the fragment to notify the creation of the fragment
+    override fun fragCreatedNotify() {
+        tvStepCounter = findViewById(R.id.tv_step_counter)
+        val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
+        tvStepCounter?.text = ("Contapassi: $currentSteps")
+    }
+
+    //Save the previousTotalSteps in the preferences. This is called when the user reset the stepcounter.
     private fun saveData(){
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -140,21 +153,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         editor.apply()
     }
 
+    //Load the previousTotalSteps saved from the preferences
     private fun loadData(){
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val savedNumber = sharedPreferences.getFloat("key1", 0f)
         previousTotalSteps = savedNumber
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        val tv = findViewById<TextView>(R.id.tv_step_counter)
-        outState.putString("Steps", tv.text.toString())
-    }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        val tv = findViewById<TextView>(R.id.tv_step_counter)
-        tv.text = savedInstanceState.getString("Steps")
-    }
+
 }
