@@ -1,5 +1,8 @@
 package com.example.provehomefragments
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
@@ -20,6 +23,7 @@ interface FragHomeObserver{
 class HomeFragment : Fragment() {
 
     private var stepCounter:TextView? = null
+    private var br: BroadcastReceiver? = null //variable for the br
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +42,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         stepCounter = view.findViewById(R.id.tv_step_counter)
+        br = MyBroadcastReceiver() //example to try
 
         //Notify to the main activity that the fragment has been created
         val observer = activity as? FragHomeObserver
@@ -60,5 +65,14 @@ class HomeFragment : Fragment() {
 
             true
         }
+    }
+
+    //Ex with broadcast receiver
+    class MyBroadcastReceiver() : BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            var  result = intent?.getStringExtra("Giorgio")
+            //do something else
+        }
+
     }
 }

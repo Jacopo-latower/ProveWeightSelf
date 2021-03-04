@@ -17,7 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
-class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver {
+class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver{
 
     var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag
 
