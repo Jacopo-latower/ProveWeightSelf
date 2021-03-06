@@ -7,20 +7,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-data class TrainingItem(val type:String, val image: Int, val duration:Int, val difficulty:String)
+data class RecipeItem(val name:String, val image: Int, val kcal:Int)
 
-class BestTrainingAdapter(var data:List<TrainingItem>):RecyclerView.Adapter<BestTrainingAdapter.MyViewHolder>(){
+class RecipeListAdapter(var data:List<RecipeItem>):RecyclerView.Adapter<RecipeListAdapter.MyViewHolder>(){
     class MyViewHolder(v: View):RecyclerView.ViewHolder(v){
         val img:ImageView = v.findViewById(R.id.recipe_img)
-        val duration:TextView = v.findViewById(R.id.training_time)
-        val type:TextView = v.findViewById(R.id.recipe_kcal)
-        val difficulty:TextView = v.findViewById(R.id.recipe_name)
+        val name: TextView = v.findViewById(R.id.recipe_name)
+        val kcal: TextView = v.findViewById(R.id.recipe_kcal)
 
-        fun bind(i:TrainingItem, callback:(Int) -> Unit){
+        fun bind(i:RecipeItem, callback:(Int) -> Unit){
             img.setImageResource(i.image)
-            duration.text = ("${i.duration} minuti")
-            type.text = i.type
-            difficulty.text = i.difficulty
+            name.text = i.name
+            kcal.text = ("${i.kcal} kcal")
 
             img.setOnClickListener{callback(adapterPosition)}
         }
@@ -32,13 +30,13 @@ class BestTrainingAdapter(var data:List<TrainingItem>):RecyclerView.Adapter<Best
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_layout, parent,false)
+            .inflate(R.layout.recipe_card_layout, parent,false)
 
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(data[position]){pos:Int -> getTrainingPage(pos)}
+        holder.bind(data[position]){pos:Int -> getRecipePage(pos)}
     }
 
     override fun onViewRecycled(holder: MyViewHolder) {
@@ -49,8 +47,8 @@ class BestTrainingAdapter(var data:List<TrainingItem>):RecyclerView.Adapter<Best
         return data.size
     }
 
-    private fun getTrainingPage(p:Int){
-        println("Sei nella pagina dell'allenamento numero $p")
-        //implementare cambio fragment qui
+    private fun getRecipePage(pos:Int){
+        //Get the specific recipe page -> switch to specific recipe fragment
     }
+
 }

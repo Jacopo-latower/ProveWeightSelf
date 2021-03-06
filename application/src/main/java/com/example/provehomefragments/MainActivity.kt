@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver{
 
-    var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag
+    private var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag, 3 -> userfrag
 
     private var ACTIVITY_PERMISSION_CODE = 1
     private var sensorManager:SensorManager?= null
@@ -30,10 +30,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver{
 
     private var homeFrag : HomeFragment? = null
     private var trainingFrag : TrainingFragment? = null
-    private var recipeFrag : Fragment? = null //not implemented yet -> create RecipeFragment()
+    private var recipeFrag : RecipeFragment? = null
+    private var userFrag: UserFragment? = null
+
     // **THINGS TO DO**
     //private var weightFrag: WeightFragment? = null
-    //private var userFrag: UserFragment? = null
+
 
     private var tvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
@@ -50,7 +52,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver{
 
         homeFrag = HomeFragment()
         trainingFrag = TrainingFragment()
-        recipeFrag = Fragment()
+        recipeFrag = RecipeFragment()
+        userFrag = UserFragment()
 
         if(null == savedInstanceState) { //to prevent rotation problems
             showFragment(homeFrag!!) //initialize the app with the home fragment
@@ -73,6 +76,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver{
             showFragment(recipeFrag!!)
             activeFrag = 2
         }
+
+        val userBtn: Button = findViewById(R.id.user_button)
+        userBtn.setOnClickListener {
+            showFragment(userFrag!!)
+            activeFrag = 3
+        }
+
 
     }
 

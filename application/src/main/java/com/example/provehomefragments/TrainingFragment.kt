@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.training_layout.*
 
 class TrainingFragment:Fragment() {
 
+    //Example Data
     var data:List<TrainingItem> = listOf(
         TrainingItem("Cardio", R.drawable.allenamento, 30, "Facile"),
         TrainingItem("Gambe", R.drawable._rx1dvez640yxwlwbixdvncui, 10, "Intermedio"),

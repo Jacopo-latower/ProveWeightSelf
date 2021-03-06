@@ -53,11 +53,11 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="21dp" />
+        android:layout_height="30dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="171dp">
+        android:layout_height="213dp">
 
         <ImageView
             android:id="@+id/imageView5"
@@ -90,7 +90,7 @@
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="222dp"
         android:paddingTop="5dp">
 
         <LinearLayout
@@ -106,10 +106,10 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="237dp"
-                    android:layout_height="169dp"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:foreground="#43000000"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView2"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -125,7 +125,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_weight="1"
                     android:foreground="#46000000"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
