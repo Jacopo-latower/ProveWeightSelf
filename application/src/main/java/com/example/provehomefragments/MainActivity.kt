@@ -17,7 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
-class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver{
+class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver, UserFragObserver{
 
     private var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag, 3 -> userfrag
 
@@ -36,9 +36,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver{
     // **THINGS TO DO**
     //private var weightFrag: WeightFragment? = null
 
-
-    private var tvStepCounter : TextView? = null //textView for the step counter;
+    private var homeTvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
+    private var userTvStepCounter : TextView? = null
+
+    private var dailyStepsObjective = 1200 //daily steps to reach for the user; //TODO: implement the User class to have the step objective
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,13 +127,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver{
         }
     }
 
-    //update the steps when the user is walking
+    //Update the steps when the user is walking
     override fun onSensorChanged(event: SensorEvent?) {
         if(running){
-            tvStepCounter = findViewById(R.id.tv_step_counter)
+            homeTvStepCounter = findViewById(R.id.tv_step_counter)
+            userTvStepCounter = findViewById(R.id.userTvStepCounter)
             totalSteps = event!!.values[0]
             val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
-            tvStepCounter?.text = ("Contapassi: $currentSteps")
+            homeTvStepCounter?.text = ("Contapassi: $currentSteps")
+            userTvStepCounter?.text = ("$currentSteps su $dailyStepsObjective passi")
         }
     }
 
@@ -142,17 +146,24 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver{
 
     //Callback from the fragment to notify the step reset
     override fun stepResetNotify() {
-        tvStepCounter = findViewById(R.id.tv_step_counter)
+        homeTvStepCounter = findViewById(R.id.tv_step_counter)
         previousTotalSteps = totalSteps
-        tvStepCounter?.text = ("Contapassi: 0")
+        homeTvStepCounter?.text = ("Contapassi: 0")
         saveData()
     }
 
-    //Callback from the fragment to notify the creation of the fragment
+    //Callback from the home fragment to notify the creation of the fragment
     override fun fragCreatedNotify() {
-        tvStepCounter = findViewById(R.id.tv_step_counter)
+        homeTvStepCounter = findViewById(R.id.tv_step_counter)
         val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
-        tvStepCounter?.text = ("Contapassi: $currentSteps")
+        homeTvStepCounter?.text = ("Contapassi: $currentSteps")
+    }
+
+    //Callback from the user fragment to notify the creation of the fragment
+    override fun userFragCreatedNotify() {
+        userTvStepCounter = findViewById(R.id.userTvStepCounter)
+        val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
+        userTvStepCounter?.text = ("$currentSteps su $dailyStepsObjective passi")
     }
 
     //Save the previousTotalSteps in the preferences. This is called when the user reset the stepcounter.

@@ -9,15 +9,13 @@
         android:id="@+id/kcal_num_taken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="560"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toTopOf="@+id/textView18"
+        app:layout_constraintBottom_toBottomOf="@+id/divider5"
         app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.29" />
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView18"
@@ -25,11 +23,9 @@
         android:layout_height="wrap_content"
         android:text="Kcal assunte"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="@+id/divider5"
         app:layout_constraintEnd_toEndOf="@+id/kcal_num_taken"
         app:layout_constraintStart_toStartOf="@+id/kcal_num_taken"
-        app:layout_constraintTop_toBottomOf="@+id/kcal_num_taken"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/kcal_num_taken" />
 
     <TextView
         android:id="@+id/kcal_burned"
@@ -51,7 +47,6 @@
         android:layout_height="wrap_content"
         android:text="Kcal bruciate"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/kcal_num_taken"
         app:layout_constraintEnd_toEndOf="@+id/kcal_burned"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/kcal_burned"
@@ -175,7 +170,7 @@
         app:layout_constraintVertical_bias="0.077" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/userTvStepCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="150 su 1200 passi"
