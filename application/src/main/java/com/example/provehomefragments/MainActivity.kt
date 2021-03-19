@@ -16,8 +16,13 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver, UserFragObserver{
+
+
 
     private var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag, 3 -> userfrag
 
@@ -47,21 +52,37 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Tolgo le ombre sul tab delle icone
+        bottomNavigationView.background = null
+        bottomNavigationView.menu.getItem(2).isEnabled = false
+
+
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager //sensor manager for the stepcounter
 
         requestUserPermission() //ask if the user give the permission for the step counter
         loadData() //load the previous total steps in the preferences; the default value is 0f
 
-        homeFrag = HomeFragment()
-        trainingFrag = TrainingFragment()
-        recipeFrag = RecipeFragment()
-        userFrag = UserFragment()
+        val homeFrag = HomeFragment()
+        val trainingFrag = TrainingFragment()
+        val recipeFrag = RecipeFragment()
+        val userFrag = UserFragment()
 
-        if(null == savedInstanceState) { //to prevent rotation problems
-            showFragment(homeFrag!!) //initialize the app with the home fragment
+        setCurrentFragment(homeFrag)
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.home_btn -> setCurrentFragment(homeFrag)
+                R.id.training_button -> setCurrentFragment(trainingFrag)
+                R.id.recipe_btn -> setCurrentFragment(recipeFrag)
+                R.id.user_button -> setCurrentFragment(userFrag)
+            }
+            true
         }
 
-        val homeBtn:Button = findViewById(R.id.home_btn)
+        /*if(null == savedInstanceState) { //to prevent rotation problems
+            showFragment(homeFrag!!) //initialize the app with the home fragment
+        }*/
+
+/*        val homeBtn:Button = findViewById(R.id.home_btn)
         homeBtn.setOnClickListener {
             showFragment(homeFrag!!)
             activeFrag = 0
@@ -83,10 +104,17 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         userBtn.setOnClickListener {
             showFragment(userFrag!!)
             activeFrag = 3
-        }
+        }*/
 
 
     }
+
+    private fun setCurrentFragment(fragment : Fragment) =
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragment_container,fragment)
+                commit()
+            }
+
 
     //Set up for the sensor listener
     @RequiresApi(Build.VERSION_CODES.KITKAT)

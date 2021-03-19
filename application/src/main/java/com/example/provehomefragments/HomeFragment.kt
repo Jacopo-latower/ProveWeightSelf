@@ -20,7 +20,7 @@ interface FragHomeObserver{
     fun fragCreatedNotify()
 }
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(R.layout.home_layout) {
 
     private var stepCounter:TextView? = null
     private var br: BroadcastReceiver? = null //variable for the br
