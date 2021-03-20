@@ -17,9 +17,12 @@ class RecipeFragment : Fragment() {
         RecipeItem("Torta di Achille Lauro", R.drawable.achille_lauro_2, 2223)
     )
 
+    /*
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
+    */
 
     override fun onCreateView(
         inflater: LayoutInflater,

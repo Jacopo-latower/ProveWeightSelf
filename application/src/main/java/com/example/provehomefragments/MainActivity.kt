@@ -148,12 +148,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         }
     }
 
+    /*
     //Switch to the selected fragment
     private fun showFragment(f:Fragment){
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, f)
                 .commit()
     }
+
+     */
 
     //Request permission to user
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -225,10 +228,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val savedNumber = sharedPreferences.getFloat("key1", 0f)
         previousTotalSteps = savedNumber
     }
-
-
-
-
 
 
 }
