@@ -39,7 +39,7 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="546dp"
+        android:layout_height="509dp"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/divider6"
         app:layout_constraintEnd_toEndOf="parent"
