@@ -8,14 +8,20 @@ import android.net.NetworkRequest
 import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.activity_scale.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.net.URL
 
 class ScaleFragment : Fragment() {
 
@@ -28,8 +34,10 @@ class ScaleFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val connectivityManager: ConnectivityManager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         val builder: NetworkRequest.Builder = NetworkRequest.Builder()
         builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
@@ -41,7 +49,7 @@ class ScaleFragment : Fragment() {
             }.build()
         )
 
-        val connectivityManager: ConnectivityManager = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
 
         connectBtn?.setOnClickListener {
             try {
@@ -50,13 +58,22 @@ class ScaleFragment : Fragment() {
                     object : ConnectivityManager.NetworkCallback() {
                         override fun onAvailable(network: Network) {
                             connectivityManager.bindProcessToNetwork(network)
-                            findNavController().navigate(R.id.action_scaleFragment_to_weightFragment)
+                            setCurrentFragment(WeightFragment())
                         }
                     })
+
+
+
             } catch (e: SecurityException) {
                 System.err.println(e)
             }
         }
     }
+
+    private fun setCurrentFragment(fragment : Fragment) =
+        activity?.supportFragmentManager!!.beginTransaction().apply {
+            replace(R.id.fragment_container,fragment)
+            commit()
+        }
 
 }

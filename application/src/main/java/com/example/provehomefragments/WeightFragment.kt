@@ -31,14 +31,12 @@ class WeightFragment : Fragment() {
 
 
     @RequiresApi(Build.VERSION_CODES.M)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         client = OkHttpClient()
 
-        val connectivityManager =  activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =  requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network: Network? = connectivityManager.activeNetwork
         if(network!=null) {
             val lp: LinkProperties? = connectivityManager.getLinkProperties(network)
