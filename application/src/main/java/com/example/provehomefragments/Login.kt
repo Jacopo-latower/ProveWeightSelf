@@ -7,6 +7,7 @@ import androidx.core.widget.doAfterTextChanged
 import kotlinx.android.synthetic.main.login.*
 import android.content.Context
 import android.widget.CalendarView.OnDateChangeListener
+import androidx.fragment.app.Fragment
 import java.io.BufferedOutputStream
 import java.io.DataOutputStream
 import java.util.*
@@ -55,5 +56,8 @@ class Login : AppCompatActivity() {
             val j = Intent(this, Register::class.java)
             startActivity(j)
         }
+
+
     }
+
 }

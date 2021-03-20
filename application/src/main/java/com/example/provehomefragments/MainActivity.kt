@@ -37,9 +37,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var trainingFrag : TrainingFragment? = null
     private var recipeFrag : RecipeFragment? = null
     private var userFrag: UserFragment? = null
-
-    // **THINGS TO DO**
-    //private var weightFrag: WeightFragment? = null
+    private var scaleFrag: ScaleFragment? = null
 
     private var homeTvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
@@ -66,6 +64,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val trainingFrag = TrainingFragment()
         val recipeFrag = RecipeFragment()
         val userFrag = UserFragment()
+        val scaleFrag = ScaleFragment()
 
         setCurrentFragment(homeFrag)
         bottomNavigationView.setOnNavigationItemSelectedListener {
@@ -74,6 +73,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
                 R.id.training_button -> setCurrentFragment(trainingFrag)
                 R.id.recipe_btn -> setCurrentFragment(recipeFrag)
                 R.id.user_button -> setCurrentFragment(userFrag)
+                R.id.scale_button -> setCurrentFragment(scaleFrag)
             }
             true
         }
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             showFragment(homeFrag!!) //initialize the app with the home fragment
         }*/
 
-/*        val homeBtn:Button = findViewById(R.id.home_btn)
+/*      val homeBtn:Button = findViewById(R.id.home_btn)
         homeBtn.setOnClickListener {
             showFragment(homeFrag!!)
             activeFrag = 0

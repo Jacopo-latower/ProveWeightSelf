@@ -3,13 +3,11 @@ package com.example.provehomefragments
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-class Register: AppCompatActivity() {
+class Register : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_registration)
-
-
 
 
     }
