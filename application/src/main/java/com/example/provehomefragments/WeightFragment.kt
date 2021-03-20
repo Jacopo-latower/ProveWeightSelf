@@ -1,17 +1,29 @@
 package com.example.provehomefragments
 
+import android.content.Context
 import android.net.ConnectivityManager
 import android.net.LinkProperties
 import android.net.Network
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_weight.*
 import okhttp3.*
 import java.io.IOException
 
-class WeightActivity : AppCompatActivity() {
+class WeightFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.activity_weight, container, false)
+    }
 
     val url = "http://192.168.4.1/peso"
     var client: OkHttpClient? = null
@@ -21,13 +33,12 @@ class WeightActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weight)
 
 
 
         client = OkHttpClient()
 
-        val connectivityManager =  getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =  activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network: Network? = connectivityManager.activeNetwork
         if(network!=null) {
             val lp: LinkProperties? = connectivityManager.getLinkProperties(network)
@@ -39,7 +50,7 @@ class WeightActivity : AppCompatActivity() {
 
 
         //Asynchronous Implementation
-        weightBtn.setOnClickListener {
+        weightBtn?.setOnClickListener {
 
             val request : Request = Request.Builder().url(url).method("GET", null).build()
             var call : Call = client!!.newCall(request)
@@ -60,10 +71,11 @@ class WeightActivity : AppCompatActivity() {
                         if(response.body == null) println("NULLOOOOO")
 
 
-                        this@WeightActivity.runOnUiThread { tv_result.text = resp!!.substring(9, 13) }
+                        activity!!.runOnUiThread { tv_result.text = resp!!.substring(9, 13) }
                     }
                 }
             })
         }
     }
+
 }

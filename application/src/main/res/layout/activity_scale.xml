@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/MyButton"
+        android:id="@+id/connectBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/connect"
@@ -25,9 +25,9 @@
         android:text="@string/connectingText"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/MyButton"
-        app:layout_constraintEnd_toEndOf="@+id/MyButton"
-        app:layout_constraintStart_toStartOf="@+id/MyButton"
+        app:layout_constraintBottom_toTopOf="@+id/connectBtn"
+        app:layout_constraintEnd_toEndOf="@+id/connectBtn"
+        app:layout_constraintStart_toStartOf="@+id/connectBtn"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

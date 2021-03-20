@@ -1,6 +1,7 @@
 package com.example.provehomefragments
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -17,6 +18,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -37,7 +39,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var trainingFrag : TrainingFragment? = null
     private var recipeFrag : RecipeFragment? = null
     private var userFrag: UserFragment? = null
-    private var scaleFrag: ScaleFragment? = null
 
     private var homeTvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
@@ -73,10 +74,26 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
                 R.id.training_button -> setCurrentFragment(trainingFrag)
                 R.id.recipe_btn -> setCurrentFragment(recipeFrag)
                 R.id.user_button -> setCurrentFragment(userFrag)
-                R.id.scale_button -> setCurrentFragment(scaleFrag)
             }
             true
         }
+
+        val scaleBtn : FloatingActionButton = findViewById(R.id.scale_button)
+
+        scaleBtn.setOnClickListener {
+            setCurrentFragment(scaleFrag)
+        }
+
+
+        /*
+        val scaleBtn : FloatingActionButton = findViewById(R.id.scale_button)
+
+
+        scaleBtn.setOnClickListener {
+            val intent = Intent(this@MainActivity, ScaleActivity::class.java)
+            startActivity(intent)
+        }
+        */
 
         /*if(null == savedInstanceState) { //to prevent rotation problems
             showFragment(homeFrag!!) //initialize the app with the home fragment
@@ -208,6 +225,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val savedNumber = sharedPreferences.getFloat("key1", 0f)
         previousTotalSteps = savedNumber
     }
+
+
+
 
 
 
