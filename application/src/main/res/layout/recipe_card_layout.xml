@@ -10,64 +10,53 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="182dp">
+            android:layout_height="@dimen/_100sdp">
 
             <ImageView
                 android:id="@+id/recipe_img"
-                android:layout_width="343dp"
-                android:layout_height="146dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:fadeScrollbars="true"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.764"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
                 android:id="@+id/recipe_name"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:background="#72000000"
-                android:gravity="center"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:background="#80000000"
                 android:text="NomeRicetta"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="@+id/recipe_img"
                 app:layout_constraintTop_toTopOf="@+id/recipe_img" />
 
             <TextView
                 android:id="@+id/recipe_kcal"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="8dp"
-                android:background="#48000000"
+                android:layout_marginRight="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:background="#80000000"
                 android:text="KcalNum"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/recipe_img"
                 app:layout_constraintEnd_toEndOf="@+id/recipe_img" />
 
-            <ImageView
-                android:id="@+id/type_icon"
-                android:layout_width="30dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toStartOf="@+id/recipe_img"
-                app:layout_constraintTop_toTopOf="@+id/recipe_img"
-                app:srcCompat="@drawable/allenamento" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -31,7 +31,7 @@
         android:id="@+id/recipes_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:padding="@dimen/_5sdp"
         android:text="Ricette Proposte"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
