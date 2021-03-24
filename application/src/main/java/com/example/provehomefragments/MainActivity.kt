@@ -35,10 +35,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var totalSteps = 0f
     private var previousTotalSteps = 0f
 
+    /*
     private var homeFrag : HomeFragment? = null
     private var trainingFrag : TrainingFragment? = null
     private var recipeFrag : RecipeFragment? = null
     private var userFrag: UserFragment? = null
+    */
 
     private var homeTvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
