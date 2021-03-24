@@ -22,7 +22,7 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
-        btn_login.isEnabled=false
+        //btn_login.isEnabled=false
 
         //save email
         email.doAfterTextChanged {
