@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_weight.*
+import kotlinx.android.synthetic.main.fragment_weight_layout.*
 import okhttp3.*
 import java.io.IOException
 
@@ -22,7 +22,7 @@ class WeightFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_weight, container, false)
+        return inflater.inflate(R.layout.fragment_weight_layout, container, false)
     }
 
     val url = "http://192.168.4.1/peso"

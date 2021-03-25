@@ -13,7 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_scale.*
+import kotlinx.android.synthetic.main.fragment_scale_layout.*
 
 class ScaleFragment : Fragment() {
 
@@ -22,7 +22,7 @@ class ScaleFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_scale, container, false)
+        return inflater.inflate(R.layout.fragment_scale_layout, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
