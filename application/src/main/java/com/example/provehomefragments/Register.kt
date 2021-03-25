@@ -10,7 +10,7 @@ class Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup)
 
-        btn_register.setOnClickListener {
+        btn_register?.setOnClickListener {
             addNewUser()
         }
 

@@ -1,26 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Weightself</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     //LOGIN E SIGNUP
-    <string name="email">Indirizzo email</string>
+    <string name="email">Email address</string>
     <string name="password">Password</string>
-    <string name="conferma_password">Conferma password</string>
-    <string name="nome">Nome</string>
-    <string name="cognome">Cognome</string>
-    <string name="altezza">Altezza (cm)</string>
-    <string name="login">Accedi</string>
-    <string name="logout">Esci</string>
-    <string name="signup">Registrati</string>
-    <string name="compila">Compila tutti i campi per procedere con la registrazione</string>
-    <string name="nonregistrato">Non sei ancora iscritto?</string>
+    <string name="conferma_password">Confirm password</string>
+    <string name="nome">Name</string>
+    <string name="cognome">Surname</string>
+    <string name="altezza">Height (cm)</string>
+    <string name="login">Sign in</string>
+    <string name="signup">Sign up</string>
+    <string name="logout">Logout</string>
+    <string name="compila">Fill in the fields below to create an account.</string>
+    <string name="nonregistrato">Not registered yet?</string>
 
-
+    //HOME
     <string name="home">Home</string>
-    <string name="training">Allenamenti</string>
-    <string name="user">Profilo</string>
-    <string name="recipe">Ricette</string>
+    <string name="training_recommended">Recommended training</string>
+    <string name="try_recipe">Try this recipe</string>
+    <string name="tips" translatable="false">Tips</string>
 
-    <string name="connect">Connetti</string>
-    <string name="connectingText">Connetti l\'app alla tua Weight Scale</string>
+    //TRAINING
+    <string name="training">Training</string>
+    <string name="scelti_per_te">Selected for you</string>
+    <string name="training_list">All trainings</string>
+
+    //RECIPES
+    <string name="plus_calories">Gained kCal:</string>
+    <string name="minus_calories">Burned kCal:</string>
+    <string name="user">User</string>
+    <string name="recipe">Recipes</string>
+
+    <string name="connect">Connect</string>
+    <string name="connectingText">Connect the app to your Weight Scale</string>
+
 </resources>

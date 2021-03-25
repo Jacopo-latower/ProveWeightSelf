@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Weightself</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //LOGIN E SIGNUP
+    <string name="email">Indirizzo email</string>
+    <string name="password">Password</string>
+    <string name="conferma_password">Conferma password</string>
+    <string name="nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="altezza">Altezza (cm)</string>
+    <string name="login">Accedi</string>
+    <string name="logout">Esci</string>
+    <string name="signup">Registrati</string>
+    <string name="compila">Compila tutti i campi per procedere con la registrazione</string>
+    <string name="nonregistrato">Non sei ancora iscritto?</string>
+
+    //HOME
+    <string name="home">Home</string>
+    <string name="training_recommended">Allenamento consigliato</string>
+    <string name="try_recipe">Prova questa ricetta</string>
+
+    //TRAINING
+    <string name="training">Allenamento</string>
+    <string name="scelti_per_te">Scelti per te</string>
+    <string name="training_list">Tutti gli allenamenti</string>
+
+    <string name="plus_calories">kCal assunte:</string>
+    <string name="minus_calories">kCal bruciate:</string>
+
+    <string name="user">Profilo</string>
+    <string name="recipe">Ricette</string>
+
+    <string name="connect">Connetti</string>
+    <string name="connectingText">Connetti l\'app alla tua Weight Scale</string>
+</resources>
