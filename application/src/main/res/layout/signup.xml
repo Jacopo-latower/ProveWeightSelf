@@ -89,15 +89,15 @@
             android:textSize="18dp"/>
 
         <EditText
+            android:id="@+id/height_register"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/height_register"
-            android:inputType="number"
             android:layout_marginBottom="10dp"
-            android:hint="Altezza in cm"
             android:ems="10"
+            android:hint="Altezza (cm)"
+            android:inputType="number"
             android:padding="10dp"
-            android:textSize="18dp"/>
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/save_register"
