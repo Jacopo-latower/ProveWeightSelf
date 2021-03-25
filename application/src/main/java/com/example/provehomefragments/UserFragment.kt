@@ -38,7 +38,12 @@ class UserFragment : Fragment() {
         val observer = activity as? UserFragObserver
         observer?.userFragCreatedNotify()
 
+        btnLogout.setOnClickListener { logout() }
+
     }
 
+}
+
+private fun logout(){
 
 }

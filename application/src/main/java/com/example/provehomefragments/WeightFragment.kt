@@ -76,8 +76,6 @@ class WeightFragment : Fragment() {
                         println("Il body è: $resp")
 
                         if(response.body == null) println("NULLOOOOO")
-
-
                         activity!!.runOnUiThread { tv_result.text = resp!!.substring(9, 13) }
                     }
                 }

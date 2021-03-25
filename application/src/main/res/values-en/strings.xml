@@ -22,6 +22,6 @@
     <string name="recipe">Recipies</string>
 
     <string name="connect">Connect</string>
-    <string name="connectingText">Connect the App to your Weight Scale</string>
+    <string name="connectingText">Connect the app to your Weight Scale</string>
 
 </resources>
