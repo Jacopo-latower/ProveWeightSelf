@@ -17,7 +17,11 @@ class TrainingFragment:Fragment() {
     var data:List<TrainingItem> = listOf(
         TrainingItem("Cardio", R.drawable.allenamento, 30, "Facile"),
         TrainingItem("Gambe", R.drawable._rx1dvez640yxwlwbixdvncui, 10, "Intermedio"),
+        TrainingItem("Braccia", R.drawable.functional2, 15, "Difficile"),
+        TrainingItem("Cardio", R.drawable.allenamento, 30, "Facile"),
+        TrainingItem("Gambe", R.drawable._rx1dvez640yxwlwbixdvncui, 10, "Intermedio"),
         TrainingItem("Braccia", R.drawable.functional2, 15, "Difficile")
+
     )
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
