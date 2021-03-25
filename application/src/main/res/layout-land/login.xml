@@ -58,7 +58,7 @@
             android:drawableLeft="@drawable/email_login_icon"
             android:drawablePadding="10dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:textSize="21sp" />
@@ -73,7 +73,7 @@
             android:drawableLeft="@drawable/password_login_icon"
             android:drawablePadding="10dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="10dp"
             android:textSize="21sp" />
@@ -89,7 +89,7 @@
             android:layout_marginRight="100dp"
             android:backgroundTint="#53c1e5"
             android:gravity="center"
-            android:text="ACCEDI"
+            android:text="@string/login"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="21sp" />
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Non sei ancora iscritto?"
+            android:text="@string/nonregistrato"
             android:textSize="21sp" />
 
         <Button
@@ -126,7 +126,7 @@
             android:layout_marginEnd="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center"
-            android:text="Registrati"
+            android:text="@string/signup"
             android:textSize="21sp" />
 
     </LinearLayout>

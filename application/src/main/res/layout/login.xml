@@ -70,7 +70,7 @@
             android:layout_marginBottom="50dp"
             android:backgroundTint="#53c1e5"
             android:gravity="center"
-            android:text="ACCEDI"
+            android:text="@string/login"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="21sp" />
@@ -82,12 +82,13 @@
             android:gravity="center"
             android:textSize="21sp"
             android:text="Non sei ancora iscritto?" />
+
         <Button
             android:id="@+id/btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Registrati"
+            android:text="@string/signup"
             android:textSize="21sp" />
     </LinearLayout>
 

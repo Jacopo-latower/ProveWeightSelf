@@ -12,11 +12,12 @@
         android:id="@+id/textView12"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:padding="15dp"
-        android:text="Compila tutti i campi per procedere con la registrazione"
+        android:text="@string/compila"
         android:textColor="#FFFFFF"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -25,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:padding="15dp"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout5"
         app:layout_constraintHorizontal_bias="0.5"
@@ -38,10 +39,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="10dp"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/password_register"
@@ -49,10 +50,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textSize="18dp" />
+            android:textSize="18sp"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/passwordC_register"
@@ -60,10 +62,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="Conferma Password"
+            android:hint="@string/conferma_password"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -72,7 +74,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:padding="15dp"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -85,10 +87,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Nome"
+            android:hint="@string/nome"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/surname_register"
@@ -96,10 +98,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Cognome"
+            android:hint="@string/cognome"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/height_register"
@@ -107,10 +109,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Altezza (cm)"
+            android:hint="@string/altezza"
             android:inputType="number"
             android:padding="10dp"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -129,8 +131,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="#53c1e5"
-            android:text="Registrati"
-            android:textSize="18dp" />
+            android:text="@string/signup"
+            android:textSize="18sp" />
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

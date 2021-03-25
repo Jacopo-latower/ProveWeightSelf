@@ -23,40 +23,40 @@
             android:gravity="center"
             android:text="Compila tutti i campi per procedere con la registrazione"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/email_register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:hint="Email"
-            android:textSize="18dp"
-            android:ems="10"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:textSize="18sp" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/password_register"
-            android:layout_marginBottom="10dp"
-            android:inputType="textPassword"
-            android:hint="Password"
-            android:textSize="18dp"
-            android:ems="10"
-            android:padding="10dp"/>
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/passwordC_register"
-            android:layout_marginBottom="20dp"
-            android:inputType="textPassword"
-            android:hint="Conferma Password"
-            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
             android:ems="10"
-            android:padding="10dp"/>
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/passwordC_register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:hint="@string/conferma_password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textSize="18sp" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -67,26 +67,26 @@
             android:src="@drawable/line" />
 
         <EditText
+            android:id="@+id/name_register"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/name_register"
-            android:inputType="textPersonName"
             android:layout_marginBottom="10dp"
-            android:hint="Nome"
             android:ems="10"
+            android:hint="@string/nome"
+            android:inputType="textPersonName"
             android:padding="10dp"
-            android:textSize="18dp"/>
+            android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/surname_register"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/surname_register"
-            android:inputType="textPersonName"
             android:layout_marginBottom="10dp"
-            android:hint="Cognome"
             android:ems="10"
+            android:hint="@string/cognome"
+            android:inputType="textPersonName"
             android:padding="10dp"
-            android:textSize="18dp"/>
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/height_register"
@@ -94,10 +94,10 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Altezza (cm)"
+            android:hint="@string/altezza"
             android:inputType="number"
             android:padding="10dp"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/save_register"
