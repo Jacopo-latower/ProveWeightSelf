@@ -20,7 +20,7 @@ interface FragHomeObserver{
     fun fragCreatedNotify()
 }
 
-class HomeFragment : Fragment(R.layout.home_layout) {
+class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
     private var stepCounter:TextView? = null
     private var br: BroadcastReceiver? = null //variable for the br
@@ -37,11 +37,11 @@ class HomeFragment : Fragment(R.layout.home_layout) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_layout, container, false)
+        return inflater.inflate(R.layout.fragment_home_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        stepCounter = view.findViewById(R.id.tv_step_counter)
+        stepCounter = view.findViewById(R.id.daily_steps)
         br = MyBroadcastReceiver() //example to try
 
         //Notify to the main activity that the fragment has been created

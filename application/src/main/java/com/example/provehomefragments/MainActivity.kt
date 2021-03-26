@@ -21,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.user_frag_layout.*
 
 class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver, UserFragObserver{
 
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var homeTvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
     private var userTvStepCounter : TextView? = null
+    private var userTvDailyStepTarget : TextView? = null
 
     private var dailyStepsObjective = 1200 //daily steps to reach for the user; //TODO: implement the User class to have the step objective
 
@@ -180,12 +182,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     //Update the steps when the user is walking
     override fun onSensorChanged(event: SensorEvent?) {
         if(running){
-            homeTvStepCounter = findViewById(R.id.tv_step_counter)
+            homeTvStepCounter = findViewById(R.id.daily_steps)
             userTvStepCounter = findViewById(R.id.userTvStepCounter)
+            userTvDailyStepTarget = findViewById(R.id.userTvDailyStepTarget)
             totalSteps = event!!.values[0]
             val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
-            homeTvStepCounter?.text = ("Contapassi: $currentSteps")
-            userTvStepCounter?.text = ("$currentSteps su $dailyStepsObjective passi")
+            homeTvStepCounter?.text = ("$currentSteps")
+            userTvStepCounter?.text = ("$currentSteps")
+            userTvDailyStepTarget?.text = ("$dailyStepsObjective")
         }
     }
 
@@ -196,24 +200,26 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
 
     //Callback from the fragment to notify the step reset
     override fun stepResetNotify() {
-        homeTvStepCounter = findViewById(R.id.tv_step_counter)
+        homeTvStepCounter = findViewById(R.id.daily_steps)
         previousTotalSteps = totalSteps
-        homeTvStepCounter?.text = ("Contapassi: 0")
+        homeTvStepCounter?.text = ("0")
         saveData()
     }
 
     //Callback from the home fragment to notify the creation of the fragment
     override fun fragCreatedNotify() {
-        homeTvStepCounter = findViewById(R.id.tv_step_counter)
+        homeTvStepCounter = findViewById(R.id.daily_steps)
         val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
-        homeTvStepCounter?.text = ("Contapassi: $currentSteps")
+        homeTvStepCounter?.text = ("$currentSteps")
     }
 
     //Callback from the user fragment to notify the creation of the fragment
     override fun userFragCreatedNotify() {
         userTvStepCounter = findViewById(R.id.userTvStepCounter)
+        userTvDailyStepTarget = findViewById(R.id.userTvDailyStepTarget)
         val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
-        userTvStepCounter?.text = ("$currentSteps su $dailyStepsObjective passi")
+        userTvStepCounter?.text = ("$currentSteps")
+        userTvDailyStepTarget?.text = "$dailyStepsObjective"
     }
 
     //Save the previousTotalSteps in the preferences. This is called when the user reset the stepcounter.

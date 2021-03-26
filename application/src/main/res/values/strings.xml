@@ -21,6 +21,9 @@
     <string name="training_recommended">Recommended training</string>
     <string name="try_recipe">Try this recipe</string>
     <string name="tips" translatable="false">Tips</string>
+    <string name="last_weight">Last weight</string>
+    <string name="stepcounter">Daily steps</string>
+    <string name="distance">Distance covered</string>
 
     //TRAINING
     <string name="training">Training</string>
@@ -28,11 +31,18 @@
     <string name="training_list">All trainings</string>
 
     //RECIPES
-    <string name="plus_calories">Gained kCal:</string>
-    <string name="minus_calories">Burned kCal:</string>
-    <string name="user">User</string>
+    <string name="plus_calories">Gained kCal</string>
+    <string name="minus_calories">Burned kCal</string>
     <string name="recipe">Recipes</string>
 
+    //USER
+    <string name="user">User</string>
+    <string name="last_weight_saved">Last saved weight is</string>
+    <string name="remaining_kcal">Remaining kCal to burn</string>
+    <string name="today_steps">Today you have completed</string>
+    <string name="steps_out_of">steps out of</string>
+
+    //SCALE
     <string name="connect">Connect</string>
     <string name="connectingText">Connect the app to your Weight Scale</string>
 

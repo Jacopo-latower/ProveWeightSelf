@@ -13,6 +13,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/training"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFF"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +37,7 @@
         android:gravity="center"
         android:text="@string/training_list"
         android:textColor="#FFFFFF"
-        app:backgroundTint="#94000000"
+        app:backgroundTint="@color/light_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -56,8 +57,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:alpha=".5"
         android:text="@string/scelti_per_te"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
