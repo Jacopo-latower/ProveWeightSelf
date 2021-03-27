@@ -31,9 +31,10 @@
     <string name="training_list">All trainings</string>
 
     //RECIPES
-    <string name="plus_calories">Gained kCal</string>
-    <string name="minus_calories">Burned kCal</string>
+    <string name="gain_calories">Gained kCal</string>
+    <string name="burn_calories">Burned kCal</string>
     <string name="recipe">Recipes</string>
+    <string name="plus_calories">Add kCal</string>
 
     //USER
     <string name="user">User</string>

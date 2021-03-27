@@ -29,9 +29,10 @@
     <string name="training_list">Tutti gli allenamenti</string>
 
     //RECIPES
-    <string name="plus_calories">kCal assunte</string>
-    <string name="minus_calories">kCal bruciate</string>
+    <string name="gain_calories">kCal Assunte</string>
+    <string name="burn_calories">kCal Bruciate</string>
     <string name="recipe">Ricette</string>
+    <string name="plus_calories">Aggiungi kCal</string>
 
     //USER
     <string name="user">Profilo</string>
