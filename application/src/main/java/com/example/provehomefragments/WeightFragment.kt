@@ -81,6 +81,12 @@ class WeightFragment : Fragment() {
                 }
             })
         }
+
+        saveBtn.setOnClickListener { saveWeightValue() }
     }
 
+}
+
+private fun saveWeightValue(){
+    //TODO
 }

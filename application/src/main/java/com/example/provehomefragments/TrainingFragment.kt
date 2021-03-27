@@ -45,5 +45,6 @@ class TrainingFragment:Fragment() {
 
         rv_best_trainings.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         rv_best_trainings.adapter = BestTrainingAdapter(data)
+
     }
 }

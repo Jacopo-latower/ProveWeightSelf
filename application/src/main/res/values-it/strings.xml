@@ -43,5 +43,8 @@
 
     //SCALE
     <string name="connect">Connetti</string>
-    <string name="connectingText">Connetti l\'app alla tua Weight Scale</string>
+    <string name="connectingText">Collega l\'app alla tua Weight Scale</string>
+    <string name="pesa">Pesa</string>
+    <string name="save">Salva</string>
+
 </resources>

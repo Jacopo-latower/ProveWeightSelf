@@ -29,21 +29,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_margin="10dp"
             android:gravity="center"
-            android:layout_margin="@dimen/_5sdp">
+            android:orientation="vertical">
 
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/last_weight_tv3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="30000"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_20sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:padding="@dimen/_8sdp"
                 android:gravity="center"
-                android:background="@drawable/rectangle_lightblue" />
+                android:text="tot"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/textView11"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <TextView
                 android:id="@+id/textViewBurnedCal"
@@ -59,21 +61,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_margin="10dp"
             android:gravity="center"
-            android:layout_margin="@dimen/_5sdp">
+            android:orientation="vertical">
 
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/last_weight_tv2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="56666"
-                android:padding="@dimen/_8sdp"
                 android:gravity="center"
+                android:text="tot"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_20sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:background="@drawable/rectangle_lightblue"/>
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/textView11"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <TextView
                 android:id="@+id/textViewGainedCal"
@@ -90,7 +94,8 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:background="#00FFFFFF"
             android:scaleType="center"
             android:src="@android:drawable/ic_menu_add"
@@ -99,13 +104,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:alpha=".5"
             android:gravity="center_vertical"
             android:text="@string/plus_calories"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white"
-            android:layout_margin="@dimen/_5sdp"
-            />
+            android:textSize="14sp" />
 
 
     </LinearLayout>
@@ -136,7 +141,7 @@
         android:id="@+id/rv_recipes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginBottom="@dimen/_50sdp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="50dp" />
 
 </LinearLayout>
