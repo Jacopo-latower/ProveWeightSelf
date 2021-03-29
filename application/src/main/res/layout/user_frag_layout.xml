@@ -75,18 +75,19 @@
         app:layout_constraintStart_toStartOf="@+id/kcal_burned"
         app:layout_constraintTop_toBottomOf="@+id/kcal_burned" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_img"
         android:layout_width="135dp"
         android:layout_height="135dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:foreground="@drawable/mascheracircolare"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/achille_lauro_2" />
+        app:srcCompat="@drawable/achille_lauro_2"
+        app:shapeAppearanceOverlay="@style/Circular"
+        />
 
     <TextView
         android:id="@+id/username_tv"
@@ -265,7 +266,6 @@
             android:text="@string/steps_out_of"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/white" />
-
         <TextView
             android:id="@+id/userTvDailyStepTarget"
             android:layout_width="wrap_content"
