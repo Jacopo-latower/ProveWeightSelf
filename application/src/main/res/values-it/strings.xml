@@ -19,20 +19,23 @@
     <string name="home">Home</string>
     <string name="training_recommended">Allenamento consigliato</string>
     <string name="try_recipe">Prova questa ricetta</string>
-    <string name="last_weight">Ultimo peso</string>
-    <string name="stepcounter">Passi giornalieri</string>
-    <string name="distance">Distanza percorsa</string>
+    <string name="last_weight">Ultimo Peso</string>
+    <string name="stepcounter">Passi</string>
+    <string name="distance">Distanza (km)</string>
 
     //TRAINING
     <string name="training">Allenamento</string>
     <string name="scelti_per_te">Scelti per te</string>
-    <string name="training_list">Tutti gli allenamenti</string>
+    <string name="all_training">Tutti gli allenamenti</string>
+    <string name="fav_training">Allenamenti preferiti</string>
 
     //RECIPES
     <string name="gain_calories">kCal Assunte</string>
     <string name="burn_calories">kCal Bruciate</string>
     <string name="recipe">Ricette</string>
     <string name="plus_calories">Aggiungi kCal</string>
+    <string name="all_recipes">Tutte le ricette</string>
+    <string name="fav_recipes">Ricette preferite</string>
 
     //USER
     <string name="user">Profilo</string>

@@ -26,10 +26,7 @@ class RecipeFragment : Fragment() {
         RecipeItem("Fagioli Rinforzanti", R.drawable._669_fagioli, 134),
         RecipeItem("Mega Frittura di Pesce", R.drawable.pesce_fritto, 89),
         RecipeItem("Pesche Sciroppate", R.drawable.immagini_2018_mangiare_ricette_pesche_sciroppate, 3422),
-        RecipeItem("Torta di Achille Lauro", R.drawable.achille_lauro_2, 2223),
-        RecipeItem("Torta di Achille Lauro", R.drawable.achille_lauro_2, 2223),
-        RecipeItem("Pasta di Achille Lauro", R.drawable.achille_lauro_2, 300),
-        RecipeItem("Carne di Achille Lauro", R.drawable.achille_lauro_2, 600)
+        RecipeItem("Torta di Achille Lauro", R.drawable.achille_lauro_2, 2223)
     )
 
     /*

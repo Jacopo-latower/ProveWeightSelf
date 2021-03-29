@@ -75,19 +75,18 @@
         app:layout_constraintStart_toStartOf="@+id/kcal_burned"
         app:layout_constraintTop_toBottomOf="@+id/kcal_burned" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/profile_img"
         android:layout_width="135dp"
         android:layout_height="135dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
+        android:foreground="@drawable/mascheracircolare"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/achille_lauro_2"
-        app:shapeAppearanceOverlay="@style/Circular"
-         />
+        app:srcCompat="@drawable/achille_lauro_2" />
 
     <TextView
         android:id="@+id/username_tv"

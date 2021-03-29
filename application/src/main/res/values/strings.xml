@@ -20,21 +20,24 @@
     <string name="home">Home</string>
     <string name="training_recommended">Recommended training</string>
     <string name="try_recipe">Try this recipe</string>
-    <string name="tips" translatable="false">Tips</string>
-    <string name="last_weight">Last weight</string>
-    <string name="stepcounter">Daily steps</string>
-    <string name="distance">Distance covered</string>
+    <string name="tips" translatable="false">TIPS</string>
+    <string name="last_weight">Last Weight</string>
+    <string name="stepcounter">Steps</string>
+    <string name="distance">Distance (km)</string>
 
     //TRAINING
     <string name="training">Training</string>
     <string name="scelti_per_te">Selected for you</string>
-    <string name="training_list">All trainings</string>
+    <string name="all_training">All trainings</string>
+    <string name="fav_training">Favourite trainings</string>
 
     //RECIPES
     <string name="gain_calories">Gained kCal</string>
     <string name="burn_calories">Burned kCal</string>
     <string name="recipe">Recipes</string>
     <string name="plus_calories">Add kCal</string>
+    <string name="all_recipes">All Recipes</string>
+    <string name="fav_recipes">Favourite Recipes</string>
 
     //USER
     <string name="user">User</string>

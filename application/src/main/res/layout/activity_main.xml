@@ -17,15 +17,28 @@
             android:id="@+id/divider6"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_60sdp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/training_button"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+            app:layout_constraintTop_toTopOf="@+id/fragment_container" />
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_5sdp"
+        app:layout_anchor="@+id/linearLayout4"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/divider6"
+        app:layout_constraintEnd_toEndOf="@+id/divider6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/scale_button"
@@ -56,21 +69,6 @@
             android:background="@android:color/transparent"
             app:menu="@menu/bottom_nav_menu" />
 
-
     </com.google.android.material.bottomappbar.BottomAppBar>
-
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/_5sdp"
-        app:layout_anchor="@+id/linearLayout4"
-        app:layout_anchorGravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/divider6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

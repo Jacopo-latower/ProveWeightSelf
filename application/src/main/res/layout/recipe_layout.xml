@@ -5,116 +5,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-
-    <TextView
-        android:id="@+id/textViewRicipe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
-        android:text="@string/recipe"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#FFF"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        android:layout_margin="@dimen/_5sdp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_AllRecipes"
+            android:layout_width="@dimen/_135sdp"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:text="@string/all_recipes"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/light_blue" />
 
-
-            <TextView
-                android:id="@+id/last_weight_tv3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="tot"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/textView11"
-                app:layout_constraintStart_toStartOf="@+id/textView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-            <TextView
-                android:id="@+id/textViewBurnedCal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".5"
-                android:text="@string/burn_calories"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_FavRecipes"
+            android:layout_width="@dimen/_135sdp"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
             android:gravity="center"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/last_weight_tv2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="tot"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/textView11"
-                app:layout_constraintStart_toStartOf="@+id/textView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-            <TextView
-                android:id="@+id/textViewGainedCal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".5"
-                android:text="@string/gain_calories"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="#00FFFFFF"
-            android:scaleType="center"
-            android:src="@android:drawable/ic_menu_add"
-            android:tint="@color/light_blue" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:alpha=".5"
-            android:gravity="center_vertical"
-            android:text="@string/plus_calories"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
+            android:text="@string/fav_recipes"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/light_blue" />
 
     </LinearLayout>
-
 
     <View
         android:id="@+id/divider3"
@@ -137,11 +58,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recipes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="50dp" />
+        android:layout_marginBottom="@dimen/_50sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </LinearLayout>

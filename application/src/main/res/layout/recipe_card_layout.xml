@@ -16,12 +16,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp">
+            android:layout_height="@dimen/_150sdp">
 
             <ImageView
                 android:id="@+id/recipe_img"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 android:fadeScrollbars="true"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_7sdp"
-                android:layout_marginTop="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="#80000000"
                 android:text="NomeRicetta"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_7sdp"
-                android:layout_marginBottom="@dimen/_14sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:background="#80000000"
                 android:text="KcalNum"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
