@@ -16,10 +16,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/_5sdp"
             android:background="@drawable/rectangle_weight"
             android:foreground="#30000000"
-            android:orientation="vertical"
-            android:layout_marginRight="@dimen/_5sdp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/last_weight"
@@ -40,10 +40,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
+                android:gravity="center"
                 android:text="@string/last_weight"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/white"
-                android:gravity="center"
                 android:textSize="20sp" />
 
         </LinearLayout>

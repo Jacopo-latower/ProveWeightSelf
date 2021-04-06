@@ -15,14 +15,19 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/custom_button"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_width="265dp"
+        android:layout_height="262dp"
+        android:background="@drawable/custom_circle"
+        android:gravity="center"
+        android:text="@string/option"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/saveBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,5 +42,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_result" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_result"
+        android:background="@drawable/custom_button"
+        android:textStyle="bold"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
