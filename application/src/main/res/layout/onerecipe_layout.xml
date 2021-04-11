@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_back"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/recipe_name"
+            android:layout_width="@dimen/_240sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/_5sdp"
+            android:gravity="center"
+            android:text="Nome Ricetta"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            app:srcCompat="@drawable/ic_nofavorite"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/recipe_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_180sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/antipasti_natalizi_eleganti"
+        app:shapeAppearanceOverlay="@style/RoundedSquare"
+        />
+
+    <TextView
+        android:id="@+id/ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:text="@string/title_ingredients"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/recipe_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:lineSpacingExtra="4sp"
+        android:gravity="center_horizontal"
+        android:text="4 uova - 100 g di zucchero semolato - 500 g di mascarpone - 300 g di savoiardi - q.b. caffè non zuccherato - q.b. cacao amaro"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/process"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:text="@string/title_process"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_45sdp">
+
+        <TextView
+            android:id="@+id/recipe_process"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="4sp"
+            android:gravity="center_horizontal"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi consequatur. Duis aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+            android:textSize="18sp" />
+    </ScrollView>
+
+</LinearLayout>

@@ -9,7 +9,7 @@
         android:id="@+id/textView15"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center_horizontal"
         android:text="Achille Lauro"
         android:textAlignment="center"
@@ -54,9 +54,9 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_img"
-        android:layout_width="135dp"
-        android:layout_height="135dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,9 +103,9 @@
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:text="@string/logout"
-        android:textSize="12sp"
+        android:textSize="18sp"
         app:backgroundTint="@color/light_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -129,8 +129,8 @@
 
     <View
         android:id="@+id/divider5"
-        android:layout_width="1dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="@dimen/_80sdp"
         android:layout_marginTop="88dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
@@ -257,7 +257,8 @@
             android:includeFontPadding="false"
             android:text="@string/steps_out_of"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            />
 
         <TextView
             android:id="@+id/userTvDailyStepTarget"

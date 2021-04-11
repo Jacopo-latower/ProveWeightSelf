@@ -30,6 +30,10 @@
     <string name="scelti_per_te">Selected for you</string>
     <string name="all_training">All trainings</string>
     <string name="fav_training">Favourite trainings</string>
+    <string name="title_time">Time:</string>
+    <string name="title_level">Level:</string>
+    <string name="title_equipment">Equipment:</string>
+    <string name="start_training">Start Training</string>
 
     //RECIPES
     <string name="gain_calories">Gained kCal</string>
@@ -38,6 +42,8 @@
     <string name="plus_calories">Add kCal</string>
     <string name="all_recipes">All Recipes</string>
     <string name="fav_recipes">Favourite Recipes</string>
+    <string name="title_ingredients">Ingredients</string>
+    <string name="title_process">Process</string>
 
     //USER
     <string name="user">User</string>

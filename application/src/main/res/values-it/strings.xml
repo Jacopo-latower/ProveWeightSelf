@@ -28,6 +28,11 @@
     <string name="scelti_per_te">Scelti per te</string>
     <string name="all_training">Tutti gli allenamenti</string>
     <string name="fav_training">Allenamenti preferiti</string>
+    <string name="title_time">Tempo:</string>
+    <string name="title_level">Livello:</string>
+    <string name="title_equipment">Attrezzatura:</string>
+    <string name="start_training">Inizia allenamento</string>
+
 
     //RECIPES
     <string name="gain_calories">kCal Assunte</string>
@@ -36,6 +41,8 @@
     <string name="plus_calories">Aggiungi kCal</string>
     <string name="all_recipes">Tutte le ricette</string>
     <string name="fav_recipes">Ricette preferite</string>
+    <string name="title_ingredients">Ingredienti</string>
+    <string name="title_process">Procedimento</string>
 
     //USER
     <string name="user">Profilo</string>
@@ -49,7 +56,7 @@
     <string name="connectingText">Collega l\'app alla tua Weight Scale</string>
     <string name="pesa">Pesa</string>
     <string name="save">Salva</string>
-    <string name="opzioni">Scegli un\'opzione</string>
-    <string name="option">Cosa vuoi fare</string>
+    <string name="option">Scegli un\'opzione</string>
+    //string name="option">Cosa vuoi fare/string
 
 </resources>
