@@ -24,6 +24,7 @@
                 android:layout_height="match_parent"
                 android:fadeScrollbars="true"
                 android:scaleType="centerCrop"
+                android:foreground="#20000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -43,6 +44,16 @@
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="@+id/recipe_img"
                 app:layout_constraintTop_toTopOf="@+id/recipe_img" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginRight="@dimen/_7sdp"
+                android:background="#80000000"
+                app:layout_constraintEnd_toEndOf="@+id/recipe_img"
+                app:layout_constraintTop_toTopOf="@+id/recipe_img"
+                app:srcCompat="@drawable/ic_nofavorite_blue" />
 
             <TextView
                 android:id="@+id/recipe_kcal"

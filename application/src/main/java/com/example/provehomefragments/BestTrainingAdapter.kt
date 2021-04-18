@@ -13,8 +13,8 @@ class BestTrainingAdapter(var data:List<TrainingItem>):RecyclerView.Adapter<Best
     class MyViewHolder(v: View):RecyclerView.ViewHolder(v){
         val img:ImageView = v.findViewById(R.id.recipe_img)
         val duration:TextView = v.findViewById(R.id.training_time)
-        val type:TextView = v.findViewById(R.id.recipe_kcal)
-        val difficulty:TextView = v.findViewById(R.id.recipe_name)
+        val type:TextView = v.findViewById(R.id.recipe_name)
+        val difficulty:TextView = v.findViewById(R.id.training_level)
 
         fun bind(i:TrainingItem, callback:(Int) -> Unit){
             img.setImageResource(i.image)
