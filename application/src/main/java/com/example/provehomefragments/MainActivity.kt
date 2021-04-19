@@ -1,7 +1,6 @@
 package com.example.provehomefragments
 
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -10,14 +9,12 @@ import android.hardware.SensorManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,6 +32,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var running = false //the sensor/stepcounter is active or not
     private var totalSteps = 0f
     private var previousTotalSteps = 0f
+
+
+
+
 
     /*
     private var homeFrag : HomeFragment? = null
@@ -70,6 +71,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val recipeFrag = RecipeFragment()
         val userFrag = UserFragment()
         val scaleFrag = ScaleFragment()
+
 
         setCurrentFragment(homeFrag)
         bottomNavigationView.setOnNavigationItemSelectedListener {
@@ -130,7 +132,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
 
     }
 
-    private fun setCurrentFragment(fragment : Fragment) =
+    fun setCurrentFragment(fragment : Fragment) =
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.fragment_container,fragment)
                 commit()
@@ -236,6 +238,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val savedNumber = sharedPreferences.getFloat("key1", 0f)
         previousTotalSteps = savedNumber
     }
+
+
 
 
 }

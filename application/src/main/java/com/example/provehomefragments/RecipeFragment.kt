@@ -48,6 +48,6 @@ class RecipeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rv_recipes.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        rv_recipes.adapter = RecipeListAdapter(data)
+        rv_recipes.adapter = RecipeListAdapter(data, activity as MainActivity)
     }
 }
