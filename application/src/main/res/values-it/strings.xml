@@ -56,7 +56,7 @@
     <string name="connectingText">Collega l\'app alla tua Weight Scale</string>
     <string name="pesa">Pesa</string>
     <string name="save">Salva</string>
-    <string name="option">Scegli un\'opzione</string>
+    <string name="option">Sali sulla bilancia</string>
     //string name="option">Cosa vuoi fare/string
 
 </resources>
