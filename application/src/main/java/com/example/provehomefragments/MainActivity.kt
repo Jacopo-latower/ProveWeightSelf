@@ -91,43 +91,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         }
 
 
-        /*
-        val scaleBtn : FloatingActionButton = findViewById(R.id.scale_button)
 
-
-        scaleBtn.setOnClickListener {
-            val intent = Intent(this@MainActivity, ScaleActivity::class.java)
-            startActivity(intent)
-        }
-        */
-
-        /*if(null == savedInstanceState) { //to prevent rotation problems
-            showFragment(homeFrag!!) //initialize the app with the home fragment
-        }*/
-
-/*      val homeBtn:Button = findViewById(R.id.home_btn)
-        homeBtn.setOnClickListener {
-            showFragment(homeFrag!!)
-            activeFrag = 0
-        }
-
-        val trainingBtn:Button = findViewById(R.id.training_button)
-        trainingBtn.setOnClickListener {
-            showFragment(trainingFrag!!)
-            activeFrag = 1
-        }
-
-        val recipeBtn:Button = findViewById(R.id.recipe_btn)
-        recipeBtn.setOnClickListener {
-            showFragment(recipeFrag!!)
-            activeFrag = 2
-        }
-
-        val userBtn: Button = findViewById(R.id.user_button)
-        userBtn.setOnClickListener {
-            showFragment(userFrag!!)
-            activeFrag = 3
-        }*/
 
 
     }
@@ -154,15 +118,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         }
     }
 
-    /*
-    //Switch to the selected fragment
-    private fun showFragment(f:Fragment){
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, f)
-                .commit()
-    }
-
-     */
 
     //Request permission to user
     @RequiresApi(Build.VERSION_CODES.Q)

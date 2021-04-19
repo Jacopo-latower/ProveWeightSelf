@@ -37,6 +37,10 @@
 
     </LinearLayout>
 
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"
