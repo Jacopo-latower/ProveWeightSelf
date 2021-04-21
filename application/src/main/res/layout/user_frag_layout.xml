@@ -5,11 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/background3"
+        app:layout_constraintBottom_toTopOf="@+id/divider5"
+        app:layout_constraintTop_toBottomOf="@+id/divider4"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+         />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/background3"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintTop_toBottomOf="@+id/divider5"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="25dp"/>
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/background3"
+        app:layout_constraintBottom_toBottomOf="@+id/divider5"
+        app:layout_constraintEnd_toStartOf="@+id/divider5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/background3"
+        app:layout_constraintBottom_toBottomOf="@+id/divider5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/divider5"
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
     <TextView
         android:id="@+id/textView15"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         android:text="Achille Lauro"
         android:textAlignment="center"
@@ -34,35 +76,67 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toEndOf="@+id/divider5"
         app:layout_constraintTop_toTopOf="@+id/divider5" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="700"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/divider5"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="@+id/divider5" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginTop="65dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_weight_tv" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:alpha=".5"
+        android:gravity="center"
+        android:text="@string/remaining_kcal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:alpha=".5"
         android:text="@string/burn_calories"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/kcal_burned"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="@+id/kcal_burned"
-        app:layout_constraintTop_toBottomOf="@+id/kcal_burned" />
+        app:layout_constraintTop_toBottomOf="@+id/kcal_burned" /><![CDATA[
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profile_img"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/Circular"
-        app:srcCompat="@drawable/achille_lauro_2" /><![CDATA[
+
 
 
         //android:id="@+id/username_tv"
@@ -97,15 +171,32 @@
 
 
 
+
+
     ]]>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_img"
+        android:layout_width="121dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="28dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/Circular"
+        app:srcCompat="@drawable/achille_lauro_2" />
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_button"
         android:text="@string/logout"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:backgroundTint="@color/light_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -125,17 +216,9 @@
         app:layout_constraintEnd_toEndOf="@+id/last_weight_tv"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/last_weight_tv"
-        app:layout_constraintTop_toBottomOf="@+id/last_weight_tv" />
-
-    <View
-        android:id="@+id/divider5"
-        android:layout_width="@dimen/_1sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:layout_marginTop="88dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/last_weight_tv" /><![CDATA[
+
+
 
 
         /*android:id="@+id/progressBar"
@@ -167,38 +250,11 @@
 
 
 
+
+
+
+
     ]]>
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="700"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/divider5"
-        app:layout_constraintHorizontal_bias="0.544"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider5" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="177dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="16dp"
-        android:alpha=".5"
-        android:gravity="center"
-        android:text="@string/remaining_kcal"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-
-
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <LinearLayout
         android:id="@+id/linearLayout8"
@@ -257,8 +313,7 @@
             android:includeFontPadding="false"
             android:text="@string/steps_out_of"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/userTvDailyStepTarget"

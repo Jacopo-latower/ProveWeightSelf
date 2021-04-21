@@ -101,13 +101,15 @@
 
         <Button
             android:id="@+id/save_register"
-            android:layout_width="wrap_content"
+            android:layout_width="127dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="#53c1e5"
             android:layout_marginTop="20dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="#53c1e5"
             android:text="Registrati"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 

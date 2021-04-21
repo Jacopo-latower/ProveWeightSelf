@@ -35,22 +35,24 @@
                 android:id="@+id/recipe_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="#80000000"
+                android:background="@drawable/background1"
                 android:text="NomeRicetta"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textStyle="bold"
                 android:textColor="#FFFFFF"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/recipe_img"
-                app:layout_constraintTop_toTopOf="@+id/recipe_img" />
+                app:layout_constraintTop_toTopOf="@+id/recipe_img"
+
+                />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_7sdp"
                 android:layout_marginRight="@dimen/_7sdp"
-                android:background="#80000000"
+                android:background="@drawable/background2"
                 app:layout_constraintEnd_toEndOf="@+id/recipe_img"
                 app:layout_constraintTop_toTopOf="@+id/recipe_img"
                 app:srcCompat="@drawable/ic_nofavorite_blue" />
@@ -61,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:background="#80000000"
+                android:background="@drawable/background1"
                 android:text="KcalNum"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF"
