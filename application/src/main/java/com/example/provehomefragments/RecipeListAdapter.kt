@@ -11,11 +11,9 @@ data class RecipeItem(val name:String, val image: Int, val kcal:Int, val ingredi
 
 class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):RecyclerView.Adapter<RecipeListAdapter.MyViewHolder>(){
     class MyViewHolder(v: View):RecyclerView.ViewHolder(v){
-        val img:ImageView = v.findViewById(R.id.recipe_img)
+        val img: ImageView = v.findViewById(R.id.recipe_img)
         val name: TextView = v.findViewById(R.id.recipe_name)
         val kcal: TextView = v.findViewById(R.id.recipe_kcal)
-        //val ingredients: TextView = v.findViewById(R.id.recipe_ingredients)
-        //val process: TextView = v.findViewById(R.id.recipe_process)
 
         fun bind(i:RecipeItem, callback:(Int) -> Unit){
             img.setImageResource(i.image)
@@ -53,7 +51,6 @@ class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):Recycl
         //Get the specific recipe page -> switch to specific recipe fragment
         var objects= data[pos]
         val chooseRecipe= ChooseRecipeFragment(objects)
-               //MainActivity.setCurrentFragment(chooseRecipe)
         act.setCurrentFragment(chooseRecipe)
 
     }

@@ -7,9 +7,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-data class TrainingItem(val type:String, val image: Int, val duration:Int, val difficulty:String)
+data class TrainingItem(
+    val type: String,
+    val image: Int,
+    val duration: Int,
+    val difficulty: String,
+    val equipement: String,
+    val video: String
+)
 
-class BestTrainingAdapter(var data:List<TrainingItem>):RecyclerView.Adapter<BestTrainingAdapter.MyViewHolder>(){
+class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):RecyclerView.Adapter<BestTrainingAdapter.MyViewHolder>(){
     class MyViewHolder(v: View):RecyclerView.ViewHolder(v){
         val img:ImageView = v.findViewById(R.id.recipe_img)
         val duration:TextView = v.findViewById(R.id.training_time)
@@ -50,7 +57,9 @@ class BestTrainingAdapter(var data:List<TrainingItem>):RecyclerView.Adapter<Best
     }
 
     private fun getTrainingPage(p:Int){
-        println("Sei nella pagina dell'allenamento numero $p")
-        //implementare cambio fragment qui
+        var objects= data[p]
+        val chooseTraining= ChooseTrainingFragment(objects)
+        //MainActivity.setCurrentFragment(chooseRecipe)
+        act.setCurrentFragment(chooseTraining)
     }
 }

@@ -15,12 +15,12 @@ class TrainingFragment:Fragment() {
 
     //Example Data
     var data:List<TrainingItem> = listOf(
-        TrainingItem("Cardio", R.drawable.allenamento, 30, "Facile"),
-        TrainingItem("Gambe", R.drawable._rx1dvez640yxwlwbixdvncui, 10, "Intermedio"),
-        TrainingItem("Braccia", R.drawable.functional2, 15, "Difficile"),
-        TrainingItem("Cardio", R.drawable.allenamento, 30, "Facile"),
-        TrainingItem("Gambe", R.drawable._rx1dvez640yxwlwbixdvncui, 10, "Intermedio"),
-        TrainingItem("Braccia", R.drawable.functional2, 15, "Difficile")
+        TrainingItem("Cardio", R.drawable.allenamento, 30, "Facile", "Nessuno1", "video"),
+        TrainingItem("Gambe", R.drawable._rx1dvez640yxwlwbixdvncui, 10, "Intermedio", "Nessuno2", "video"),
+        TrainingItem("Braccia", R.drawable.functional2, 15, "Difficile", "Nessuno3", "video"),
+        TrainingItem("Cardio", R.drawable.allenamento, 30, "Facile", "Nessuno4", "video"),
+        TrainingItem("Gambe", R.drawable._rx1dvez640yxwlwbixdvncui, 10, "Intermedio", "Nessuno5", "video"),
+        TrainingItem("Braccia", R.drawable.functional2, 15, "Difficile", "Nessuno6", "video")
 
     )
 
@@ -44,7 +44,7 @@ class TrainingFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rv_best_trainings.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        rv_best_trainings.adapter = BestTrainingAdapter(data)
+        rv_best_trainings.adapter = BestTrainingAdapter(data, activity as MainActivity)
 
     }
 }

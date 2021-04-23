@@ -10,14 +10,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.user_frag_layout.*
 
-class ChooseRecipeFragment(objects: RecipeItem) : Fragment() {
+class ChooseTrainingFragment(objects: TrainingItem) : Fragment(){
 
     val image: Int = objects.image
-    val name: String = objects.name
-    val ingredients: String = objects.ingredients
-    val process: String= objects.process
+    val type: String = objects.type
+    val difficulty: String = objects.difficulty
+    val time: Int = objects.duration
+    val equipement: String = objects.equipement
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,27 +27,32 @@ class ChooseRecipeFragment(objects: RecipeItem) : Fragment() {
         enterTransition = inflater.inflateTransition(R.transition.slide_right)
     }
 
+
+
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.onerecipe_layout, container, false)
+        return inflater.inflate(R.layout.onetraining_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val img: ImageView = view.findViewById(R.id.recipe_img)
-        val nam: TextView = view.findViewById(R.id.recipe_name)
-        val ingr: TextView = view.findViewById(R.id.recipe_ingredients)
-        val proc: TextView= view.findViewById(R.id.recipe_process)
+        val img: ImageView = view.findViewById(R.id.training_img)
+        val nam: TextView = view.findViewById(R.id.training_name)
+        val lev: TextView = view.findViewById(R.id.training_level)
+        val dur: TextView = view.findViewById(R.id.training_time)
+        val equip: TextView = view.findViewById(R.id.training_equipment)
 
 
         img.setImageResource(image)
-        nam.text = name
-        ingr.text = ingredients
-        proc.text= process
+        nam.text = type
+        lev.text = difficulty
+        dur.text= time.toString()
+        equip.text= equipement
     }
+
 
 }
