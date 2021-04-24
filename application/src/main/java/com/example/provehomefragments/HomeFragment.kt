@@ -9,10 +9,12 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.user_frag_layout.*
 
 // interface implemented by the main activity to notify changes
 interface FragHomeObserver{
@@ -24,6 +26,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
     private var stepCounter:TextView? = null
     private var br: BroadcastReceiver? = null //variable for the br
+    private var recipeHome: ImageView?= null
+    private var trainHome: ImageView?= null
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +54,21 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
         //Initialized the listener for the text view to reset the steps
         resetSteps()
+
+        //change in one recipe layout
+        recipeHome = view.findViewById(R.id.HImageView_Recipes)
+        recipeHome?.setOnClickListener {
+            //passaggio pagina ma mancano i file
+        }
+
+        //change in one train layout
+        trainHome = view.findViewById(R.id.HImageView_Training)
+        trainHome?.setOnClickListener {
+            //passaggio pagina ma mancano i file
+        }
+
+
+
     }
 
     private fun resetSteps(){

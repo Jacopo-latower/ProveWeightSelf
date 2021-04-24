@@ -50,9 +50,8 @@ class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):Recycl
     private fun getRecipePage(pos:Int){
         //Get the specific recipe page -> switch to specific recipe fragment
         var objects= data[pos]
-        val chooseRecipe= ChooseRecipeFragment(objects)
+        val chooseRecipe= ChooseRecipeFragment(objects, act)
         act.setCurrentFragment(chooseRecipe)
-
     }
 
 }

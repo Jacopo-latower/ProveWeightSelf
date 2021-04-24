@@ -10,9 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.user_frag_layout.*
+import kotlinx.android.synthetic.main.onerecipe_layout.*
 
-class ChooseRecipeFragment(objects: RecipeItem) : Fragment() {
+class ChooseRecipeFragment(objects: RecipeItem, var act: MainActivity) : Fragment() {
 
     val image: Int = objects.image
     val name: String = objects.name
@@ -43,11 +43,16 @@ class ChooseRecipeFragment(objects: RecipeItem) : Fragment() {
         val ingr: TextView = view.findViewById(R.id.recipe_ingredients)
         val proc: TextView= view.findViewById(R.id.recipe_process)
 
-
         img.setImageResource(image)
         nam.text = name
         ingr.text = ingredients
         proc.text= process
+
+        btn_back.setOnClickListener {
+            val listRecipe= RecipeFragment()
+            act.setCurrentFragment(listRecipe)
+        }
+
     }
 
 }

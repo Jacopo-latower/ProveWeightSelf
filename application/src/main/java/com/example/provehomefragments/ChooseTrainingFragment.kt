@@ -10,8 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.onerecipe_layout.*
 
-class ChooseTrainingFragment(objects: TrainingItem) : Fragment(){
+class ChooseTrainingFragment(objects: TrainingItem, var act: MainActivity) : Fragment(){
 
     val image: Int = objects.image
     val type: String = objects.type
@@ -26,7 +27,6 @@ class ChooseTrainingFragment(objects: TrainingItem) : Fragment(){
         exitTransition = inflater.inflateTransition(R.transition.fade)
         enterTransition = inflater.inflateTransition(R.transition.slide_right)
     }
-
 
 
     override fun onCreateView(
@@ -52,7 +52,10 @@ class ChooseTrainingFragment(objects: TrainingItem) : Fragment(){
         lev.text = difficulty
         dur.text= time.toString()
         equip.text= equipement
+
+        btn_back.setOnClickListener {
+            val listTrain= TrainingFragment()
+            act.setCurrentFragment(listTrain)
+        }
     }
-
-
 }
