@@ -1,28 +1,45 @@
 package com.example.provehomefragments
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.widget.doAfterTextChanged
 import kotlinx.android.synthetic.main.login.*
-import android.content.Context
-import android.widget.CalendarView.OnDateChangeListener
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import java.io.BufferedOutputStream
-import java.io.DataOutputStream
-import java.util.*
+import io.realm.mongodb.App
+import io.realm.mongodb.AppConfiguration
+import io.realm.mongodb.Credentials
+import io.realm.mongodb.User
+import org.bson.Document
 
-class Login : AppCompatActivity() {
+class Login : Fragment() {
 
-    var email_insert= String()
-    var password_insert= String()
+    companion object{
+        fun createInstance() = Login()
+    }
 
+    lateinit var app: App
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.login)
+    private var email_insert= String()
+    private var password_insert= String()
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.login, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         //btn_login.isEnabled=false
+
+        val appId:String = "prova_weightself-jnubd"
+        app = App(AppConfiguration.Builder(appId).build())
 
         //save email
         email.doAfterTextChanged {
@@ -43,21 +60,35 @@ class Login : AppCompatActivity() {
         }
 
         //control with database
-
         //Click Login
         btn_login.setOnClickListener{
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            this.finish()
+            signInUser(email_insert, password_insert)
         }
 
         //Click Register
         btn_register.setOnClickListener{
-            val j = Intent(this, Register::class.java)
-            startActivity(j)
+            val observer = activity as LogFragmentObserver
+            observer.replaceFragment(SignUp.createInstance())
         }
-
 
     }
 
+    private fun signInUser(email:String, password:String){
+        val creds : Credentials = Credentials.emailPassword(email, password)
+        var user : User? = null
+
+        app.loginAsync(creds){
+            if(it.isSuccess){
+                Log.v("AUTH", "Login Successful")
+                user = app.currentUser()
+                val customUserData : Document? = user?.customData
+                Log.v("EXAMPLE", "Fetched custom user data: $customUserData")
+                val observer = activity as LogFragmentObserver
+                observer.loadNextActivity()
+            }else{
+                Log.e("AUTH", "Error in the login: ${it.error}")
+            }
+
+        }
+    }
 }

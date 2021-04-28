@@ -33,6 +33,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var totalSteps = 0f
     private var previousTotalSteps = 0f
 
+    /*
+    private var homeFrag : HomeFragment? = null
+    private var trainingFrag : TrainingFragment? = null
+    private var recipeFrag : RecipeFragment? = null
+    private var userFrag: UserFragment? = null
+    */
 
     private var homeTvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
@@ -62,7 +68,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val userFrag = UserFragment()
         val scaleFrag = ScaleFragment()
 
-
         setCurrentFragment(homeFrag)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId) {
@@ -80,15 +85,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             setCurrentFragment(scaleFrag)
         }
 
-
-
-
-
     }
 
     fun setCurrentFragment(fragment : Fragment) =
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragment_container,fragment)
+                replace(R.id.login_fragment_container,fragment)
+                addToBackStack(null)
                 commit()
             }
 
@@ -108,6 +110,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         }
     }
 
+    /*
+    //Switch to the selected fragment
+    private fun showFragment(f:Fragment){
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, f)
+                .commit()
+    }
+
+     */
 
     //Request permission to user
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -184,7 +195,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         previousTotalSteps = savedNumber
     }
 
-
-
+    //when the back button is pressed, delete the top fragment from the stack is the entries are > 0
+    override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount>0)
+            supportFragmentManager.popBackStack()
+        else
+            super.onBackPressed()
+    }
 
 }

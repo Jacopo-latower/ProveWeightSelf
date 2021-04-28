@@ -23,12 +23,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/fragment_container" />
+            app:layout_constraintTop_toTopOf="@+id/login_fragment_container" />
 
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/login_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/_5sdp"

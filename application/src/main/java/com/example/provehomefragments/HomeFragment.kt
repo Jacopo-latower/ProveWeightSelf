@@ -25,6 +25,8 @@ interface FragHomeObserver{
 class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
     private var stepCounter:TextView? = null
+
+    //NOT IMPLEMENTED!!
     private var br: BroadcastReceiver? = null //variable for the br
     private var recipeHome: ImageView?= null
     private var trainHome: ImageView?= null
@@ -46,6 +48,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         stepCounter = view.findViewById(R.id.daily_steps)
+
+        //NOT IMPLEMENTED
         br = MyBroadcastReceiver() //example to try
 
         //Notify to the main activity that the fragment has been created
@@ -86,7 +90,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         }
     }
 
-    //Ex with broadcast receiver
+    //Ex with broadcast receiver: NOT IMPLEMENTED
     class MyBroadcastReceiver() : BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
             var  result = intent?.getStringExtra("Giorgio")

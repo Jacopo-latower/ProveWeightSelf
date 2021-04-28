@@ -57,7 +57,7 @@ class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):Re
     }
 
     private fun getTrainingPage(p:Int){
-        var objects= data[p]
+        val objects= data[p]
         val chooseTraining= ChooseTrainingFragment(objects,act)
         //MainActivity.setCurrentFragment(chooseRecipe)
         act.setCurrentFragment(chooseTraining)

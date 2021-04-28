@@ -73,7 +73,7 @@ class ScaleFragment : Fragment() {
 
     private fun setCurrentFragment(fragment : Fragment) =
         activity?.supportFragmentManager!!.beginTransaction().apply {
-            replace(R.id.fragment_container,fragment)
+            replace(R.id.login_fragment_container,fragment)
             commit()
         }
 
