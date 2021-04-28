@@ -44,7 +44,8 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/recipe_img"
                 app:layout_constraintTop_toTopOf="@+id/recipe_img"
-
+                android:padding="@dimen/_2sdp"
+                android:gravity="center"
                 />
 
             <ImageView
@@ -68,7 +69,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="@+id/recipe_img"
-                app:layout_constraintEnd_toEndOf="@+id/recipe_img" />
+                app:layout_constraintEnd_toEndOf="@+id/recipe_img"
+                android:padding="@dimen/_2sdp"
+                android:gravity="center"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

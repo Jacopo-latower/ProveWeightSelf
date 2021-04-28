@@ -3,13 +3,11 @@ package com.example.provehomefragments
 import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.recipe_layout.*
 
 class RecipeFragment : Fragment() {
@@ -22,19 +20,12 @@ class RecipeFragment : Fragment() {
         enterTransition = inflater.inflateTransition(R.transition.slide_right)
     }
 
-    var data: List<RecipeItem> = listOf(
+    val data: List<RecipeItem> = listOf(
         RecipeItem("Fagioli Rinforzanti", R.drawable._669_fagioli, 1234, "blblblblbllbblblbl 1", "blblblblbllbblblbl 1"),
         RecipeItem("Mega Frittura di Pesce", R.drawable.pesce_fritto, 89, "blblblblbllbblblbl 2", "blblblblbllbblblbl 2"),
         RecipeItem("Pesche Sciroppate", R.drawable.immagini_2018_mangiare_ricette_pesche_sciroppate, 3422, "blblblblbllbblblbl 3", "blblblblbllbblblbl 3"),
         RecipeItem("Torta di Achille Lauro", R.drawable.achille_lauro_2, 2223, "blblblblbllbblblbl 4", "blblblblbllbblblbl 4")
     )
-
-    /*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    */
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,5 +40,37 @@ class RecipeFragment : Fragment() {
 
         rv_recipes.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         rv_recipes.adapter = RecipeListAdapter(data, activity as MainActivity)
+
+
+        val clickListener = View.OnClickListener { view ->
+            when (view.id) {
+                R.id.btn_sortMenu -> {
+                    showPopup(view)
+                }
+            }
+        }
+
+        btn_sortMenu.setOnClickListener(clickListener)
+
     }
+
+    private fun showPopup(view: View) {
+        val popup = PopupMenu(activity?.applicationContext, view)
+        popup.inflate(R.menu.popup_r)
+        popup.show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.popup_r, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_namer -> RecipeListAdapter(data, activity as MainActivity).sortName();
+            R.id.menu_kcal -> RecipeListAdapter(data, activity as MainActivity).sortKcal();
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
 }

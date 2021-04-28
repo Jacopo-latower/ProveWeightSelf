@@ -44,6 +44,8 @@
     <string name="fav_recipes">Favourite Recipes</string>
     <string name="title_ingredients">Ingredients</string>
     <string name="title_process">Process</string>
+    <string name="search">Search Recipe</string>
+    <string name="eat_recipe">Eat</string>
 
     //USER
     <string name="user">User</string>
@@ -58,6 +60,13 @@
     <string name="pesa">Weigh</string>
     <string name="save">Save</string>
     <string name="option">Step on the scales</string>
+
+    //MENU
+    <string name="menu_namer">Nome Ricetta</string>
+    <string name="menu_kcal">Kcal</string>
+    <string name="menu_namet">Nome Allenamento</string>
+    <string name="menu_level">Livello</string>
+    <string name="menu_time">Tempo</string>
 
 
 </resources>

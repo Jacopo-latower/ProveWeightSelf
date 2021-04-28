@@ -44,15 +44,61 @@
 
     </LinearLayout>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/recipe_img"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_180sdp"
-        android:layout_margin="@dimen/_5sdp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/antipasti_natalizi_eleganti"
-        app:shapeAppearanceOverlay="@style/RoundedSquare"
-        />
+        android:layout_height="@dimen/_150sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/_5sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/recipe_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/antipasti_natalizi_eleganti"
+            app:shapeAppearanceOverlay="@style/RoundedSquare"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/eat_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/eat_recipe"
+            android:textSize="@dimen/_14sdp"
+            app:backgroundTint="#00BCD4"
+            app:cornerRadius="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@id/recipe_img"
+            app:layout_constraintLeft_toLeftOf="@id/recipe_img"
+            app:layout_constraintRight_toRightOf="@id/recipe_img"
+            />
+        <TextView
+            android:id="@+id/recipe_kcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5ssp"
+            android:background="@drawable/background1"
+            android:text="KcalNum"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="@+id/recipe_img"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_img"
+            android:padding="@dimen/_2sdp"
+            android:gravity="center"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
     <TextView
         android:id="@+id/ingredients"

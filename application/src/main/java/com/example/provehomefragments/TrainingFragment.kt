@@ -6,10 +6,13 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.recipe_layout.*
 import kotlinx.android.synthetic.main.training_layout.*
+import kotlinx.android.synthetic.main.training_layout.btn_sortMenu
 
 class TrainingFragment:Fragment() {
 
@@ -46,5 +49,21 @@ class TrainingFragment:Fragment() {
         rv_best_trainings.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         rv_best_trainings.adapter = BestTrainingAdapter(data, activity as MainActivity)
 
+        val clickListener = View.OnClickListener { view ->
+            when (view.id) {
+                R.id.btn_sortMenu -> {
+                    showPopup(view)
+                }
+            }
+        }
+
+        btn_sortMenu.setOnClickListener(clickListener)
+
+    }
+
+    private fun showPopup(view: View) {
+        val popup = PopupMenu(activity?.applicationContext, view)
+        popup.inflate(R.menu.popup_t)
+        popup.show()
     }
 }

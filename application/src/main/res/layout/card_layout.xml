@@ -56,7 +56,8 @@
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/recipe_img"
-                app:layout_constraintTop_toTopOf="@+id/recipe_img" />
+                app:layout_constraintTop_toTopOf="@+id/recipe_img"
+                android:padding="@dimen/_2sdp"/>
 
             <TextView
                 android:id="@+id/recipe_name"
@@ -64,12 +65,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:background="#80000000"
                 android:text="Corpo Libero"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="@+id/recipe_img"
-                app:layout_constraintEnd_toStartOf="@+id/training_time" />
+                app:layout_constraintEnd_toStartOf="@+id/training_time"
+                android:padding="@dimen/_2sdp"
+                android:background="@drawable/background1"/>
 
             <TextView
                 android:id="@+id/training_time"
@@ -77,12 +79,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:background="#80000000"
+                android:background="@drawable/background1"
                 android:text="30 min"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="@+id/recipe_img"
-                app:layout_constraintEnd_toEndOf="@+id/recipe_img" />
+                app:layout_constraintEnd_toEndOf="@+id/recipe_img"
+                android:padding="@dimen/_2sdp"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

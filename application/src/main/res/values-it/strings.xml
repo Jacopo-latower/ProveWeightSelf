@@ -43,6 +43,8 @@
     <string name="fav_recipes">Ricette preferite</string>
     <string name="title_ingredients">Ingredienti</string>
     <string name="title_process">Procedimento</string>
+    <string name="search">Cerca la ricetta</string>
+    <string name="eat_recipe">Mangia</string>
 
     //USER
     <string name="user">Profilo</string>
@@ -58,5 +60,12 @@
     <string name="save">Salva</string>
     <string name="option">Sali sulla bilancia</string>
     //string name="option">Cosa vuoi fare/string
+
+    //MENU
+    <string name="menu_namer">Recipe Name</string>
+    <string name="menu_kcal">Kcal</string>
+    <string name="menu_namet">Training Name</string>
+    <string name="menu_level">Level</string>
+    <string name="menu_time">Time</string>
 
 </resources>

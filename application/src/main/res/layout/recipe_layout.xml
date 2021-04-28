@@ -8,38 +8,31 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        android:layout_margin="@dimen/_5sdp">
+        android:layout_margin="@dimen/_5sdp"
+        android:gravity="center">
 
-        <Button
-            android:id="@+id/btn_AllRecipes"
-            android:layout_width="@dimen/_135sdp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:gravity="center"
-            android:text="@string/all_recipes"
-            android:textColor="#FFFFFF"
-            app:backgroundTint="@color/light_blue" />
+        <SearchView
+            android:id="@+id/search_recipe"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_background"
+            android:queryHint="@string/start_training"
+            android:textSize="21sp" />
 
-        <Button
-            android:id="@+id/btn_FavRecipes"
-            android:layout_width="@dimen/_135sdp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/fav_recipes"
-            android:textColor="#FFFFFF"
-            app:backgroundTint="@color/light_blue" />
+        <ImageButton
+            android:id="@+id/btn_sortMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:background="@drawable/ic_sort_menu" />
 
     </LinearLayout>
 
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
 
     <View
         android:id="@+id/divider3"

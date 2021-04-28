@@ -17,7 +17,7 @@ class ChooseTrainingFragment(objects: TrainingItem, var act: MainActivity) : Fra
     val image: Int = objects.image
     val type: String = objects.type
     val difficulty: String = objects.difficulty
-    val time: Int = objects.duration
+    val time: String = ("${objects.duration} min")
     val equipement: String = objects.equipement
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)

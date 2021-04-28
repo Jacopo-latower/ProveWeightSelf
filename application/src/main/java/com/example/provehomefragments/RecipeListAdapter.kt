@@ -1,10 +1,10 @@
 package com.example.provehomefragments
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 
 data class RecipeItem(val name:String, val image: Int, val kcal:Int, val ingredients: String, val process : String)
@@ -52,6 +52,17 @@ class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):Recycl
         var objects= data[pos]
         val chooseRecipe= ChooseRecipeFragment(objects, act)
         act.setCurrentFragment(chooseRecipe)
+    }
+
+    fun sortName() {
+        this.data = this.data.sortedBy { it.name }
+        notifyDataSetChanged()
+    }
+
+    fun sortKcal() {
+        this.data = this.data.sortedBy { it.kcal }
+        notifyDataSetChanged()
+        Log.d("Gaia","Brugo")
     }
 
 }
