@@ -14,11 +14,11 @@
         android:gravity="center">
 
         <SearchView
-            android:id="@+id/search_recipe"
+            android:id="@+id/search_training"
             android:layout_width="@dimen/_255sdp"
             android:layout_height="wrap_content"
             android:background="@drawable/search_background"
-            android:queryHint="@string/start_training"
+            android:queryHint="@string/search"
             android:textSize="21sp" />
 
         <ImageButton

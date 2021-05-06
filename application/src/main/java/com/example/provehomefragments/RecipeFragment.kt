@@ -52,25 +52,38 @@ class RecipeFragment : Fragment() {
 
         btn_sortMenu.setOnClickListener(clickListener)
 
+        search_recipe.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                RecipeListAdapter(data, activity as MainActivity).filter.filter(newText)
+                return false
+            }
+        })
+
     }
 
     private fun showPopup(view: View) {
         val popup = PopupMenu(activity?.applicationContext, view)
+
+        //sort
+        popup.setOnMenuItemClickListener {item ->
+            when (item.itemId) {
+                R.id.menu_namer -> {
+                    RecipeListAdapter(data, activity as MainActivity).sortName()
+                    true
+                };
+                R.id.menu_kcal -> {
+                    RecipeListAdapter(data, activity as MainActivity).sortKcal()
+                    true
+                };
+                else -> false
+            }
+        }
+
         popup.inflate(R.menu.popup_r)
         popup.show()
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.popup_r, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_namer -> RecipeListAdapter(data, activity as MainActivity).sortName();
-            R.id.menu_kcal -> RecipeListAdapter(data, activity as MainActivity).sortKcal();
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-
 }

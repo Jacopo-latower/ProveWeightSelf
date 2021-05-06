@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,10 +60,41 @@ class TrainingFragment:Fragment() {
 
         btn_sortMenu.setOnClickListener(clickListener)
 
+        search_training.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                BestTrainingAdapter(data, activity as MainActivity).filter.filter(newText)
+                return false
+            }
+        })
+
     }
 
     private fun showPopup(view: View) {
         val popup = PopupMenu(activity?.applicationContext, view)
+
+        //sort
+        popup.setOnMenuItemClickListener {item ->
+            when (item.itemId) {
+                R.id.menu_namet -> {
+                    BestTrainingAdapter(data, activity as MainActivity).sortName()
+                    true
+                };
+                R.id.menu_level -> {
+                    BestTrainingAdapter(data, activity as MainActivity).sortLevel()
+                    true
+                };
+                R.id.menu_time -> {
+                    BestTrainingAdapter(data, activity as MainActivity).sortTime()
+                    true
+                };
+                else -> false
+            }
+        }
+
         popup.inflate(R.menu.popup_t)
         popup.show()
     }
