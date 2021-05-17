@@ -18,14 +18,6 @@ import kotlinx.android.synthetic.main.fragment_scale_layout.*
 
 class ScaleFragment : Fragment() {
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.fade)
-        enterTransition = inflater.inflateTransition(R.transition.slide_right)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

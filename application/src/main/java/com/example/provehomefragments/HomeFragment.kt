@@ -31,13 +31,6 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
     private var recipeHome: ImageView?= null
     private var trainHome: ImageView?= null
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.fade)
-        enterTransition = inflater.inflateTransition(R.transition.slide_left)
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

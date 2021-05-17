@@ -9,6 +9,7 @@ import android.hardware.SensorManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -16,13 +17,15 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import io.realm.mongodb.App
+import io.realm.mongodb.AppConfiguration
+import io.realm.mongodb.User
+import io.realm.mongodb.sync.SyncConfiguration
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.user_frag_layout.*
 
 class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver, UserFragObserver{
-
-
 
     private var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag, 3 -> userfrag
 
@@ -33,12 +36,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var totalSteps = 0f
     private var previousTotalSteps = 0f
 
-    /*
-    private var homeFrag : HomeFragment? = null
-    private var trainingFrag : TrainingFragment? = null
-    private var recipeFrag : RecipeFragment? = null
-    private var userFrag: UserFragment? = null
-    */
+    private lateinit var currentUser:User
 
     private var homeTvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
@@ -51,6 +49,16 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val appId:String = "prova_weightself-jnubd"
+        val app = App(AppConfiguration.Builder(appId).build())
+
+        val config = SyncConfiguration.Builder(app.currentUser(), "recipes")
+            .allowQueriesOnUiThread(true)
+            .allowWritesOnUiThread(true)
+            .build()
+        currentUser = app.currentUser()!!
+        RepositoryManager.instance.init(config)
 
         //Tolgo le ombre sul tab delle icone
         bottomNavigationView.background = null
@@ -93,7 +101,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
                 addToBackStack(null)
                 commit()
             }
-
 
     //Set up for the sensor listener
     @RequiresApi(Build.VERSION_CODES.KITKAT)
@@ -201,6 +208,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             supportFragmentManager.popBackStack()
         else
             super.onBackPressed()
+    }
+
+    override fun onDestroy() {
+        Log.v("D", "Activity Destroyed")
+        RepositoryManager.instance.onClear()
+        super.onDestroy()
     }
 
 }
