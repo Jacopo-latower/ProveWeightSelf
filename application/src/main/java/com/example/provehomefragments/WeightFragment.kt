@@ -7,14 +7,22 @@ import android.net.Network
 import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import io.realm.Realm
+import io.realm.mongodb.App
+import io.realm.mongodb.AppConfiguration
+import io.realm.mongodb.User
+import io.realm.mongodb.sync.SyncConfiguration
 import kotlinx.android.synthetic.main.fragment_weight_layout.*
 import okhttp3.*
+import org.bson.types.ObjectId
 import java.io.IOException
+import java.util.*
 
 class WeightFragment : Fragment() {
 
@@ -53,6 +61,7 @@ class WeightFragment : Fragment() {
 
             val request : Request = Request.Builder().url(url).method("GET", null).build()
             var call : Call = client!!.newCall(request)
+            var peso : String? = null
 
             call.enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
@@ -68,17 +77,18 @@ class WeightFragment : Fragment() {
                         println("Il body è: $resp")
 
                         if(response.body == null) println("NULLOOOOO")
-                        activity!!.runOnUiThread { tv_result.text = resp!!.substring(9, 13) }
+                        peso = resp!!.substring(9, 13)
+                        activity!!.runOnUiThread { peso }
+
+                        RepositoryManager.instance.writeWeight(peso!!)
+
                     }
+
                 }
             })
-        }
 
-        saveBtn.setOnClickListener { saveWeightValue() }
+        }
     }
 
 }
 
-private fun saveWeightValue(){
-    //TODO
-}

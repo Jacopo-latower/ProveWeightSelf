@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
                 .allowQueriesOnUiThread(true)
                 .allowWritesOnUiThread(true)
                 .build()
-        val trainingsConfig = SyncConfiguration.Builder(app.currentUser(), "recipes")
+        val trainingsConfig = SyncConfiguration.Builder(app.currentUser(), "trainings")
                 .allowQueriesOnUiThread(true)
                 .allowWritesOnUiThread(true)
                 .build()

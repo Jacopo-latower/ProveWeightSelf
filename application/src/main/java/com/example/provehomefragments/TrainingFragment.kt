@@ -61,6 +61,7 @@ class TrainingFragment:Fragment() {
                 BestTrainingAdapter(data, activity as MainActivity).filter.filter(newText)
                 return false
             }
+
         })
 
     }
