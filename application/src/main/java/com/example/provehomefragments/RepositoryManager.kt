@@ -16,8 +16,9 @@ class RepositoryManager {
     var data: MutableList<Recipe> = mutableListOf()
     var activeRealm:Realm? = null
 
-    fun init(config:SyncConfiguration){
-        loadRecipes(config)
+    fun init(recipesConfig:SyncConfiguration, weightsConfiguration: SyncConfiguration, trainingConfig: SyncConfiguration ){
+        loadRecipes(recipesConfig)
+        //WriteWeights(weightsConfig) gli passo la configurazione per i weights
     }
 
     fun getRecipes():MutableLiveData<List<Recipe>>{

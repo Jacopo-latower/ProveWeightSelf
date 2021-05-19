@@ -53,12 +53,21 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val appId:String = "prova_weightself-jnubd"
         val app = App(AppConfiguration.Builder(appId).build())
 
-        val config = SyncConfiguration.Builder(app.currentUser(), "recipes")
+        val recipesConfig = SyncConfiguration.Builder(app.currentUser(), "recipes")
             .allowQueriesOnUiThread(true)
             .allowWritesOnUiThread(true)
             .build()
+        val weightConfig = SyncConfiguration.Builder(app.currentUser(), "weights")
+                .allowQueriesOnUiThread(true)
+                .allowWritesOnUiThread(true)
+                .build()
+        val trainingsConfig = SyncConfiguration.Builder(app.currentUser(), "recipes")
+                .allowQueriesOnUiThread(true)
+                .allowWritesOnUiThread(true)
+                .build()
+
         currentUser = app.currentUser()!!
-        RepositoryManager.instance.init(config)
+        RepositoryManager.instance.init(recipesConfig, weightConfig, trainingsConfig)
 
         //Tolgo le ombre sul tab delle icone
         bottomNavigationView.background = null
