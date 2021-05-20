@@ -1,12 +1,10 @@
 package com.example.provehomefragments
 
-import android.os.Build
 import android.os.Bundle
-import android.transition.TransitionInflater
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.user_frag_layout.*
 
@@ -31,11 +29,10 @@ class UserFragment : Fragment() {
         observer?.userFragCreatedNotify()
 
         btnLogout.setOnClickListener { logout() }
-
     }
 
 }
 
 private fun logout(){
-
+   //TODO: pass the User to the intent in the Login Phase to avoid access problems
 }

@@ -10,11 +10,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.onerecipe_layout.*
 
 class ChooseRecipeFragment(objects: RecipeItem, var act: MainActivity) : Fragment() {
 
-    val image: Int = objects.image
+    val imageUrl: String = objects.imageUrl
     val name: String = objects.name
     val ingredients: String = objects.ingredients
     val process: String= objects.process
@@ -45,7 +46,7 @@ class ChooseRecipeFragment(objects: RecipeItem, var act: MainActivity) : Fragmen
         val proc: TextView= view.findViewById(R.id.recipe_process)
         val cal: TextView= view.findViewById(R.id.recipe_kcal)
 
-        img.setImageResource(image)
+        Picasso.get().load(imageUrl).into(img)
         nam.text = name
         ingr.text = ingredients
         proc.text= process

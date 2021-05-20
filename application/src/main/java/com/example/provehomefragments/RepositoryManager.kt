@@ -12,7 +12,10 @@ import java.util.*
 
 class RepositoryManager {
 
-    lateinit var weightConfig : SyncConfiguration
+    private lateinit var weightConfig : SyncConfiguration
+    private lateinit var recipeConfig : SyncConfiguration
+    private lateinit var trainingConfig : SyncConfiguration
+
 
     companion object{
         val instance = RepositoryManager()
@@ -20,47 +23,72 @@ class RepositoryManager {
 
     lateinit var currentUser : User
 
-    var peso : String? = null
-    var data : MutableList<Recipe> = mutableListOf()
-    var activeRealm : Realm? = null
+    var dataRecipes : MutableList<Recipe> = mutableListOf()
+    var dataTrainings : MutableList<Trainings> = mutableListOf()
+    var recipeRealm : Realm? = null
+    var trainingRealm : Realm? = null
 
     fun init(recipesConfig : SyncConfiguration, weightConfig : SyncConfiguration, trainingConfig : SyncConfiguration){
-        loadRecipes(recipesConfig)
-        readWeights(weightConfig)
-        //loadTrainings(trainingConfig)
 
         this.weightConfig = weightConfig
+        this.recipeConfig = recipesConfig
+        this.trainingConfig = trainingConfig
+
+        loadRecipes()
+        loadWeights()
+        loadTrainings()
 
         val appId : String = "prova_weightself-jnubd"
         val app = App(AppConfiguration.Builder(appId).build())
         currentUser = app.currentUser()!!
     }
 
-    private fun readWeights(weightConfig: SyncConfiguration) {
+    private fun loadTrainings() {
+        Realm.getInstanceAsync(trainingConfig, object : Realm.Callback(){
+            override fun onSuccess(realm: Realm) {
+                Log.v("SUCCESS", "Realm successfully opened")
+                val trainings = realm.where(Trainings::class.java).findAll()
+                dataTrainings = mutableListOf()
+                for (w in trainings){
+                    dataTrainings.add(w)
+                    Log.v("Trainings", "${w.trainingName}")
+                }
+                trainingRealm = realm
+            }
+        })
+    }
 
+    fun loadRecipes(){
+        Realm.getInstanceAsync(recipeConfig, object : Realm.Callback(){
+            override fun onSuccess(realm: Realm) {
+                Log.v("SUCCESS", "Realm successfully opened")
+                val recipes = realm.where(Recipe::class.java).findAll()
+                dataRecipes = mutableListOf()
+                for (w in recipes){
+                    dataRecipes.add(w)
+                    Log.v("Recipes", "${w.recipeName}")
+                }
+                recipeRealm = realm
+            }
+        })
+    }
+
+    private fun loadWeights() {
+        //TODO: to implement if there are weights in the database; remember to do a refresh method when a user insert a new weight
     }
 
     fun getRecipes() : MutableLiveData<List<Recipe>>{
         val mData:MutableLiveData<List<Recipe>> = MutableLiveData<List<Recipe>>()
-        mData.value = data
-        for(r in data){ Log.v("Recipes", "${r.recipeName}")}
+        mData.value = dataRecipes
+        for(r in dataRecipes){ Log.v("Recipes", "${r.recipeName}")}
         return mData
     }
 
-    private fun loadRecipes(config: SyncConfiguration){
-
-        Realm.getInstanceAsync(config, object : Realm.Callback(){
-            override fun onSuccess(realm: Realm) {
-                Log.v("SUCCESS", "Realm successfully opened")
-                val recipes = realm.where(Recipe::class.java).findAll()
-                for (w in recipes){
-                    data.add(w)
-                    Log.v("Recipes", "${w.recipeName}")
-                }
-                activeRealm = realm
-            }
-        })
-
+    fun getTrainings(): MutableLiveData<List<Trainings>> {
+        val mData:MutableLiveData<List<Trainings>> = MutableLiveData<List<Trainings>>()
+        mData.value = dataTrainings
+        for(r in dataTrainings){ Log.v("Trainings", "${r.trainingName}")}
+        return mData
     }
 
     fun writeWeight(peso: String) {
@@ -99,7 +127,8 @@ class RepositoryManager {
     }
 
     fun onClear(){
-        activeRealm?.close()
+        recipeRealm?.close()
+        trainingRealm?.close()
     }
 
 }

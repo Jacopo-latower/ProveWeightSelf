@@ -10,11 +10,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.onerecipe_layout.*
 
 class ChooseTrainingFragment(objects: TrainingItem, var act: MainActivity) : Fragment(){
 
-    val image: Int = objects.image
+    val imageUrl: String = objects.imageUrl
     val type: String = objects.type
     val difficulty: String = objects.difficulty
     val time: String = ("${objects.duration} min")
@@ -47,7 +48,7 @@ class ChooseTrainingFragment(objects: TrainingItem, var act: MainActivity) : Fra
         val equip: TextView = view.findViewById(R.id.training_equipment)
 
 
-        img.setImageResource(image)
+        Picasso.get().load(imageUrl).into(img)
         nam.text = type
         lev.text = difficulty
         dur.text= time.toString()

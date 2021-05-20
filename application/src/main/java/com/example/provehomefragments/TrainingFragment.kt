@@ -10,6 +10,7 @@ import android.widget.PopupMenu
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.recipe_layout.*
 import kotlinx.android.synthetic.main.training_layout.*
@@ -17,16 +18,8 @@ import kotlinx.android.synthetic.main.training_layout.btn_sortMenu
 
 class TrainingFragment:Fragment() {
 
-    //Example Data
-    var data:List<TrainingItem> = listOf(
-        TrainingItem("Cardio", R.drawable.allenamento, 30, "Facile", "Nessuno1", "video"),
-        TrainingItem("Gambe", R.drawable._rx1dvez640yxwlwbixdvncui, 10, "Intermedio", "Nessuno2", "video"),
-        TrainingItem("Braccia", R.drawable.functional2, 15, "Difficile", "Nessuno3", "video"),
-        TrainingItem("Cardio", R.drawable.allenamento, 30, "Facile", "Nessuno4", "video"),
-        TrainingItem("Gambe", R.drawable._rx1dvez640yxwlwbixdvncui, 10, "Intermedio", "Nessuno5", "video"),
-        TrainingItem("Braccia", R.drawable.functional2, 15, "Difficile", "Nessuno6", "video")
-
-    )
+    private lateinit var data2: MutableList<TrainingItem>
+    private lateinit var viewModel: TrainingViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +32,17 @@ class TrainingFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this).get(TrainingViewModel::class.java)
+        viewModel.init()
+        val myTrainings = viewModel.getLiveTrainings().value
+        data2 = listOf<TrainingItem>().toMutableList()
+        if (myTrainings != null) {
+            for(t in myTrainings){
+               data2.add(TrainingItem(t.trainingName!!, t.imgUrl!!, t.duration?.toInt()!!, t.difficulty!!, t.description!!, t.videoUrl!!))
+            }
+        }
         rv_best_trainings.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        rv_best_trainings.adapter = BestTrainingAdapter(data, activity as MainActivity)
+        rv_best_trainings.adapter = BestTrainingAdapter(data2, activity as MainActivity)
 
         val clickListener = View.OnClickListener { view ->
             when (view.id) {
@@ -58,7 +60,7 @@ class TrainingFragment:Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                BestTrainingAdapter(data, activity as MainActivity).filter.filter(newText)
+                BestTrainingAdapter(data2, activity as MainActivity).filter.filter(newText)
                 return false
             }
 
@@ -73,15 +75,15 @@ class TrainingFragment:Fragment() {
         popup.setOnMenuItemClickListener {item ->
             when (item.itemId) {
                 R.id.menu_namet -> {
-                    BestTrainingAdapter(data, activity as MainActivity).sortName()
+                    BestTrainingAdapter(data2, activity as MainActivity).sortName()
                     true
                 };
                 R.id.menu_level -> {
-                    BestTrainingAdapter(data, activity as MainActivity).sortLevel()
+                    BestTrainingAdapter(data2, activity as MainActivity).sortLevel()
                     true
                 };
                 R.id.menu_time -> {
-                    BestTrainingAdapter(data, activity as MainActivity).sortTime()
+                    BestTrainingAdapter(data2, activity as MainActivity).sortTime()
                     true
                 };
                 else -> false

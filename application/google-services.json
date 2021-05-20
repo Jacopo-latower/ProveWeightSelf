@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "166274364654",
+    "project_id": "weightself",
+    "storage_bucket": "weightself.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166274364654:android:2b281298f224847c81efff",
+        "android_client_info": {
+          "package_name": "com.example.myrealmapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166274364654-7njogob8mcfda6v94tr0rf9umehavfsu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnZizVr0fVgH14AALp1rvHTRpIiqK25fU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166274364654-7njogob8mcfda6v94tr0rf9umehavfsu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166274364654:android:746ed608d6a89fef81efff",
+        "android_client_info": {
+          "package_name": "com.example.provehomefragments"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166274364654-7njogob8mcfda6v94tr0rf9umehavfsu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnZizVr0fVgH14AALp1rvHTRpIiqK25fU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166274364654-7njogob8mcfda6v94tr0rf9umehavfsu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

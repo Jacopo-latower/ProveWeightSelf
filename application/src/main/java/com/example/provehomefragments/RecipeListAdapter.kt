@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import java.util.*
 
-data class RecipeItem(val name:String, val image: Int, val kcal:Int, val ingredients: String, val process : String)
+data class RecipeItem(val name:String, val imageUrl: String, val kcal:Int, val ingredients: String, val process : String)
 
 class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):RecyclerView.Adapter<RecipeListAdapter.MyViewHolder>(), Filterable{
     class MyViewHolder(v: View):RecyclerView.ViewHolder(v){
@@ -17,7 +18,7 @@ class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):Recycl
         val kcal: TextView = v.findViewById(R.id.recipe_kcal)
 
         fun bind(i:RecipeItem, callback:(Int) -> Unit){
-            img.setImageResource(i.image)
+            Picasso.get().load(i.imageUrl).into(img)
             name.text = i.name
             kcal.text = ("${i.kcal} kcal")
 

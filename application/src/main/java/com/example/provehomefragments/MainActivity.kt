@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.realm.mongodb.App
 import io.realm.mongodb.AppConfiguration
 import io.realm.mongodb.User
+import io.realm.mongodb.sync.Sync
 import io.realm.mongodb.sync.SyncConfiguration
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Repository init
         val appId:String = "prova_weightself-jnubd"
         val app = App(AppConfiguration.Builder(appId).build())
 
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             .allowQueriesOnUiThread(true)
             .allowWritesOnUiThread(true)
             .build()
-        val weightConfig = SyncConfiguration.Builder(app.currentUser(), "weights")
+        val weightsConfig = SyncConfiguration.Builder(app.currentUser(), "weights")
                 .allowQueriesOnUiThread(true)
                 .allowWritesOnUiThread(true)
                 .build()
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
                 .build()
 
         currentUser = app.currentUser()!!
-        RepositoryManager.instance.init(recipesConfig, weightConfig, trainingsConfig)
+        RepositoryManager.instance.init(recipesConfig, weightsConfig, trainingsConfig)
 
         //Tolgo le ombre sul tab delle icone
         bottomNavigationView.background = null
@@ -125,16 +127,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI)
         }
     }
-
-    /*
-    //Switch to the selected fragment
-    private fun showFragment(f:Fragment){
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, f)
-                .commit()
-    }
-
-     */
 
     //Request permission to user
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -219,6 +211,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             super.onBackPressed()
     }
 
+    //Close actives realm on app closing
     override fun onDestroy() {
         Log.v("D", "Activity Destroyed")
         RepositoryManager.instance.onClear()

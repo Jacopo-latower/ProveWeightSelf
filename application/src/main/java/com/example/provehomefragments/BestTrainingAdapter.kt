@@ -9,11 +9,12 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import java.util.*
 
 data class TrainingItem(
     val type: String,
-    val image: Int,
+    val imageUrl: String,
     val duration: Int,
     val difficulty: String,
     val equipement: String,
@@ -29,7 +30,7 @@ class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):Re
         val difficulty:TextView = v.findViewById(R.id.training_level)
 
         fun bind(i:TrainingItem, callback:(Int) -> Unit){
-            img.setImageResource(i.image)
+            Picasso.get().load(i.imageUrl).into(img)
             duration.text = ("${i.duration} minuti")
             type.text = i.type
             difficulty.text = i.difficulty
