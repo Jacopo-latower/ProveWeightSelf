@@ -26,6 +26,11 @@ import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.user_frag_layout.*
 
+data class TipsItem(
+    val text: String,
+    val image: Int
+)
+
 class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver, UserFragObserver{
 
     private var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag, 3 -> userfrag

@@ -26,6 +26,19 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
     private var stepCounter:TextView? = null
 
+    var tips:List<TipsItem> = listOf(
+        TipsItem ("Stabilisciti degli obiettivi realistici", R.drawable.goals),
+        TipsItem ("L'idratazione è importante", R.drawable.tipsdrink),
+        TipsItem ("Prova sempre qualcosa di nuovo", R.drawable.benefici_stretching_fb),
+        TipsItem ("Riposati e riprenditi dopo un allenamento", R.drawable.relaxpost),
+        TipsItem ("Costruisciti una routine quotidiana", R.drawable.routine),
+        TipsItem ("Segui un'alimentazione corretta e sana", R.drawable.relax),
+        TipsItem ("Ricordati di fare stretching", R.drawable.stretching_statico_passivo),
+        TipsItem ("Mangia molta frutta e verdura", R.drawable.healtyfood),
+        TipsItem ("Non saltare mai un pasto", R.drawable.saltarepasto),
+        TipsItem ("Scegli sempre cibi freschi e di stagione", R.drawable.cibistagione)
+    )
+
     //NOT IMPLEMENTED!!
     private var br: BroadcastReceiver? = null //variable for the br
     private var recipeHome: ImageView?= null
@@ -64,7 +77,12 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
             //passaggio pagina ma mancano i file
         }
 
-
+        //set Tips random
+        val rnds = (tips.indices).random()
+        var imageTips:ImageView =view.findViewById(R.id.imageViewTips)
+        var textTips: TextView = view.findViewById(R.id.tips_text)
+        imageTips.setImageResource(tips[rnds].image)
+        textTips.text=tips[rnds].text
 
     }
 
