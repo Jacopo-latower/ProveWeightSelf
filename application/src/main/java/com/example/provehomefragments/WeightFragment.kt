@@ -37,6 +37,7 @@ class WeightFragment : Fragment() {
     val url = "http://192.168.4.1/peso"
     var client: OkHttpClient? = null
     var resp : String? = null
+    var peso : String? = null
 
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -61,7 +62,7 @@ class WeightFragment : Fragment() {
 
             val request : Request = Request.Builder().url(url).method("GET", null).build()
             var call : Call = client!!.newCall(request)
-            var peso : String? = null
+
 
             call.enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
@@ -78,15 +79,20 @@ class WeightFragment : Fragment() {
 
                         if(response.body == null) println("NULLOOOOO")
                         peso = resp!!.substring(9, 13)
+                        tv_result.text = peso
                         activity!!.runOnUiThread { peso }
 
-                        RepositoryManager.instance.writeWeight(peso!!)
+
 
                     }
 
                 }
             })
 
+        }
+
+        saveBtn.setOnClickListener{
+            RepositoryManager.instance.writeWeight(peso!!)
         }
     }
 
