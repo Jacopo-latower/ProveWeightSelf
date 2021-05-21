@@ -1,9 +1,11 @@
 package com.example.provehomefragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +13,12 @@ import kotlinx.android.synthetic.main.recipe_layout.*
 
 class RecipeFragment : Fragment() {
 
-    private lateinit var data2: MutableList<RecipeItem>
     private lateinit var viewModel: RecipeViewModel
 
-    var refreshButton: Button? = null
+    private var data2: MutableList<RecipeItem>? = null
+    private var recipeRv:RecyclerView? = null
+
+    private var refreshButton: Button? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,31 +31,13 @@ class RecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
-        viewModel.init()
+        RepositoryManager.instance.loadRecipes(this)
 
-        //Convert my List<Recipe> in a List<RecipeItem>
-        val myRecipes = viewModel.getLiveRecipes().value
-        data2 = listOf<RecipeItem>().toMutableList()
-        if (myRecipes != null) {
-            for(r in myRecipes){
-                data2.add(RecipeItem(r.recipeName!!, r.imgUrl!! ,r.kcal?.toInt()!!,arrayToString(r.ingredients), r.description!!))
-            }
-        }
-
-        val recipeRv = activity?.findViewById<RecyclerView>(R.id.rv_recipes)
-        recipeRv?.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        recipeRv?.adapter = RecipeListAdapter(data2, activity as MainActivity)
-
-        viewModel.getLiveRecipes().observe(viewLifecycleOwner, {
-            (recipeRv?.adapter as RecipeListAdapter).notifyDataSetChanged()
-        })
-
-        refreshButton = this.activity?.findViewById(R.id.refreshBtn)
+        refreshButton = this.activity?.findViewById(R.id.refreshRecipesBtn)
 
         refreshButton?.setOnClickListener {
             viewModel.init()
-            RepositoryManager.instance.loadRecipes()
+            RepositoryManager.instance.loadRecipes(this)
         }
 
         val clickListener = View.OnClickListener { view ->
@@ -70,9 +56,32 @@ class RecipeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                RecipeListAdapter(data2, activity as MainActivity).filter.filter(newText)
+                RecipeListAdapter(data2!!, activity as MainActivity).filter.filter(newText)
                 return false
             }
+        })
+
+    }
+
+    //Execute the recycler view stuff after the database has loaded all the data
+    fun onAsyncLoadingFinished(){
+        viewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
+        viewModel.init()
+
+        //Convert my List<Recipe> in a List<RecipeItem>
+        val myRecipes = viewModel.getLiveRecipes().value
+        data2 = listOf<RecipeItem>().toMutableList()
+        if (myRecipes != null) {
+            for(r in myRecipes){
+                data2!!.add(RecipeItem(r.recipeName!!, r.imgUrl!! ,r.kcal?.toInt()!!,arrayToString(r.ingredients), r.description!!))
+            }
+        }
+
+        recipeRv = activity?.findViewById<RecyclerView>(R.id.rv_recipes)
+        recipeRv?.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        viewModel.getLiveRecipes().observe(viewLifecycleOwner, Observer{
+            Log.i("data",it.toString())
+            recipeRv?.adapter = RecipeListAdapter(data2!!, activity as MainActivity)
         })
 
     }
@@ -84,11 +93,11 @@ class RecipeFragment : Fragment() {
         popup.setOnMenuItemClickListener {item ->
             when (item.itemId) {
                 R.id.menu_namer -> {
-                    RecipeListAdapter(data2, activity as MainActivity).sortName()
+                    RecipeListAdapter(data2!!, activity as MainActivity).sortName()
                     true
                 };
                 R.id.menu_kcal -> {
-                    RecipeListAdapter(data2, activity as MainActivity).sortKcal()
+                    RecipeListAdapter(data2!!, activity as MainActivity).sortKcal()
                     true
                 };
                 else -> false

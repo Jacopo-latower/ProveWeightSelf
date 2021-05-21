@@ -6,6 +6,7 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.PopupMenu
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
@@ -21,6 +22,8 @@ class TrainingFragment:Fragment() {
     private lateinit var data2: MutableList<TrainingItem>
     private lateinit var viewModel: TrainingViewModel
 
+    private var refreshButton: Button? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,17 +35,14 @@ class TrainingFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(TrainingViewModel::class.java)
-        viewModel.init()
-        val myTrainings = viewModel.getLiveTrainings().value
-        data2 = listOf<TrainingItem>().toMutableList()
-        if (myTrainings != null) {
-            for(t in myTrainings){
-               data2.add(TrainingItem(t.trainingName!!, t.imgUrl!!, t.duration?.toInt()!!, t.difficulty!!, t.description!!, t.videoUrl!!))
-            }
+        RepositoryManager.instance.loadTrainings(this)
+
+        refreshButton = this.activity?.findViewById(R.id.refreshTrainingButton)
+
+        refreshButton?.setOnClickListener {
+            viewModel.init()
+            RepositoryManager.instance.loadTrainings(this)
         }
-        rv_best_trainings.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        rv_best_trainings.adapter = BestTrainingAdapter(data2, activity as MainActivity)
 
         val clickListener = View.OnClickListener { view ->
             when (view.id) {
@@ -63,9 +63,24 @@ class TrainingFragment:Fragment() {
                 BestTrainingAdapter(data2, activity as MainActivity).filter.filter(newText)
                 return false
             }
-
         })
+    }
 
+    //Execute the recycler view stuff after the database has loaded all the data
+    fun onAsyncLoadingFinished(){
+        viewModel = ViewModelProvider(this).get(TrainingViewModel::class.java)
+        viewModel.init()
+        val myTrainings = viewModel.getLiveTrainings().value
+        data2 = listOf<TrainingItem>().toMutableList()
+        if (myTrainings != null) {
+            for(t in myTrainings){
+                data2.add(TrainingItem(t.trainingName!!, t.imgUrl!!, t.duration?.toInt()!!, t.difficulty!!, t.description!!, t.videoUrl!!))
+            }
+        }
+        rv_best_trainings.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        viewModel.getLiveTrainings().observe(viewLifecycleOwner,{
+            rv_best_trainings.adapter = BestTrainingAdapter(data2, activity as MainActivity)
+        })
     }
 
     private fun showPopup(view: View) {

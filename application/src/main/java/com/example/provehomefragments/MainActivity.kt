@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var previousTotalSteps = 0f
 
     private lateinit var currentUser:User
+    private lateinit var app: App
 
     private var homeTvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
@@ -58,22 +59,23 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
 
         //Repository init
         val appId:String = "prova_weightself-jnubd"
-        val app = App(AppConfiguration.Builder(appId).build())
+        app = App(AppConfiguration.Builder(appId).build())
+        currentUser = app.currentUser()!!
 
-        val recipesConfig = SyncConfiguration.Builder(app.currentUser(), "recipes")
+        val recipesConfig = SyncConfiguration.Builder(currentUser, "recipes")
             .allowQueriesOnUiThread(true)
             .allowWritesOnUiThread(true)
             .build()
-        val weightsConfig = SyncConfiguration.Builder(app.currentUser(), "weights")
+        val weightsConfig = SyncConfiguration.Builder(currentUser, "weights")
                 .allowQueriesOnUiThread(true)
                 .allowWritesOnUiThread(true)
                 .build()
-        val trainingsConfig = SyncConfiguration.Builder(app.currentUser(), "trainings")
+        val trainingsConfig = SyncConfiguration.Builder(currentUser, "trainings")
                 .allowQueriesOnUiThread(true)
                 .allowWritesOnUiThread(true)
                 .build()
 
-        currentUser = app.currentUser()!!
+        Log.v("EX", "Current User custom data: ${currentUser.customData}")
         RepositoryManager.instance.init(recipesConfig, weightsConfig, trainingsConfig)
 
         //Tolgo le ombre sul tab delle icone
@@ -208,14 +210,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         previousTotalSteps = savedNumber
     }
 
-    //when the back button is pressed, delete the top fragment from the stack is the entries are > 0
     override fun onBackPressed() {
-        if(supportFragmentManager.backStackEntryCount>0)
-            supportFragmentManager.popBackStack()
-        else
+        if(supportFragmentManager.backStackEntryCount>1)
             super.onBackPressed()
     }
-
     //Close actives realm on app closing
     override fun onDestroy() {
         Log.v("D", "Activity Destroyed")

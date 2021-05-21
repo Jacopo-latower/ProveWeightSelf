@@ -37,7 +37,7 @@ class Login : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //btn_login.isEnabled=false
+        btn_login.isEnabled=false
 
         val appId:String = "prova_weightself-jnubd"
         app = App(AppConfiguration.Builder(appId).build())
@@ -63,6 +63,7 @@ class Login : Fragment() {
         //control with database
         //Click Login
         btn_login.setOnClickListener{
+            if(email_insert.isNotEmpty() && password_insert.isNotEmpty())
             signInUser(email_insert, password_insert)
         }
 

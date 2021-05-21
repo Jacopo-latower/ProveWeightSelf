@@ -6,8 +6,10 @@ import io.realm.Realm
 import io.realm.mongodb.App
 import io.realm.mongodb.AppConfiguration
 import io.realm.mongodb.User
+import io.realm.mongodb.mongo.MongoDatabase
 import io.realm.mongodb.sync.SyncConfiguration
 import org.bson.types.ObjectId
+import org.w3c.dom.Document
 import java.util.*
 
 class RepositoryManager {
@@ -34,19 +36,16 @@ class RepositoryManager {
         this.recipeConfig = recipesConfig
         this.trainingConfig = trainingConfig
 
-        loadRecipes()
-        loadWeights()
-        loadTrainings()
-
         val appId : String = "prova_weightself-jnubd"
         val app = App(AppConfiguration.Builder(appId).build())
         currentUser = app.currentUser()!!
+        Log.v("EX", "In repository manager custom data called: ${currentUser.customData}")
     }
 
-    private fun loadTrainings() {
+    fun loadTrainings(fragment: TrainingFragment) {
         Realm.getInstanceAsync(trainingConfig, object : Realm.Callback(){
             override fun onSuccess(realm: Realm) {
-                Log.v("SUCCESS", "Realm successfully opened")
+                Log.v("SUCCESS", "Training Realm successfully opened")
                 val trainings = realm.where(Trainings::class.java).findAll()
                 dataTrainings = mutableListOf()
                 for (w in trainings){
@@ -54,14 +53,15 @@ class RepositoryManager {
                     Log.v("Trainings", "${w.trainingName}")
                 }
                 trainingRealm = realm
+                fragment.onAsyncLoadingFinished()
             }
         })
     }
 
-    fun loadRecipes(){
+    fun loadRecipes(fragment: RecipeFragment){
         Realm.getInstanceAsync(recipeConfig, object : Realm.Callback(){
             override fun onSuccess(realm: Realm) {
-                Log.v("SUCCESS", "Realm successfully opened")
+                Log.v("SUCCESS", "Recipe Realm successfully opened")
                 val recipes = realm.where(Recipe::class.java).findAll()
                 dataRecipes = mutableListOf()
                 for (w in recipes){
@@ -69,12 +69,18 @@ class RepositoryManager {
                     Log.v("Recipes", "${w.recipeName}")
                 }
                 recipeRealm = realm
+                fragment.onAsyncLoadingFinished()
             }
         })
     }
 
-    private fun loadWeights() {
+    fun loadWeights() {
         //TODO: to implement if there are weights in the database; remember to do a refresh method when a user insert a new weight
+    }
+
+    fun loadUserData() : org.bson.Document{
+        Log.v("USER", "${currentUser.customData["name"]}")
+        return currentUser.customData
     }
 
     fun getRecipes() : MutableLiveData<List<Recipe>>{

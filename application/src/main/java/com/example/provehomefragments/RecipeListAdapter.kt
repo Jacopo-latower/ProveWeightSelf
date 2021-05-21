@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
@@ -12,6 +13,9 @@ import java.util.*
 data class RecipeItem(val name:String, val imageUrl: String, val kcal:Int, val ingredients: String, val process : String)
 
 class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):RecyclerView.Adapter<RecipeListAdapter.MyViewHolder>(), Filterable{
+
+    private var lastPosition = -1 //for the animation
+
     class MyViewHolder(v: View):RecyclerView.ViewHolder(v){
         val img: ImageView = v.findViewById(R.id.recipe_img)
         val name: TextView = v.findViewById(R.id.recipe_name)
@@ -39,6 +43,7 @@ class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):Recycl
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(data[position]){pos:Int -> getRecipePage(pos)}
+        setAnimation(holder.itemView, position)
     }
 
     override fun onViewRecycled(holder: MyViewHolder) {
@@ -49,13 +54,23 @@ class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):Recycl
         return data.size
     }
 
+    //Method for animate the elements of the recycler view
+    private fun setAnimation(view:View, position: Int){
+        if(position>lastPosition){
+            val animation = AnimationUtils.loadAnimation(act, android.R.anim.slide_in_left)
+            view.startAnimation(animation)
+            lastPosition = position
+        }
+    }
+
+    //Get the specific recipe page -> switch to specific recipe fragment
     private fun getRecipePage(pos:Int){
-        //Get the specific recipe page -> switch to specific recipe fragment
         var objects= data[pos]
         val chooseRecipe= ChooseRecipeFragment(objects, act)
         act.setCurrentFragment(chooseRecipe)
     }
 
+    //Sorting functions
     fun sortName() {
         this.data = this.data.sortedBy { it.name }
         notifyDataSetChanged()
@@ -68,7 +83,7 @@ class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):Recycl
         Log.d("data sort Kcal", data.toString())
     }
 
-    //search
+    //Searching and filtering
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {

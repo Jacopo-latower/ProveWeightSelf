@@ -1,10 +1,12 @@
 package com.example.provehomefragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.user_frag_layout.*
 
@@ -25,14 +27,30 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val nameTv = activity?.findViewById<TextView>(R.id.usernameTextView)
+        val userData = RepositoryManager.instance.loadUserData()
+
+        nameTv?.text = ("${userData["name"].toString()} ${userData["surname".toString()]}")
+
         val observer = activity as? UserFragObserver
         observer?.userFragCreatedNotify()
 
-        btnLogout.setOnClickListener { logout() }
+        btnLogout.setOnClickListener {
+            btnLogout.isEnabled = false
+            logout()
+        }
     }
 
-}
+    private fun logout(){
+        RepositoryManager.instance.currentUser
+            .logOutAsync{r->
+                if (r.isSuccess) {
+                    Log.v("AUTH", "Successfully logged out.")
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Log.e("AUTH", r.error.toString())
+                }}
+    }
 
-private fun logout(){
-   //TODO: pass the User to the intent in the Login Phase to avoid access problems
 }

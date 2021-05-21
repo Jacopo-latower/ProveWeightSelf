@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
@@ -23,6 +24,9 @@ data class TrainingItem(
 
 class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):RecyclerView.Adapter<BestTrainingAdapter.MyViewHolder>(),
     Filterable {
+
+    private var lastPosition = -1 //for the animation
+
     class MyViewHolder(v: View):RecyclerView.ViewHolder(v){
         val img:ImageView = v.findViewById(R.id.recipe_img)
         val duration:TextView = v.findViewById(R.id.training_time)
@@ -52,6 +56,7 @@ class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):Re
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(data[position]){pos:Int -> getTrainingPage(pos)}
+        setAnimation(holder.itemView, position)
     }
 
     override fun onViewRecycled(holder: MyViewHolder) {
@@ -62,6 +67,7 @@ class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):Re
         return data.size
     }
 
+    //Swith to the specific training fragment
     private fun getTrainingPage(p:Int){
         val objects= data[p]
         val chooseTraining= ChooseTrainingFragment(objects,act)
@@ -69,6 +75,15 @@ class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):Re
         act.setCurrentFragment(chooseTraining)
     }
 
+    //Method for animate the elements of the recycler view
+    private fun setAnimation(view:View, position: Int){
+        if(position>lastPosition){
+            val animation = AnimationUtils.loadAnimation(act, android.R.anim.slide_in_left)
+            view.startAnimation(animation)
+            lastPosition = position
+        }
+    }
+    //Sorting functions
     fun sortName() {
         this.data = this.data.sortedBy { it.type }
         notifyDataSetChanged()
@@ -87,7 +102,7 @@ class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):Re
         Log.d("data sort Level", data.toString())
     }
 
-    //search
+    //search and filtering
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {

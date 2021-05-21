@@ -1,20 +1,13 @@
 package com.example.provehomefragments
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.user_frag_layout.*
 
 // interface implemented by the main activity to notify changes
 interface FragHomeObserver{
@@ -39,8 +32,6 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         TipsItem ("Scegli sempre cibi freschi e di stagione", R.drawable.cibistagione)
     )
 
-    //NOT IMPLEMENTED!!
-    private var br: BroadcastReceiver? = null //variable for the br
     private var recipeHome: ImageView?= null
     private var trainHome: ImageView?= null
 
@@ -55,15 +46,12 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         stepCounter = view.findViewById(R.id.daily_steps)
 
-        //NOT IMPLEMENTED
-        br = MyBroadcastReceiver() //example to try
-
         //Notify to the main activity that the fragment has been created
         val observer = activity as? FragHomeObserver
         observer?.fragCreatedNotify()
 
         //Initialized the listener for the text view to reset the steps
-        resetSteps()
+        resetStepsInit()
 
         //change in one recipe layout
         recipeHome = view.findViewById(R.id.HImageView_Recipes)
@@ -79,14 +67,14 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
         //set Tips random
         val rnds = (tips.indices).random()
-        var imageTips:ImageView =view.findViewById(R.id.imageViewTips)
-        var textTips: TextView = view.findViewById(R.id.tips_text)
+        val imageTips:ImageView =view.findViewById(R.id.imageViewTips)
+        val textTips: TextView = view.findViewById(R.id.tips_text)
         imageTips.setImageResource(tips[rnds].image)
         textTips.text=tips[rnds].text
 
     }
 
-    private fun resetSteps(){
+    private fun resetStepsInit(){
         //if the user click on the textView, notify to him that the long tap is requested
         stepCounter?.setOnClickListener{
             Toast.makeText(activity, "Long Tap to reset", Toast.LENGTH_SHORT).show()
@@ -99,14 +87,5 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
             true
         }
-    }
-
-    //Ex with broadcast receiver: NOT IMPLEMENTED
-    class MyBroadcastReceiver() : BroadcastReceiver(){
-        override fun onReceive(context: Context?, intent: Intent?) {
-            var  result = intent?.getStringExtra("Giorgio")
-            //do something else
-        }
-
     }
 }
