@@ -1,6 +1,8 @@
 package com.example.provehomefragments
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import io.realm.Realm
 import io.realm.mongodb.App
@@ -10,6 +12,8 @@ import io.realm.mongodb.mongo.MongoDatabase
 import io.realm.mongodb.sync.SyncConfiguration
 import org.bson.types.ObjectId
 import org.w3c.dom.Document
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class RepositoryManager {
@@ -100,8 +104,16 @@ class RepositoryManager {
     fun writeWeight(peso: String) {
 
         Realm.getInstanceAsync(weightConfig, object : Realm.Callback() {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onSuccess(realm : Realm) {
                 Log.v("EXAMPLE", "Successfully opened a realm with reads and writes allowed on the UI thread.")
+
+                /*
+                var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+                var date = LocalDate.parse(System.currentTimeMillis().toString(), formatter)
+
+                Log.v("DATA", "Oggi è il $date")
+                */
 
                 realm.executeTransaction{ r : Realm ->
                     val id = ObjectId()
@@ -115,8 +127,15 @@ class RepositoryManager {
                     newWeight.user_id = currentUser.id
                     newWeight.date = date
 
-                    r.insertOrUpdate(newWeight)
+                    /*
+                    if(r.){
 
+                    }
+
+                    else { r.insertOrUpdate(newWeight) }
+
+                     */
+                    r.insertOrUpdate(newWeight)
                     /*
 
                     val weights = r.where(Weights::class.java).equalTo("date", date).findAll()

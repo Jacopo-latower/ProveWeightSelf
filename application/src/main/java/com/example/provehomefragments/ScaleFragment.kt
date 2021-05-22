@@ -46,15 +46,25 @@ class ScaleFragment : Fragment() {
 
         connectBtn?.setOnClickListener {
             try {
-                connectivityManager.requestNetwork(
-                    builder.build(),
-                    object : ConnectivityManager.NetworkCallback() {
+
+                var networkcallback : ConnectivityManager.NetworkCallback? = null
+
+                    networkcallback = object  : ConnectivityManager.NetworkCallback() {
                         override fun onAvailable(network: Network) {
                             connectivityManager.bindProcessToNetwork(network)
                             setCurrentFragment(WeightFragment())
                         }
-                    })
 
+                        override fun onLost(network: Network) {
+                            super.onLost(network)
+                            // This is to stop the looping request for OnePlus & Xiaomi models
+                            connectivityManager.bindProcessToNetwork(null)
+                            networkcallback?.let { connectivityManager.unregisterNetworkCallback(it) }
+                            // Here you can have a fallback option to show a 'Please connect manually' page with an Intent to the Wifi settings
+                        }
+                    }
+
+                connectivityManager.requestNetwork(builder.build(), networkcallback)
 
 
             } catch (e: SecurityException) {
