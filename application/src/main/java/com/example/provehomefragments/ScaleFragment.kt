@@ -47,12 +47,15 @@ class ScaleFragment : Fragment() {
         connectBtn?.setOnClickListener {
             try {
 
+                var weightFragment : WeightFragment = WeightFragment()
                 var networkcallback : ConnectivityManager.NetworkCallback? = null
 
                     networkcallback = object  : ConnectivityManager.NetworkCallback() {
                         override fun onAvailable(network: Network) {
                             connectivityManager.bindProcessToNetwork(network)
-                            setCurrentFragment(WeightFragment())
+                            weightFragment.setCallback(networkcallback!!)
+
+                            setCurrentFragment(weightFragment)
                         }
 
                         override fun onLost(network: Network) {

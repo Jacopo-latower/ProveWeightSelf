@@ -62,6 +62,7 @@
     <string name="pesa">Weigh</string>
     <string name="save">Save</string>
     <string name="option">Step on the scale</string>
+    <string name="weightSaved">The value has been saved correctly.</string>
 
     //MENU
     <string name="menu_namer">Nome Ricetta</string>

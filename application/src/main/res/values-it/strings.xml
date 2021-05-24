@@ -60,7 +60,7 @@
     <string name="pesa">Pesa</string>
     <string name="save">Salva</string>
     <string name="option">Sali sulla bilancia</string>
-    //string name="option">Cosa vuoi fare/string
+    <string name="weightSaved">Il valore è stato salvato correttamente.</string>
 
     //MENU
     <string name="menu_namer">Recipe Name</string>

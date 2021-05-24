@@ -19,6 +19,8 @@ import io.realm.mongodb.AppConfiguration
 import io.realm.mongodb.User
 import io.realm.mongodb.sync.SyncConfiguration
 import kotlinx.android.synthetic.main.fragment_weight_layout.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import okhttp3.*
 import org.bson.types.ObjectId
 import java.io.IOException
@@ -41,11 +43,15 @@ class WeightFragment : Fragment() {
     var resp: String? = null
     var peso: String? = null
 
+    var nc : ConnectivityManager.NetworkCallback? = null
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressBar.visibility = View.GONE
+        weightSaved.visibility = View.GONE
 
 
         client = OkHttpClient()
@@ -92,22 +98,45 @@ class WeightFragment : Fragment() {
 
         }
 
+        /**
+         * la pressione del bottone Salva disattiva la connessione con la bilancia e,
+         * nonappena ritrova la connessione alla rete, invia il peso al server
+         */
+
         saveBtn.setOnClickListener {
-            val activeNetwork : Network? = connectivityManager.activeNetwork
 
-            var networkcallback : ConnectivityManager.NetworkCallback? = null
-            networkcallback = object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network) {
-                    super.onAvailable(network)
+            connectivityManager.bindProcessToNetwork(null)
 
-                    connectivityManager.bindProcessToNetwork(null)
-                    networkcallback?.let { connectivityManager.unregisterNetworkCallback(it) }
+            nc?.let { connectivityManager.unregisterNetworkCallback(it) }
+
+            runBlocking {
+
+                //TODO: sistemare la visibilità di textview e progressbar
+
+                progressBar.visibility = View.VISIBLE
+
+                for(i in 1..5){
+
+                    val activeNetwork : Network? = connectivityManager.activeNetwork
+                    if(activeNetwork != null) {
+                        RepositoryManager.instance.writeWeight(peso!!)
+                        progressBar.visibility = View.GONE
+                        weightSaved.visibility = View.VISIBLE
+
+                        delay (3000)
+
+                        weightSaved.visibility = View.GONE
+                        break
+                    }
+
+                    delay(4000)
                 }
-            }
-
-            if(activeNetwork != null) {
-                RepositoryManager.instance.writeWeight(peso!!)
             }
         }
     }
+
+    fun setCallback(nc : ConnectivityManager.NetworkCallback){
+        this.nc = nc
+    }
 }
+
