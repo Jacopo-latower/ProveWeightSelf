@@ -174,91 +174,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:layout_marginBottom="@dimen/_45sdp"
-        android:layout_marginRight="@dimen/_5sdp"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_5sdp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/HImageView_Recipes"
-                        android:layout_width="@dimen/_230sdp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_weight="1"
-                        android:foreground="#50000000"
-                        android:scaleType="centerCrop"
-                        app:shapeAppearanceOverlay="@style/RoundedSquare"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/HImageView_Training"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/antipasti_natalizi_eleganti" />
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/HImageView_Training"
-                        android:layout_width="@dimen/_230sdp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:foreground="#50000000"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/HImageView_Recipes"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:shapeAppearanceOverlay="@style/RoundedSquare"
-                        app:srcCompat="@drawable/fa55c8bad0e242eb7986dc1135b50adb_xl" />
-
-                    <TextView
-                        android:id="@+id/TryRecipe"
-                        android:layout_width="@dimen/_200sdp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/try_recipe"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/HImageView_Recipes"
-                        app:layout_constraintEnd_toEndOf="@+id/HImageView_Recipes"
-                        app:layout_constraintStart_toStartOf="@id/HImageView_Recipes"
-                        app:layout_constraintTop_toTopOf="@+id/HImageView_Recipes" />
-
-                    <TextView
-                        android:id="@+id/TryTraining"
-                        android:layout_width="@dimen/_200sdp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/training_recommended"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/HImageView_Training"
-                        app:layout_constraintEnd_toEndOf="@+id/HImageView_Training"
-                        app:layout_constraintStart_toStartOf="@id/HImageView_Training"
-                        app:layout_constraintTop_toTopOf="@+id/HImageView_Training" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
-    </HorizontalScrollView>
-
+    <com.github.mikephil.charting.charts.LineChart
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/line_chart"
+    android:layout_marginBottom="@dimen/_50sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginRight="@dimen/_5sdp"
+    android:layout_marginLeft="@dimen/_5sdp"
+    />
 
 
 </LinearLayout>

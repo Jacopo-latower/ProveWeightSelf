@@ -8,6 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 
 // interface implemented by the main activity to notify changes
 interface FragHomeObserver{
@@ -34,6 +38,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
     private var recipeHome: ImageView?= null
     private var trainHome: ImageView?= null
+    private var line_chart: LineChart?= null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,17 +58,9 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         //Initialized the listener for the text view to reset the steps
         resetStepsInit()
 
-        //change in one recipe layout
-        recipeHome = view.findViewById(R.id.HImageView_Recipes)
-        recipeHome?.setOnClickListener {
-            //passaggio pagina ma mancano i file
-        }
 
-        //change in one train layout
-        trainHome = view.findViewById(R.id.HImageView_Training)
-        trainHome?.setOnClickListener {
-            //passaggio pagina ma mancano i file
-        }
+
+
 
         //set Tips random
         val rnds = (tips.indices).random()
@@ -71,6 +68,70 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         val textTips: TextView = view.findViewById(R.id.tips_text)
         imageTips.setImageResource(tips[rnds].image)
         textTips.text=tips[rnds].text
+
+        //Creazione Grafico
+
+        line_chart = view.findViewById(R.id.line_chart)
+        setLineChartData()
+
+    }
+
+    //Valori Grafico
+
+    fun setLineChartData() {
+
+
+        //Testi Ascisse
+        val xvalues = ArrayList<String>()
+        xvalues.add("Lunedì")
+        xvalues.add("Martedì")
+        xvalues.add("Mercoledi")
+        xvalues.add("Giovedì")
+        xvalues.add("Venerdì")
+        xvalues.add("Sabato")
+        xvalues.add("Domenica")
+
+
+
+        //Valori Grafico Ordinate
+        val line_entry = ArrayList<Entry>();
+        line_entry.add(Entry(20f, 0))
+        line_entry.add(Entry(60f, 1))
+        line_entry.add(Entry(62f, 2))
+        line_entry.add(Entry(80f, 3))
+        line_entry.add(Entry(50f, 4))
+        line_entry.add(Entry(65f, 5))
+        line_entry.add(Entry(89f, 6))
+
+        //Layout Grafico
+        val line_data_set = LineDataSet(line_entry, "First")
+        line_data_set.color = resources.getColor(R.color.light_blue)
+        line_data_set.lineWidth = 2f
+        line_chart?.setDescription("")
+        line_chart?.axisLeft?.textColor = resources.getColor((R.color.trasparent))
+        line_chart?.axisRight?.textColor = resources.getColor((R.color.trasparent))
+        line_chart?.xAxis?.setDrawLabels(false)
+        line_chart?.legend?.isEnabled = false
+
+        line_data_set.circleRadius =5f
+        line_data_set.setDrawFilled(true)
+        line_data_set.fillColor=resources.getColor(R.color.blue)
+        line_data_set.fillAlpha= 40
+
+        line_data_set.valueTextColor = resources.getColor(R.color.white)
+        line_data_set.valueTextSize = 20f
+
+        val data = LineData(xvalues, line_data_set)
+
+
+        line_chart?.data= data
+        line_chart?.setBackgroundColor(resources.getColor(R.color.trasparent))
+
+        line_chart?.animateXY(2000, 2000)
+
+
+
+
 
     }
 
