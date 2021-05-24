@@ -48,10 +48,11 @@
 
     //USER
     <string name="user">Profilo</string>
-    <string name="last_weight_saved">L\'ultimo peso salvato è</string>
+    <string name="last_weight_saved">Ultimo Peso Salvato</string>
     <string name="remaining_kcal">kCal da bruciare</string>
     <string name="today_steps">Oggi hai totalizzato</string>
     <string name="steps_out_of">passi su</string>
+    <string name="bmi_text">Indice di Massa Corporea</string>
 
     //SCALE
     <string name="connect">Connetti</string>

@@ -49,10 +49,12 @@
 
     //USER
     <string name="user">User</string>
-    <string name="last_weight_saved">Last saved weight is</string>
+    <string name="last_weight_saved">Last Saved Weight</string>
     <string name="remaining_kcal">kCal to burn</string>
     <string name="today_steps">Today you have completed</string>
     <string name="steps_out_of">steps out of</string>
+    <string name="bmi_text">Body Mass Index</string>
+
 
     //SCALE
     <string name="connect">Connect</string>
