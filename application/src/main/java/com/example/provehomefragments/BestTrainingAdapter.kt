@@ -22,7 +22,7 @@ data class TrainingItem(
     val video: String
 )
 
-class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):RecyclerView.Adapter<BestTrainingAdapter.MyViewHolder>(),
+class BestTrainingAdapter(var data:MutableList<TrainingItem>, var act: MainActivity):RecyclerView.Adapter<BestTrainingAdapter.MyViewHolder>(),
     Filterable {
 
     private var lastPosition = -1 //for the animation
@@ -85,19 +85,19 @@ class BestTrainingAdapter(var data:List<TrainingItem>, var act: MainActivity):Re
     }
     //Sorting functions
     fun sortName() {
-        this.data = this.data.sortedBy { it.type }
+        this.data = this.data.sortedBy { it.type } as MutableList<TrainingItem>
         notifyDataSetChanged()
         Log.d("data sort Name", data.toString())
     }
 
     fun sortTime() {
-        this.data = this.data.sortedBy { it.duration }
+        this.data = this.data.sortedBy { it.duration } as MutableList<TrainingItem>
         notifyDataSetChanged()
         Log.d("data sort Time", data.toString())
     }
 
     fun sortLevel() {
-        this.data = this.data.sortedBy { it.difficulty }
+        this.data = this.data.sortedBy { it.difficulty } as MutableList<TrainingItem>
         notifyDataSetChanged()
         Log.d("data sort Level", data.toString())
     }

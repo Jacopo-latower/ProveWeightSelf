@@ -32,17 +32,6 @@
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:id="@+id/favoritebtn"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                app:srcCompat="@drawable/ic_nofavorite_blue"
-                android:background="@drawable/background4"
-                app:layout_constraintTop_toTopOf="@+id/recipe_img"
-                app:layout_constraintEnd_toEndOf="@+id/recipe_img" />
-
             <TextView
                 android:id="@+id/training_level"
                 android:layout_width="wrap_content"

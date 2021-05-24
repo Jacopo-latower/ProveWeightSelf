@@ -12,7 +12,7 @@ import java.util.*
 
 data class RecipeItem(val name:String, val imageUrl: String, val kcal:Int, val ingredients: String, val process : String)
 
-class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):RecyclerView.Adapter<RecipeListAdapter.MyViewHolder>(), Filterable{
+class RecipeListAdapter(var data:MutableList<RecipeItem>, var act: MainActivity):RecyclerView.Adapter<RecipeListAdapter.MyViewHolder>(), Filterable{
 
     private var lastPosition = -1 //for the animation
 
@@ -72,13 +72,13 @@ class RecipeListAdapter(var data:List<RecipeItem>, var act: MainActivity):Recycl
 
     //Sorting functions
     fun sortName() {
-        this.data = this.data.sortedBy { it.name }
+        this.data = this.data.sortedBy { it.name } as MutableList<RecipeItem>
         notifyDataSetChanged()
         Log.d("data sort Name", data.toString())
     }
 
     fun sortKcal() {
-        this.data = this.data.sortedBy { it.kcal }
+        this.data = this.data.sortedBy { it.kcal } as MutableList<RecipeItem>
         notifyDataSetChanged()
         Log.d("data sort Kcal", data.toString())
     }
