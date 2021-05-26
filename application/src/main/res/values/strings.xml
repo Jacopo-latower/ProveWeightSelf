@@ -44,7 +44,7 @@
     <string name="fav_recipes">Favourite Recipes</string>
     <string name="title_ingredients">Ingredients</string>
     <string name="title_process">Process</string>
-    <string name="search">Search Recipe</string>
+    <string name="search">Search ...</string>
     <string name="eat_recipe">Eat</string>
 
     //USER
@@ -54,6 +54,13 @@
     <string name="today_steps">Today you have completed</string>
     <string name="steps_out_of">steps out of</string>
     <string name="bmi_text">Body Mass Index</string>
+        //bmi condition
+    <string name="below18">Underweight</string>
+    <string name="between1825">Normal Weight</string>
+    <string name="between2530">Pre-Obesity</string>
+    <string name="between3035">Obesity I</string>
+    <string name="between3540">Obesity II</string>
+    <string name="above40">Obesity III</string>
 
 
     //SCALE

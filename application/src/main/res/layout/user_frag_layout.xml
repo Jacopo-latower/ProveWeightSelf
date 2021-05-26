@@ -103,29 +103,29 @@
 
         <TextView
             android:id="@+id/bmi"
-            android:layout_width="@dimen/_100sdp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_2sdp"
-            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_15sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:gravity="center"
-            android:text="kg/(h*2)"
+            android:text="20"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/white"
             android:textSize="@dimen/_25sdp"
             android:textStyle="bold"/>
 
              <TextView
-                 android:id="@+id/text6"
+                 android:id="@+id/bmi_condition"
                  android:layout_width="wrap_content"
                  android:layout_height="match_parent"
-                 android:layout_marginLeft="@dimen/_20sdp"
+                 android:layout_marginLeft="@dimen/_15sdp"
                  android:layout_marginTop="@dimen/_5sdp"
                  android:layout_marginRight="@dimen/_20sdp"
                  android:layout_marginBottom="@dimen/_2sdp"
                  android:gravity="center"
-                 android:text="Normopeso"
+                 android:text="@string/between1825"
                  android:textAppearance="@style/TextAppearance.AppCompat.Large"
                  android:textColor="@color/white"
                  android:textStyle="italic" />

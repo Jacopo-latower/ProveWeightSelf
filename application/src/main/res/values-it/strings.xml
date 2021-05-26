@@ -43,7 +43,7 @@
     <string name="fav_recipes">Ricette preferite</string>
     <string name="title_ingredients">Ingredienti</string>
     <string name="title_process">Procedimento</string>
-    <string name="search">Cerca la ricetta</string>
+    <string name="search">Cerca ...</string>
     <string name="eat_recipe">Mangia</string>
 
     //USER
@@ -53,6 +53,13 @@
     <string name="today_steps">Oggi hai totalizzato</string>
     <string name="steps_out_of">passi su</string>
     <string name="bmi_text">Indice di Massa Corporea</string>
+            //bmi condition
+    <string name="below18">Sottopeso</string>
+    <string name="between1825">Normopeso</string>
+    <string name="between2530">Pre-Obesità</string>
+    <string name="between3035">Obesità I</string>
+    <string name="between3540">Obesità II</string>
+    <string name="above40">Obesità III</string>
 
     //SCALE
     <string name="connect">Connetti</string>
