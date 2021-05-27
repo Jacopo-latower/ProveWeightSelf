@@ -57,6 +57,10 @@ class ChooseRecipeFragment(objects: RecipeItem, var act: MainActivity) : Fragmen
             act.setCurrentFragment(listRecipe)
         }
 
+        eat_recipe.setOnClickListener {
+            //TODO: incrementare le calorie acquisite
+        }
+
     }
 
 }

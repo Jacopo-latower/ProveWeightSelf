@@ -1,5 +1,6 @@
 package com.example.provehomefragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +26,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
     private var lastWeight:TextView? = null
 
     var tips:List<TipsItem> = listOf(
-            /*
+
         TipsItem ("Stabilisciti degli obiettivi realistici", R.drawable.goals),
         TipsItem ("L'idratazione è importante", R.drawable.tipsdrink),
         TipsItem ("Prova sempre qualcosa di nuovo", R.drawable.benefici_stretching_fb),
@@ -35,14 +36,12 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         TipsItem ("Ricordati di fare stretching", R.drawable.stretching_statico_passivo),
         TipsItem ("Mangia molta frutta e verdura", R.drawable.healtyfood),
         TipsItem ("Non saltare mai un pasto", R.drawable.saltarepasto),
-
-             */
         TipsItem ("Scegli sempre cibi freschi e di stagione", R.drawable.cibistagione)
     )
 
     private var recipeHome: ImageView?= null
     private var trainHome: ImageView?= null
-    private var line_chart: LineChart?= null
+    private var lineChart: LineChart?= null
 
     private var weights:List<Weights>? = listOf()
 
@@ -73,7 +72,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         textTips.text=tips[rnds].text
 
         //Creazione Grafico
-        line_chart = view.findViewById(R.id.line_chart)
+        lineChart = view.findViewById(R.id.line_chart)
 
         RepositoryManager.instance.loadWeights(this)
 
@@ -82,10 +81,15 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
     //Called in the repository manager when the data is loaded, so we can update the UI
     override fun onAsyncLoadingFinished(){
         weights = RepositoryManager.instance.dataWeights.sortedByDescending{it.date} //init all the weights
-        lastWeight?.text = weights!![0].weight.toString()
-        weights!!.sortedBy { it.date }
-        setLineChartData()
+
+        if(!weights!!.isEmpty()){
+            lastWeight?.text = weights!![0].weight.toString()
+            weights!!.sortedBy { it.date }
+            setLineChartData()
+        }
+
     }
+
     //Valori Grafico
     private fun setLineChartData() {
 
@@ -100,38 +104,38 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         xvalues.add("Domenica")
 
         //Valori Grafico Ordinate
-        val line_entry = ArrayList<Entry>();
+        val lineEntry = ArrayList<Entry>();
         var i = 0
         for(w in weights!!){
-            w.weight?.let { Entry(it.toFloat(), i) }?.let { line_entry.add(it) }
+            w.weight?.let { Entry(it.toFloat(), i) }?.let { lineEntry.add(it) }
             i++
         }
 
         //Layout Grafico
-        val line_data_set = LineDataSet(line_entry, "First")
-        line_data_set.color = resources.getColor(R.color.light_blue)
-        line_data_set.lineWidth = 2f
-        line_chart?.setDescription("")
-        line_chart?.axisLeft?.textColor = resources.getColor((R.color.trasparent))
-        line_chart?.axisRight?.textColor = resources.getColor((R.color.trasparent))
-        line_chart?.xAxis?.setDrawLabels(false)
-        line_chart?.legend?.isEnabled = false
+        val lineDataSet = LineDataSet(lineEntry, "First")
+        lineDataSet.color = resources.getColor(R.color.light_blue)
+        lineDataSet.lineWidth = 2f
+        lineChart?.setDescription("")
+        lineChart?.axisLeft?.textColor = resources.getColor((R.color.trasparent))
+        lineChart?.axisRight?.textColor = resources.getColor((R.color.trasparent))
+        lineChart?.xAxis?.setDrawLabels(false)
+        lineChart?.legend?.isEnabled = false
 
-        line_data_set.circleRadius =5f
-        line_data_set.setDrawFilled(true)
-        line_data_set.fillColor=resources.getColor(R.color.blue)
-        line_data_set.fillAlpha= 40
+        lineDataSet.circleRadius =5f
+        lineDataSet.setDrawFilled(true)
+        lineDataSet.fillColor=resources.getColor(R.color.blue)
+        lineDataSet.fillAlpha= 40
 
-        line_data_set.valueTextColor = resources.getColor(R.color.white)
-        line_data_set.valueTextSize = 20f
+        lineDataSet.valueTextColor = resources.getColor(R.color.white)
+        lineDataSet.valueTextSize = 20f
 
-        val data = LineData(xvalues, line_data_set)
+        val data = LineData(xvalues, lineDataSet)
 
 
-        line_chart?.data= data
-        line_chart?.setBackgroundColor(resources.getColor(R.color.trasparent))
+        lineChart?.data= data
+        lineChart?.setBackgroundResource(R.drawable.background3)
 
-        line_chart?.animateXY(2000, 2000)
+        lineChart?.animateXY(1000, 1000)
 
 
     }
@@ -149,5 +153,9 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
 
             true
         }
+    }
+
+    fun getLastWeight(): String {
+        return lastWeight.toString()
     }
 }

@@ -24,6 +24,7 @@
     <string name="last_weight">Last Weight</string>
     <string name="stepcounter">Steps</string>
     <string name="distance">Distance (km)</string>
+    <string name="graficoPesi">Your weight trend</string>
 
     //TRAINING
     <string name="training">Training</string>

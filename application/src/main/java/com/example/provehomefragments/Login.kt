@@ -89,7 +89,7 @@ class Login : Fragment() {
                 observer.loadNextActivity()
             }else{
                 Log.e("AUTH", "Error in the login: ${it.error}")
-                Toast.makeText(activity, "Error in the login", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "The credentials ar not correct.", Toast.LENGTH_SHORT).show()
             }
         }
     }

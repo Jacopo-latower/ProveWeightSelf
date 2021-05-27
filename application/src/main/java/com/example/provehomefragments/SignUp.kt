@@ -2,11 +2,11 @@ package com.example.provehomefragments
 
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import io.realm.mongodb.App
 import io.realm.mongodb.AppConfiguration
@@ -15,16 +15,27 @@ import io.realm.mongodb.User
 import io.realm.mongodb.mongo.MongoClient
 import io.realm.mongodb.mongo.MongoCollection
 import io.realm.mongodb.mongo.MongoDatabase
-import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.signup.*
 import org.bson.Document
 import org.bson.types.ObjectId
+import java.util.regex.Pattern
+
 
 class SignUp : Fragment() {
 
     companion object{
         fun createInstance() = SignUp()
     }
+
+    val EMAIL_ADDRESS: Pattern = Pattern.compile(
+        "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                "\\@" +
+                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                "(" +
+                "\\." +
+                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                ")+"
+    )
 
     lateinit var app: App
     var possibleUser: MyUser? = null
@@ -44,21 +55,32 @@ class SignUp : Fragment() {
         app = App(AppConfiguration.Builder(appId).build())
 
         save_register?.setOnClickListener {
-            val newUser= MyUser(email_register?.text.toString(), password_register?.text.toString())
-            newUser.height = height_register?.text.toString()
-            newUser.name = name_register?.text.toString()
-            newUser.surname = surname_register?.text.toString()
-            possibleUser = newUser
-            if(password_register.text.toString() == passwordC_register.text.toString())
-                addNewUser(possibleUser!!)
-            else{
-                Log.i("Ex", "CONFIRMATION PASSWORD NOT EQUAL TO PASSWORD: ${passwordC_register.text} different from ${password_register.text} ")
+
+            if(!isValidEmail(email_register.text.toString())){
+                Toast.makeText(activity, "Please use a valid email address.", Toast.LENGTH_SHORT).show()
             }
+
+            else{
+                val newUser= MyUser(email_register?.text.toString(), password_register?.text.toString())
+                newUser.height = height_register?.text.toString()
+                newUser.name = name_register?.text.toString()
+                newUser.surname = surname_register?.text.toString()
+                possibleUser = newUser
+                if(password_register.text.toString() == passwordC_register.text.toString())
+                    addNewUser(possibleUser!!)
+                else{
+                    Log.i(
+                        "Ex",
+                        "Passwords do not match: ${passwordC_register.text} different from ${password_register.text} "
+                    )
+                }
+            }
+
         }
 
     }
 
-    private fun addNewUser(u:MyUser){
+    private fun addNewUser(u: MyUser){
         app.emailPassword.registerUserAsync(u.email, u.password){
             if (it.isSuccess){
                 Log.i("Ex", "Registration Successful")
@@ -84,12 +106,16 @@ class SignUp : Fragment() {
                                 .append("height", u.height)
                                 .append("name", u.name)
                                 .append("surname", u.surname)
-                                .append("_partitionkey", "user"))
+                                .append("_partitionkey", "user")
+                        )
                             .getAsync { result ->
                                 if (result.isSuccess) {
-                                    Log.v("EXAMPLE", "Inserted custom user data document. _id of inserted document: ${result.get().insertedId}")
+                                    Log.v(
+                                        "EXAMPLE",
+                                        "Inserted custom user data document. _id of inserted document: ${result.get().insertedId}"
+                                    )
                                     //Logging Out once we've written the custom user data
-                                    user?.logOutAsync{res->
+                                    user?.logOutAsync{ res->
                                         if (res.isSuccess) {
                                             Log.v("AUTH", "Successfully logged out.")
                                             val observer = activity as LogFragmentObserver
@@ -98,10 +124,13 @@ class SignUp : Fragment() {
                                             Log.e("AUTH", res.error.toString())
                                         }}
                                 } else {
-                                    Log.e("EXAMPLE", "Unable to insert custom user data. Error: ${result.error}")
+                                    Log.e(
+                                        "EXAMPLE",
+                                        "Unable to insert custom user data. Error: ${result.error}"
+                                    )
 
                                     //Logging Out once we've written the custom user data
-                                    user?.logOutAsync{r->
+                                    user?.logOutAsync{ r->
                                         if (r.isSuccess) {
                                             Log.v("AUTH", "Successfully logged out.")
                                         } else {
@@ -119,6 +148,11 @@ class SignUp : Fragment() {
                 Log.e("EX", "Failed to register user: ${it.error}")
             }
         }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        val pattern : Pattern = EMAIL_ADDRESS
+        return pattern.matcher(email).matches()
     }
 
 }

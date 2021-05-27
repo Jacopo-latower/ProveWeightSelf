@@ -50,8 +50,10 @@ class WeightFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        progressBar.visibility = View.GONE
-        weightSaved.visibility = View.GONE
+        saveBtn.isEnabled = false
+
+        progressBar.visibility = View.INVISIBLE
+        weightSaved.visibility = View.INVISIBLE
 
 
         client = OkHttpClient()
@@ -68,6 +70,8 @@ class WeightFragment : Fragment() {
 
         //Asynchronous Implementation
         weightBtn?.setOnClickListener {
+
+            saveBtn.isEnabled = true
 
             val request: Request = Request.Builder().url(url).method("GET", null).build()
             var call: Call = client!!.newCall(request)
@@ -86,9 +90,10 @@ class WeightFragment : Fragment() {
 
                         println("Il body è: $resp")
 
-                        if (response.body == null) println("NULLOOOOO")
+                        if (response.body == null) println("Il body della risposta è vuoto.")
                         peso = resp!!.substring(9, 13)
                         tv_result.text = peso
+
                         activity!!.runOnUiThread { peso }
 
                     }
@@ -120,12 +125,12 @@ class WeightFragment : Fragment() {
                     val activeNetwork : Network? = connectivityManager.activeNetwork
                     if(activeNetwork != null) {
                         RepositoryManager.instance.writeWeight(peso!!)
-                        progressBar.visibility = View.GONE
+                        progressBar.visibility = View.INVISIBLE
                         weightSaved.visibility = View.VISIBLE
 
                         delay (3000)
 
-                        weightSaved.visibility = View.GONE
+                        weightSaved.visibility = View.INVISIBLE
                         break
                     }
 
@@ -135,6 +140,10 @@ class WeightFragment : Fragment() {
         }
     }
 
+
+    /**
+     * recupero della networkCallback istanziata in ScaleFragment
+     */
     fun setCallback(nc : ConnectivityManager.NetworkCallback){
         this.nc = nc
     }

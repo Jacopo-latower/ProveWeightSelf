@@ -19,10 +19,9 @@ interface UserFragObserver{
 
 class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
 
-    var bmi: TextView? = null
-    var bmiCondition: TextView? = null
-    var gainCalories: TextView? = null
-    var userData: org.bson.Document? = null
+    private var bmiCondition: TextView? = null
+    private var gainCalories: TextView? = null
+    private var userData: org.bson.Document? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +36,8 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
 
         val nameTv = activity?.findViewById<TextView>(R.id.usernameTextView)
         userData = RepositoryManager.instance.loadUserData()
-        bmi = activity?.findViewById<TextView>(R.id.bmi)
-        bmiCondition= activity?.findViewById<TextView>(R.id.bmi_condition)
-        gainCalories= activity?.findViewById<TextView>(R.id.gain_calories) //0.5kcal*lastweight*kmpercorsi
+        bmiCondition= activity?.findViewById(R.id.bmi_condition)
+        gainCalories= activity?.findViewById(R.id.gain_calories) //0.5kcal*lastweight*kmpercorsi
 
         nameTv?.text = ("${userData!!["name"].toString()} ${userData!!["surname".toString()]}")
 
@@ -68,20 +66,21 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
     //Called in the repository manager when the data is loaded, so we can update the UI
     override fun onAsyncLoadingFinished() {
         //Calcolo BMI
-        val hx2 = Integer.parseInt(userData?.get("height")?.toString())*Integer.parseInt(userData?.get("height")?.toString())
+        val hx2 : Double = (Integer.parseInt(userData?.get("height")?.toString())*(Integer.parseInt(userData?.get("height")?.toString()))).toDouble()
         val weights = RepositoryManager.instance.dataWeights.sortedByDescending { it.date } //tutti i pesi ordinati per data discendente
         //val ultimo peso = weights[0].weight ultimo peso salvato in DOUBLE
-        val lastweight = 70  //al posto del 70 ci dovrebbe essere l'ultimo peso salvato
-        val bmiCalculate = (lastweight*10000)/hx2
+        val lastweight = weights[0].weight!!.toDouble()
+        val bmiCalculate : Double = (lastweight*10000.00)/hx2
 
+        last_weight_tv.text = lastweight.toString()
         bmi?.text= (bmiCalculate.toString())
 
-        if(bmiCalculate<18) {bmiCondition?.text = getString(R.string.below18)}
-        else if (bmiCalculate in 18..24) {bmiCondition?.text= getString(R.string.between1825)}
-        else if (bmiCalculate in 25..29) {bmiCondition?.text= getString(R.string.between2530)}
-        else if (bmiCalculate in 30..34) {bmiCondition?.text= getString(R.string.between3035)}
-        else if (bmiCalculate in 35..39) {bmiCondition?.text= getString(R.string.between3540)}
-        else if (bmiCalculate>=40) {bmiCondition?.text= getString(R.string.above40)}
+        if(bmiCalculate<18.0) {bmiCondition?.text = getString(R.string.below18)}
+        else if (bmiCalculate in 18.0..24.0) {bmiCondition?.text= getString(R.string.between1825)}
+        else if (bmiCalculate in 25.0..29.0) {bmiCondition?.text= getString(R.string.between2530)}
+        else if (bmiCalculate in 30.0..34.0) {bmiCondition?.text= getString(R.string.between3035)}
+        else if (bmiCalculate in 35.0..39.0) {bmiCondition?.text= getString(R.string.between3540)}
+        else if (bmiCalculate>=40.0) {bmiCondition?.text= getString(R.string.above40)}
     }
 
 }

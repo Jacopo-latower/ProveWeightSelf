@@ -86,10 +86,9 @@ class RepositoryManager {
     }
 
     fun loadWeights(fragment: RepositoryAsyncTaskObserver) {
-        //TODO: to implement if there are weights in the database; remember to do a refresh method when a user insert a new weight
         Realm.getInstanceAsync(weightConfig, object : Realm.Callback(){
             override fun onSuccess(realm: Realm) {
-                val weights = realm.where(Weights::class.java).findAll()
+                val weights = realm.where(Weights::class.java).equalTo("user_id", currentUser.id).findAll()
                 dataWeights = weights
                 weightRealm = realm
                 fragment.onAsyncLoadingFinished()
