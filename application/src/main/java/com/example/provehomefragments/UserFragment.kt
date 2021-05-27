@@ -33,6 +33,7 @@ class UserFragment : Fragment() {
         val userData = RepositoryManager.instance.loadUserData()
         val bmi = activity?.findViewById<TextView>(R.id.bmi)
         val bmiCondition= activity?.findViewById<TextView>(R.id.bmi_condition)
+        val gainCalories= activity?.findViewById<TextView>(R.id.gain_calories) //0.5kcal*lastweight*kmpercorsi
 
         nameTv?.text = ("${userData["name"].toString()} ${userData["surname".toString()]}")
 

@@ -40,6 +40,7 @@ class RecipeFragment : Fragment() {
             RepositoryManager.instance.loadRecipes(this)
         }
 
+        //show popup menu to do SORT
         val clickListener = View.OnClickListener { view ->
             when (view.id) {
                 R.id.btn_sortMenu -> {
@@ -48,13 +49,14 @@ class RecipeFragment : Fragment() {
             }
         }
 
+        //sort
         btn_sortMenu.setOnClickListener(clickListener)
 
+        //search
         search_recipe.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 RecipeListAdapter(data2!!, activity as MainActivity).filter.filter(newText)
                 return false

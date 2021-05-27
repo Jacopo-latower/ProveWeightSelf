@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var userTvStepCounter : TextView? = null
     private var userTvDailyStepTarget : TextView? = null
 
-    private var dailyStepsObjective = 1200 //daily steps to reach for the user; //TODO: implement the User class to have the step objective
+    private var dailyStepsObjective = 8000 //daily steps to reach for the user; //TODO: implement the User class to have the step objective
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
