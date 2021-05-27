@@ -19,11 +19,13 @@ interface FragHomeObserver{
     fun fragCreatedNotify()
 }
 
-class HomeFragment : Fragment(R.layout.fragment_home_layout) {
+class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTaskObserver {
 
     private var stepCounter:TextView? = null
+    private var lastWeight:TextView? = null
 
     var tips:List<TipsItem> = listOf(
+            /*
         TipsItem ("Stabilisciti degli obiettivi realistici", R.drawable.goals),
         TipsItem ("L'idratazione è importante", R.drawable.tipsdrink),
         TipsItem ("Prova sempre qualcosa di nuovo", R.drawable.benefici_stretching_fb),
@@ -33,12 +35,16 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         TipsItem ("Ricordati di fare stretching", R.drawable.stretching_statico_passivo),
         TipsItem ("Mangia molta frutta e verdura", R.drawable.healtyfood),
         TipsItem ("Non saltare mai un pasto", R.drawable.saltarepasto),
+
+             */
         TipsItem ("Scegli sempre cibi freschi e di stagione", R.drawable.cibistagione)
     )
 
     private var recipeHome: ImageView?= null
     private var trainHome: ImageView?= null
     private var line_chart: LineChart?= null
+
+    private var weights:List<Weights>? = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +56,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         stepCounter = view.findViewById(R.id.daily_steps)
+        lastWeight = view.findViewById(R.id.last_weight)
 
         //Notify to the main activity that the fragment has been created
         val observer = activity as? FragHomeObserver
@@ -57,10 +64,6 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
         //Initialized the listener for the text view to reset the steps
         resetStepsInit()
-
-
-
-
 
         //set Tips random
         val rnds = (tips.indices).random()
@@ -70,16 +73,21 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         textTips.text=tips[rnds].text
 
         //Creazione Grafico
-
         line_chart = view.findViewById(R.id.line_chart)
-        setLineChartData()
+
+        RepositoryManager.instance.loadWeights(this)
 
     }
 
+    //Called in the repository manager when the data is loaded, so we can update the UI
+    override fun onAsyncLoadingFinished(){
+        weights = RepositoryManager.instance.dataWeights.sortedByDescending{it.date} //init all the weights
+        lastWeight?.text = weights!![0].weight.toString()
+        weights!!.sortedBy { it.date }
+        setLineChartData()
+    }
     //Valori Grafico
-
-    fun setLineChartData() {
-
+    private fun setLineChartData() {
 
         //Testi Ascisse
         val xvalues = ArrayList<String>()
@@ -91,17 +99,13 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         xvalues.add("Sabato")
         xvalues.add("Domenica")
 
-
-
         //Valori Grafico Ordinate
         val line_entry = ArrayList<Entry>();
-        line_entry.add(Entry(20f, 0))
-        line_entry.add(Entry(60f, 1))
-        line_entry.add(Entry(62f, 2))
-        line_entry.add(Entry(80f, 3))
-        line_entry.add(Entry(50f, 4))
-        line_entry.add(Entry(65f, 5))
-        line_entry.add(Entry(89f, 6))
+        var i = 0
+        for(w in weights!!){
+            w.weight?.let { Entry(it.toFloat(), i) }?.let { line_entry.add(it) }
+            i++
+        }
 
         //Layout Grafico
         val line_data_set = LineDataSet(line_entry, "First")
@@ -128,9 +132,6 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         line_chart?.setBackgroundColor(resources.getColor(R.color.trasparent))
 
         line_chart?.animateXY(2000, 2000)
-
-
-
 
 
     }

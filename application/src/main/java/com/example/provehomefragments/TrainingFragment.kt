@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.recipe_layout.*
 import kotlinx.android.synthetic.main.training_layout.*
 import kotlinx.android.synthetic.main.training_layout.btn_sortMenu
 
-class TrainingFragment:Fragment() {
+class TrainingFragment:Fragment(), RepositoryAsyncTaskObserver{
 
     private lateinit var data2: MutableList<TrainingItem>
     private lateinit var viewModel: TrainingViewModel
@@ -68,8 +68,8 @@ class TrainingFragment:Fragment() {
         })
     }
 
-    //Execute the recycler view stuff after the database has loaded all the data
-    fun onAsyncLoadingFinished(){
+    //Called in the repository manager when the data is loaded, so we can update the UI
+    override fun onAsyncLoadingFinished(){
         viewModel = ViewModelProvider(this).get(TrainingViewModel::class.java)
         viewModel.init()
         val myTrainings = viewModel.getLiveTrainings().value

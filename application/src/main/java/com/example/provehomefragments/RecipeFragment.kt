@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recipe_layout.*
 
-class RecipeFragment : Fragment() {
+class RecipeFragment : Fragment(), RepositoryAsyncTaskObserver {
 
     private lateinit var viewModel: RecipeViewModel
 
@@ -65,8 +65,8 @@ class RecipeFragment : Fragment() {
 
     }
 
-    //Execute the recycler view stuff after the database has loaded all the data
-    fun onAsyncLoadingFinished(){
+    //Called in the repository manager when the data is loaded, so we can update the UI
+    override fun onAsyncLoadingFinished(){
         viewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
         viewModel.init()
 

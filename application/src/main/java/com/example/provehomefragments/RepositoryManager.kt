@@ -16,6 +16,11 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+//Observer implemented by all tehf ragments to observe the data loading
+interface RepositoryAsyncTaskObserver{
+    fun onAsyncLoadingFinished()
+}
+
 class RepositoryManager {
 
     private lateinit var weightConfig : SyncConfiguration
@@ -31,8 +36,10 @@ class RepositoryManager {
 
     var dataRecipes : MutableList<Recipe> = mutableListOf()
     var dataTrainings : MutableList<Trainings> = mutableListOf()
+    var dataWeights : MutableList<Weights> = mutableListOf()
     var recipeRealm : Realm? = null
     var trainingRealm : Realm? = null
+    var weightRealm : Realm ? = null
 
     fun init(recipesConfig : SyncConfiguration, weightConfig : SyncConfiguration, trainingConfig : SyncConfiguration){
 
@@ -46,7 +53,7 @@ class RepositoryManager {
         Log.v("EX", "In repository manager custom data called: ${currentUser.customData}")
     }
 
-    fun loadTrainings(fragment: TrainingFragment) {
+    fun loadTrainings(fragment: RepositoryAsyncTaskObserver) {
         Realm.getInstanceAsync(trainingConfig, object : Realm.Callback(){
             override fun onSuccess(realm: Realm) {
                 Log.v("SUCCESS", "Training Realm successfully opened")
@@ -62,7 +69,7 @@ class RepositoryManager {
         })
     }
 
-    fun loadRecipes(fragment: RecipeFragment){
+    fun loadRecipes(fragment: RepositoryAsyncTaskObserver){
         Realm.getInstanceAsync(recipeConfig, object : Realm.Callback(){
             override fun onSuccess(realm: Realm) {
                 Log.v("SUCCESS", "Recipe Realm successfully opened")
@@ -78,8 +85,17 @@ class RepositoryManager {
         })
     }
 
-    fun loadWeights() {
+    fun loadWeights(fragment: RepositoryAsyncTaskObserver) {
         //TODO: to implement if there are weights in the database; remember to do a refresh method when a user insert a new weight
+        Realm.getInstanceAsync(weightConfig, object : Realm.Callback(){
+            override fun onSuccess(realm: Realm) {
+                val weights = realm.where(Weights::class.java).findAll()
+                dataWeights = weights
+                weightRealm = realm
+                fragment.onAsyncLoadingFinished()
+            }
+        })
+
     }
 
     fun loadUserData() : org.bson.Document{
@@ -146,7 +162,7 @@ class RepositoryManager {
 
                     */
                 }
-                realm.close()
+                weightRealm = realm
             }
         })
     }
