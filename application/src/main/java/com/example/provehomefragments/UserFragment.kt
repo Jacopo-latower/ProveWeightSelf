@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.user_frag_layout.*
 import org.w3c.dom.Document
+import java.math.RoundingMode
 
 
 interface UserFragObserver{
@@ -22,6 +23,8 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
     private var bmiCondition: TextView? = null
     private var gainCalories: TextView? = null
     private var userData: org.bson.Document? = null
+    private var lastWeight: TextView? = null
+    private var bmiText: TextView?= null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +40,9 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
         val nameTv = activity?.findViewById<TextView>(R.id.usernameTextView)
         userData = RepositoryManager.instance.loadUserData()
         bmiCondition= activity?.findViewById(R.id.bmi_condition)
-        gainCalories= activity?.findViewById(R.id.gain_calories) //0.5kcal*lastweight*kmpercorsi
+        gainCalories= activity?.findViewById<TextView>(R.id.gain_calories) //0.5kcal*lastweight*kmpercorsi
+        lastWeight= activity?.findViewById<TextView>(R.id.last_weight_tv)
+        bmiText= activity?.findViewById<TextView>(R.id.bmi)
 
         nameTv?.text = ("${userData!!["name"].toString()} ${userData!!["surname".toString()]}")
 
@@ -48,6 +53,8 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
             btnLogout.isEnabled = false
             logout()
         }
+
+        RepositoryManager.instance.loadWeights(this)
 
     }
 
@@ -70,10 +77,12 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
         val weights = RepositoryManager.instance.dataWeights.sortedByDescending { it.date } //tutti i pesi ordinati per data discendente
         //val ultimo peso = weights[0].weight ultimo peso salvato in DOUBLE
         val lastweight = weights[0].weight!!.toDouble()
-        val bmiCalculate : Double = (lastweight*10000.00)/hx2
+        var bmiCalculate : Double = (lastweight*10000.00)/hx2
 
-        last_weight_tv.text = lastweight.toString()
-        bmi?.text= (bmiCalculate.toString())
+        bmiCalculate=bmiCalculate.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
+
+        lastWeight?.text=lastweight.toString()
+        bmiText?.text= bmiCalculate.toString()
 
         if(bmiCalculate<18.0) {bmiCondition?.text = getString(R.string.below18)}
         else if (bmiCalculate in 18.0..24.0) {bmiCondition?.text= getString(R.string.between1825)}

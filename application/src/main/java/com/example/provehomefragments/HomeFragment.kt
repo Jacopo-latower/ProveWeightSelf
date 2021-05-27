@@ -103,7 +103,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         xvalues.add("Sabato")
         xvalues.add("Domenica")
 
-        //Valori Grafico Ordinate
+       //Valori Grafico Ordinate
         val lineEntry = ArrayList<Entry>();
         var i = 0
         for(w in weights!!){
@@ -111,33 +111,27 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
             i++
         }
 
-        //Layout Grafico
+       //Layout Grafico
         val lineDataSet = LineDataSet(lineEntry, "First")
         lineDataSet.color = resources.getColor(R.color.light_blue)
         lineDataSet.lineWidth = 2f
         lineChart?.setDescription("")
         lineChart?.axisLeft?.textColor = resources.getColor((R.color.trasparent))
+        lineChart?.axisLeft?.textSize=24f
         lineChart?.axisRight?.textColor = resources.getColor((R.color.trasparent))
+        lineChart?.axisRight?.textSize=24f
         lineChart?.xAxis?.setDrawLabels(false)
         lineChart?.legend?.isEnabled = false
-
         lineDataSet.circleRadius =5f
         lineDataSet.setDrawFilled(true)
         lineDataSet.fillColor=resources.getColor(R.color.blue)
         lineDataSet.fillAlpha= 40
-
         lineDataSet.valueTextColor = resources.getColor(R.color.white)
         lineDataSet.valueTextSize = 20f
-
         val data = LineData(xvalues, lineDataSet)
-
-
         lineChart?.data= data
         lineChart?.setBackgroundResource(R.drawable.background3)
-
         lineChart?.animateXY(1000, 1000)
-
-
     }
 
     private fun resetStepsInit(){
