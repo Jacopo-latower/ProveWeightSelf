@@ -38,7 +38,7 @@ class WeightFragment(var act: MainActivity) : Fragment() {
         return inflater.inflate(R.layout.fragment_weight_layout, container, false)
     }
 
-    val url = "http://192.168.4.1/peso"
+    private val url = "http://192.168.4.1/peso"
     var client: OkHttpClient? = null
     var resp: String? = null
     var peso: String? = null
@@ -50,6 +50,7 @@ class WeightFragment(var act: MainActivity) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         saveBtn.isEnabled = false
+
 
         progressBar.visibility = View.INVISIBLE
         weightSaved.visibility = View.INVISIBLE
@@ -124,13 +125,14 @@ class WeightFragment(var act: MainActivity) : Fragment() {
                 for(i in 1..5){
 
                     val activeNetwork : Network? = connectivityManager.activeNetwork
+
                     if(activeNetwork != null) {
                         RepositoryManager.instance.writeWeight(peso!!)
 
                         progressBar.visibility = View.INVISIBLE
                         weightSaved.visibility = View.VISIBLE
 
-                        delay(4000)
+                        //delay(3000)
 
                         break
                     }
@@ -139,10 +141,7 @@ class WeightFragment(var act: MainActivity) : Fragment() {
                 }
             }
 
-
-
             act.setCurrentFragment(HomeFragment())
-
 
         }
 
