@@ -25,6 +25,7 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
     private var userData: org.bson.Document? = null
     private var lastWeight: TextView? = null
     private var bmiText: TextView?= null
+    private var currentStep: TextView?= null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +44,7 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
         gainCalories= activity?.findViewById<TextView>(R.id.gain_calories) //0.5kcal*lastweight*kmpercorsi
         lastWeight= activity?.findViewById<TextView>(R.id.last_weight_tv)
         bmiText= activity?.findViewById<TextView>(R.id.bmi)
+        currentStep= activity?.findViewById<TextView>(R.id.userTvStepCounter)
 
         nameTv?.text = ("${userData!!["name"].toString()} ${userData!!["surname".toString()]}")
 
@@ -75,14 +77,17 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
         //Calcolo BMI
         val hx2 : Double = (Integer.parseInt(userData?.get("height")?.toString())*(Integer.parseInt(userData?.get("height")?.toString()))).toDouble()
         val weights = RepositoryManager.instance.dataWeights.sortedByDescending { it.date } //tutti i pesi ordinati per data discendente
-        //val ultimo peso = weights[0].weight ultimo peso salvato in DOUBLE
-        val lastweight = weights[0].weight!!.toDouble()
+        val lastweight = weights[0].weight!!.toDouble() //val ultimo peso = weights[0].weight ultimo peso salvato in DOUBLE
         var bmiCalculate : Double = (lastweight*10000.00)/hx2
+        var currStep= (Integer.parseInt(currentStep?.text.toString())).toDouble()
+        var distanceKm: Double= currStep/1667
+        var gainCal: Double = (0.5*lastweight*distanceKm).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
 
         bmiCalculate=bmiCalculate.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
 
         lastWeight?.text=lastweight.toString()
         bmiText?.text= bmiCalculate.toString()
+        gainCalories?.text=gainCal.toString()
 
         if(bmiCalculate<18.0) {bmiCondition?.text = getString(R.string.below18)}
         else if (bmiCalculate in 18.0..24.0) {bmiCondition?.text= getString(R.string.between1825)}
@@ -90,6 +95,8 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
         else if (bmiCalculate in 30.0..34.0) {bmiCondition?.text= getString(R.string.between3035)}
         else if (bmiCalculate in 35.0..39.0) {bmiCondition?.text= getString(R.string.between3540)}
         else if (bmiCalculate>=40.0) {bmiCondition?.text= getString(R.string.above40)}
+
+
     }
 
 }

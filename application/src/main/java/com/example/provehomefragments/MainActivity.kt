@@ -25,6 +25,7 @@ import io.realm.mongodb.sync.SyncConfiguration
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.user_frag_layout.*
+import java.math.RoundingMode
 
 data class TipsItem(
     val text: String,
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var totalSteps = 0f
     private var previousTotalSteps = 0f
 
+
     private lateinit var currentUser:User
     private lateinit var app: App
 
@@ -49,6 +51,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
     private var userTvStepCounter : TextView? = null
     private var userTvDailyStepTarget : TextView? = null
+    private var distanceKm : TextView? = null
 
     private var dailyStepsObjective = 8000 //daily steps to reach for the user; //TODO: implement the User class to have the step objective
 
@@ -158,11 +161,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             homeTvStepCounter = findViewById(R.id.daily_steps)
             userTvStepCounter = findViewById(R.id.userTvStepCounter)
             userTvDailyStepTarget = findViewById(R.id.userTvDailyStepTarget)
+            distanceKm= findViewById(R.id.distance_covered)
             totalSteps = event!!.values[0]
             val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
+            val currentdistance: Double =  (currentSteps.toDouble()/1667).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
             homeTvStepCounter?.text = ("$currentSteps")
             userTvStepCounter?.text = ("$currentSteps")
             userTvDailyStepTarget?.text = ("$dailyStepsObjective")
+            distanceKm?.text= ("$currentdistance")
         }
     }
 

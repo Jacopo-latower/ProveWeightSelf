@@ -74,6 +74,7 @@
             app:layout_constraintLeft_toLeftOf="@id/recipe_img"
             app:layout_constraintRight_toRightOf="@id/recipe_img"
             />
+
         <TextView
             android:id="@+id/recipe_kcal"
             android:layout_width="wrap_content"
@@ -91,9 +92,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
-
     <TextView
         android:id="@+id/ingredients"
         android:layout_width="match_parent"
@@ -102,6 +100,10 @@
         android:text="@string/title_ingredients"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp">
 
     <TextView
         android:id="@+id/recipe_ingredients"
@@ -116,6 +118,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="18sp"
         android:textStyle="italic" />
+    </ScrollView>
+
 
     <TextView
         android:id="@+id/process"
