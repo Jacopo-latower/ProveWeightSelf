@@ -117,7 +117,7 @@
         android:text="4 uova - 100 g di zucchero semolato - 500 g di mascarpone - 300 g di savoiardi - q.b. caffè non zuccherato - q.b. cacao amaro"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="18sp"
-        android:textStyle="italic" />
+        android:textStyle="italic" /> 
     </ScrollView>
 
 
