@@ -82,6 +82,11 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
     override fun onAsyncLoadingFinished(){
         weights = RepositoryManager.instance.dataWeights.sortedBy {it.date} //init all the weights
 
+        //rimuovo i pesi dalla lista tranne gli ultimi 7, per evitare null pointer nel grafico
+
+
+
+
         if(weights!!.isNotEmpty()){
             lastWeight?.text = weights!![weights!!.size - 1].weight.toString()
             weights!!.sortedBy { it.date }
@@ -103,12 +108,13 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         xvalues.add("Sabato")
         xvalues.add("Domenica")
 
-       //Valori Grafico Ordinate
+        //Valori Grafico Ordinate
         val lineEntry = ArrayList<Entry>();
-        var i = 0
-        for(w in weights!!){
+
+
+        // prendo gli ultimi 7 elementi per non eccedere rispetto ai valori che il grafico può ospitare sulle ascisse
+        for((i, w) in weights!!.takeLast(7).withIndex()){
             w.weight?.let { Entry(it.toFloat(), i) }?.let { lineEntry.add(it) }
-            i++
         }
 
        //Layout Grafico

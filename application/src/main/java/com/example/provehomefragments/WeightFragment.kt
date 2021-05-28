@@ -45,15 +45,14 @@ class WeightFragment(var act: MainActivity) : Fragment() {
 
     var nc : ConnectivityManager.NetworkCallback? = null
 
-
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         saveBtn.isEnabled = false
 
-        progressBar.visibility = View.GONE
-        weightSaved.visibility = View.GONE
+        progressBar.visibility = View.INVISIBLE
+        weightSaved.visibility = View.INVISIBLE
 
 
         client = OkHttpClient()
@@ -105,16 +104,18 @@ class WeightFragment(var act: MainActivity) : Fragment() {
 
         /**
          * la pressione del bottone Salva disattiva la connessione con la bilancia e,
-         * nonappena ritrova la connessione alla rete, invia il peso al server
+         * nonappena il dispositivo ritrova la connessione di rete, invia il peso al server
          */
 
         saveBtn.setOnClickListener {
+
+            progressBar.visibility = View.VISIBLE
 
             connectivityManager.bindProcessToNetwork(null)
 
             nc?.let { connectivityManager.unregisterNetworkCallback(it) }
 
-            progressBar.visibility = View.VISIBLE
+
 
             runBlocking {
 
@@ -126,7 +127,11 @@ class WeightFragment(var act: MainActivity) : Fragment() {
                     if(activeNetwork != null) {
                         RepositoryManager.instance.writeWeight(peso!!)
 
-                        //delay (3000)
+                        progressBar.visibility = View.INVISIBLE
+                        weightSaved.visibility = View.VISIBLE
+
+                        delay(4000)
+
                         break
                     }
 
@@ -134,10 +139,10 @@ class WeightFragment(var act: MainActivity) : Fragment() {
                 }
             }
 
-            progressBar.visibility = View.GONE
-            weightSaved.visibility = View.VISIBLE
+
 
             act.setCurrentFragment(HomeFragment())
+
 
         }
 
