@@ -28,10 +28,10 @@ class BestTrainingAdapter(var data:MutableList<TrainingItem>, var act: MainActiv
     private var lastPosition = -1 //for the animation
 
     class MyViewHolder(v: View):RecyclerView.ViewHolder(v){
-        val img:ImageView = v.findViewById(R.id.recipe_img)
-        val duration:TextView = v.findViewById(R.id.training_time)
-        val type:TextView = v.findViewById(R.id.recipe_name)
-        val difficulty:TextView = v.findViewById(R.id.training_level)
+        private val img:ImageView = v.findViewById(R.id.recipe_img)
+        private val duration:TextView = v.findViewById(R.id.training_time)
+        private val type:TextView = v.findViewById(R.id.recipe_name)
+        private val difficulty:TextView = v.findViewById(R.id.training_level)
 
         fun bind(i:TrainingItem, callback:(Int) -> Unit){
             Picasso.get().load(i.imageUrl).into(img)
@@ -69,8 +69,8 @@ class BestTrainingAdapter(var data:MutableList<TrainingItem>, var act: MainActiv
 
     //Swith to the specific training fragment
     private fun getTrainingPage(p:Int){
-        val objects= data[p]
-        val chooseTraining= ChooseTrainingFragment(objects,act)
+        val objects = data[p]
+        val chooseTraining = ChooseTrainingFragment(objects,act)
         //MainActivity.setCurrentFragment(chooseRecipe)
         act.setCurrentFragment(chooseTraining)
     }

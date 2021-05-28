@@ -57,7 +57,11 @@ class SignUp : Fragment() {
         save_register?.setOnClickListener {
 
             if(!isValidEmail(email_register.text.toString())){
-                Toast.makeText(activity, "Please use a valid email address.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.invalidEmailAddress), Toast.LENGTH_SHORT).show()
+            }
+
+            if(password_register === passwordC_register){
+                Toast.makeText(activity, getString(R.string.matchingPassword), Toast.LENGTH_SHORT).show()
             }
 
             else{

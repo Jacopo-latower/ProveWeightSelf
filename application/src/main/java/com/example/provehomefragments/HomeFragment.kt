@@ -80,10 +80,10 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
 
     //Called in the repository manager when the data is loaded, so we can update the UI
     override fun onAsyncLoadingFinished(){
-        weights = RepositoryManager.instance.dataWeights.sortedByDescending{it.date} //init all the weights
+        weights = RepositoryManager.instance.dataWeights.sortedBy {it.date} //init all the weights
 
-        if(!weights!!.isEmpty()){
-            lastWeight?.text = weights!![0].weight.toString()
+        if(weights!!.isNotEmpty()){
+            lastWeight?.text = weights!![weights!!.size - 1].weight.toString()
             weights!!.sortedBy { it.date }
             setLineChartData()
         }

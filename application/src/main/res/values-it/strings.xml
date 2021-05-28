@@ -14,6 +14,9 @@
     <string name="signup">Registrati</string>
     <string name="compila">Compila tutti i campi per procedere con la registrazione</string>
     <string name="nonregistrato">Non sei ancora iscritto?</string>
+    <string name="matchingPassword">Le password non corrispondono.</string>
+    <string name="invalidEmailAddress">Il formato dell\'indirizzo email non è corretto.</string>
+    <string name="loginError">Indirizzo email o password non corretti.</string>
 
     //HOME
     <string name="home">Home</string>
@@ -23,6 +26,9 @@
     <string name="stepcounter">Passi</string>
     <string name="distance">Distanza (km)</string>
     <string name="graficoPesi">L\'andamento del tuo peso</string>
+    <string name="permissionGranted">Permesso concesso.</string>
+    <string name="permissionDenied">Permesso negato.</string>
+    <string name="noSensor">Nessun sensore rilevato. Il contapassi è disabilitato.</string>
 
     //TRAINING
     <string name="training">Allenamento</string>
@@ -61,6 +67,7 @@
     <string name="between3035">Obesità I</string>
     <string name="between3540">Obesità II</string>
     <string name="above40">Obesità III</string>
+    <string name="pesati">Pesati almeno una volta per visualizzare i dati.</string>
 
     //SCALE
     <string name="connect">Connetti</string>

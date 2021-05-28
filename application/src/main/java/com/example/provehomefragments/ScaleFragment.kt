@@ -16,7 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_scale_layout.*
 
-class ScaleFragment : Fragment() {
+class ScaleFragment(var act: MainActivity) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +47,7 @@ class ScaleFragment : Fragment() {
         connectBtn?.setOnClickListener {
             try {
 
-                var weightFragment : WeightFragment = WeightFragment()
+                var weightFragment : WeightFragment = WeightFragment(act)
                 var networkcallback : ConnectivityManager.NetworkCallback? = null
 
                     networkcallback = object  : ConnectivityManager.NetworkCallback() {

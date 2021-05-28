@@ -28,7 +28,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.*
 
-class WeightFragment : Fragment() {
+class WeightFragment(var act: MainActivity) : Fragment() {
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -52,8 +52,8 @@ class WeightFragment : Fragment() {
 
         saveBtn.isEnabled = false
 
-        progressBar.visibility = View.INVISIBLE
-        weightSaved.visibility = View.INVISIBLE
+        progressBar.visibility = View.GONE
+        weightSaved.visibility = View.GONE
 
 
         client = OkHttpClient()
@@ -114,30 +114,33 @@ class WeightFragment : Fragment() {
 
             nc?.let { connectivityManager.unregisterNetworkCallback(it) }
 
+            progressBar.visibility = View.VISIBLE
+
             runBlocking {
 
                 //TODO: sistemare la visibilità di textview e progressbar
-
-                progressBar.visibility = View.VISIBLE
 
                 for(i in 1..5){
 
                     val activeNetwork : Network? = connectivityManager.activeNetwork
                     if(activeNetwork != null) {
                         RepositoryManager.instance.writeWeight(peso!!)
-                        progressBar.visibility = View.INVISIBLE
-                        weightSaved.visibility = View.VISIBLE
 
-                        delay (3000)
-
-                        weightSaved.visibility = View.INVISIBLE
+                        //delay (3000)
                         break
                     }
 
                     delay(4000)
                 }
             }
+
+            progressBar.visibility = View.GONE
+            weightSaved.visibility = View.VISIBLE
+
+            act.setCurrentFragment(HomeFragment())
+
         }
+
     }
 
 

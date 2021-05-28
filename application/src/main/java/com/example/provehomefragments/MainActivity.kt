@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val trainingFrag = TrainingFragment()
         val recipeFrag = RecipeFragment()
         val userFrag = UserFragment()
-        val scaleFrag = ScaleFragment()
+        val scaleFrag = ScaleFragment(this)
 
         setCurrentFragment(homeFrag)
         bottomNavigationView.setOnNavigationItemSelectedListener {
@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         running = true
 
         if(stepSensor == null){
-            Toast.makeText(this, "No sensor detected", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.noSensor), Toast.LENGTH_SHORT).show()
         }else{
             sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI)
         }
@@ -149,9 +149,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if(requestCode==ACTIVITY_PERMISSION_CODE){
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.permissionGranted), Toast.LENGTH_SHORT).show()
             else
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.permissionDenied), Toast.LENGTH_SHORT).show()
         }
     }
 
