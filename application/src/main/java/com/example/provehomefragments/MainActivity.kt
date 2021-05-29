@@ -177,7 +177,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         dataChangedCheck()
     }
 
-    //Check if the last data is changed
+    //Check if the last data is changed to reset the steps
     private fun dataChangedCheck(){
         val calendar: Calendar = Calendar.getInstance()
         val today = calendar.get(Calendar.DAY_OF_YEAR)

@@ -116,7 +116,7 @@ class RepositoryManager {
         return mData
     }
 
-    fun writeWeight(peso: String) {
+    fun writeWeight(peso: String, fragment: RepositoryAsyncTaskObserver) {
 
         Realm.getInstanceAsync(weightConfig, object : Realm.Callback() {
             @RequiresApi(Build.VERSION_CODES.O)
@@ -142,26 +142,11 @@ class RepositoryManager {
                     newWeight.user_id = currentUser.id
                     newWeight.date = date
 
-                    /*
-                    if(r.){
-
-                    }
-
-                    else { r.insertOrUpdate(newWeight) }
-
-                     */
                     r.insertOrUpdate(newWeight)
-                    /*
 
-                    val weights = r.where(Weights::class.java).equalTo("date", date).findAll()
-
-                    for(w in weights){
-                        Log.v("EX", "Weight found: ${w.weight}")
-                    }
-
-                    */
                 }
                 weightRealm = realm
+                fragment.onAsyncLoadingFinished()
             }
         })
     }

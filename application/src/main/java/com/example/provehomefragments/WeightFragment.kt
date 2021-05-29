@@ -15,7 +15,7 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.*
 import java.io.IOException
 
-class WeightFragment(var act: MainActivity) : Fragment() {
+class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObserver {
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -115,12 +115,7 @@ class WeightFragment(var act: MainActivity) : Fragment() {
 
                     if(activeNetwork != null) {
 
-                        weightSaved.visibility = View.VISIBLE
-                        RepositoryManager.instance.writeWeight(peso!!)
-
-
-                        progressBar.visibility = View.INVISIBLE
-
+                        RepositoryManager.instance.writeWeight(peso!!, this@WeightFragment)
 
                         delay(3000)
 
@@ -143,6 +138,11 @@ class WeightFragment(var act: MainActivity) : Fragment() {
      */
     fun setCallback(nc : ConnectivityManager.NetworkCallback){
         this.nc = nc
+    }
+
+    override fun onAsyncLoadingFinished() {
+        progressBar.visibility = View.INVISIBLE
+        weightSaved.visibility = View.VISIBLE
     }
 }
 
