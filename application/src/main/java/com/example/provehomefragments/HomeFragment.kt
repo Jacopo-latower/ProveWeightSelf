@@ -90,7 +90,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
 
 
         if(weights!!.isNotEmpty()){
-            lastWeight?.text = weights!![weights!!.size - 1].weight.toString()
+            val peso= weights!![weights!!.size - 1].weight.toString()
+            lastWeight?.text =  ("$peso Kg")
             weights!!.sortedBy { it.date }
             setLineChartData()
         }
