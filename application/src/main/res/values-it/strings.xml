@@ -29,6 +29,8 @@
     <string name="permissionGranted">Permesso concesso.</string>
     <string name="permissionDenied">Permesso negato.</string>
     <string name="noSensor">Nessun sensore rilevato. Il contapassi è disabilitato.</string>
+    <string name="longTapToReset">Tieni premuto per resettare.</string>
+    <string name="pesatiGrafico">Pesati per riempire il grafico.</string>
 
     //TRAINING
     <string name="training">Allenamento</string>

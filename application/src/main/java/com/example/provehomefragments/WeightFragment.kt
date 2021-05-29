@@ -2,31 +2,18 @@ package com.example.provehomefragments
 
 import android.content.Context
 import android.net.*
-import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
-import android.transition.TransitionInflater
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
-import io.realm.Realm
-import io.realm.mongodb.App
-import io.realm.mongodb.AppConfiguration
-import io.realm.mongodb.User
-import io.realm.mongodb.sync.SyncConfiguration
 import kotlinx.android.synthetic.main.fragment_weight_layout.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import okhttp3.*
-import org.bson.types.ObjectId
 import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
-import java.util.*
 
 class WeightFragment(var act: MainActivity) : Fragment() {
 
@@ -86,21 +73,21 @@ class WeightFragment(var act: MainActivity) : Fragment() {
                     response.use {
                         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
+
                         resp = response.body!!.string()
 
                         println("Il body è: $resp")
 
                         if (response.body == null) println("Il body della risposta è vuoto.")
-                        peso = resp!!.substring(9, 13)
+                        peso = resp!!.substring(9, 14)
+
                         tv_result.text = peso
 
                         activity!!.runOnUiThread { peso }
 
                     }
-
                 }
             })
-
         }
 
         /**
@@ -127,12 +114,15 @@ class WeightFragment(var act: MainActivity) : Fragment() {
                     val activeNetwork : Network? = connectivityManager.activeNetwork
 
                     if(activeNetwork != null) {
+
+                        weightSaved.visibility = View.VISIBLE
                         RepositoryManager.instance.writeWeight(peso!!)
 
-                        progressBar.visibility = View.INVISIBLE
-                        weightSaved.visibility = View.VISIBLE
 
-                        //delay(3000)
+                        progressBar.visibility = View.INVISIBLE
+
+
+                        delay(3000)
 
                         break
                     }

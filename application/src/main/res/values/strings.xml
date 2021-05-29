@@ -31,6 +31,9 @@
     <string name="permissionGranted">Permission granted.</string>
     <string name="permissionDenied">Permission denied.</string>
     <string name="noSensor">No sensor detected. Step counter is disabled.</string>
+    <string name="longTapToReset">Long tap to reset.</string>
+    <string name="pesatiGrafico">Weigh yourself to fill the chart.</string>
+
 
     //TRAINING
     <string name="training">Training</string>

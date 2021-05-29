@@ -60,10 +60,6 @@ class SignUp : Fragment() {
                 Toast.makeText(activity, getString(R.string.invalidEmailAddress), Toast.LENGTH_SHORT).show()
             }
 
-            if(password_register === passwordC_register){
-                Toast.makeText(activity, getString(R.string.matchingPassword), Toast.LENGTH_SHORT).show()
-            }
-
             else{
                 val newUser= MyUser(email_register?.text.toString(), password_register?.text.toString())
                 newUser.height = height_register?.text.toString()
@@ -77,6 +73,8 @@ class SignUp : Fragment() {
                         "Ex",
                         "Passwords do not match: ${passwordC_register.text} different from ${password_register.text} "
                     )
+
+                    Toast.makeText(activity, getString(R.string.matchingPassword), Toast.LENGTH_SHORT).show()
                 }
             }
 

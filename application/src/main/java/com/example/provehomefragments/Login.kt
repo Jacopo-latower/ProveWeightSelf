@@ -1,6 +1,5 @@
 package com.example.provehomefragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.core.widget.doAfterTextChanged
@@ -24,8 +23,8 @@ class Login : Fragment() {
 
     lateinit var app: App
 
-    private var email_insert= String()
-    private var password_insert= String()
+    private var emailInsert= String()
+    private var passwordInsert= String()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +44,7 @@ class Login : Fragment() {
         //save email
         email.doAfterTextChanged {
             btn_login.isEnabled=false
-            email_insert=email.text.toString()
+            emailInsert=email.text.toString()
             if((email.text.toString().isNotEmpty()) && (password.text.toString().isNotEmpty())){
                 btn_login.isEnabled=true
             }
@@ -54,7 +53,7 @@ class Login : Fragment() {
         //save password
         password.doAfterTextChanged {
             btn_login.isEnabled=false
-            password_insert=password.text.toString()
+            passwordInsert=password.text.toString()
             if((email.text.toString().isNotEmpty()) && (password.text.toString().isNotEmpty())){
                 btn_login.isEnabled=true
             }
@@ -63,8 +62,8 @@ class Login : Fragment() {
         //control with database
         //Click Login
         btn_login.setOnClickListener{
-            if(email_insert.isNotEmpty() && password_insert.isNotEmpty())
-            signInUser(email_insert, password_insert)
+            if(emailInsert.isNotEmpty() && passwordInsert.isNotEmpty())
+            signInUser(emailInsert, passwordInsert)
         }
 
         //Click Register

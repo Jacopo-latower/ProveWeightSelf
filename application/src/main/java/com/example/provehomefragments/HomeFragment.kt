@@ -13,6 +13,8 @@ import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import kotlinx.android.synthetic.main.fragment_home_layout.*
+import kotlinx.android.synthetic.main.user_frag_layout.*
 
 // interface implemented by the main activity to notify changes
 interface FragHomeObserver{
@@ -93,6 +95,10 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
             setLineChartData()
         }
 
+        else{
+            tv_trend.text = getString(R.string.pesatiGrafico)
+        }
+
     }
 
     //Valori Grafico
@@ -143,7 +149,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
     private fun resetStepsInit(){
         //if the user click on the textView, notify to him that the long tap is requested
         stepCounter?.setOnClickListener{
-            Toast.makeText(activity, "Long Tap to reset", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.longTapToReset), Toast.LENGTH_SHORT).show()
         }
         //if the user long tap the textView, notify to the main activity to reset the values with "stepResetNotify()"
         stepCounter?.setOnLongClickListener{

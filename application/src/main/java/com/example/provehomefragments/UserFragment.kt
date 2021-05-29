@@ -2,7 +2,6 @@ package com.example.provehomefragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Debug
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.user_frag_layout.*
-import org.w3c.dom.Document
 import java.math.RoundingMode
 
 

@@ -8,7 +8,6 @@ import android.net.NetworkRequest
 import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +46,7 @@ class ScaleFragment(var act: MainActivity) : Fragment() {
         connectBtn?.setOnClickListener {
             try {
 
-                var weightFragment : WeightFragment = WeightFragment(act)
+                var weightFragment = WeightFragment(act)
                 var networkcallback : ConnectivityManager.NetworkCallback? = null
 
                     networkcallback = object  : ConnectivityManager.NetworkCallback() {
