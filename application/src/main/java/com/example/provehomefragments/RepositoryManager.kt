@@ -169,6 +169,7 @@ class RepositoryManager {
     fun onClear(){
         recipeRealm?.close()
         trainingRealm?.close()
+        weightRealm?.close()
     }
 
 }

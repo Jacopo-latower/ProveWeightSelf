@@ -1,7 +1,9 @@
 package com.example.provehomefragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,8 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_home_layout.*
 import kotlinx.android.synthetic.main.user_frag_layout.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 // interface implemented by the main activity to notify changes
 interface FragHomeObserver{
@@ -86,9 +90,6 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
 
         //rimuovo i pesi dalla lista tranne gli ultimi 7, per evitare null pointer nel grafico
 
-
-
-
         if(weights!!.isNotEmpty()){
             val peso= weights!![weights!!.size - 1].weight.toString()
             lastWeight?.text =  ("$peso Kg")
@@ -148,6 +149,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
     }
 
     private fun resetStepsInit(){
+        val observer = activity as? FragHomeObserver
+
         //if the user click on the textView, notify to him that the long tap is requested
         stepCounter?.setOnClickListener{
             Toast.makeText(activity, getString(R.string.longTapToReset), Toast.LENGTH_SHORT).show()
@@ -155,9 +158,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         //if the user long tap the textView, notify to the main activity to reset the values with "stepResetNotify()"
         stepCounter?.setOnLongClickListener{
             //Callback to the main activity
-            val observer = activity as? FragHomeObserver
             observer?.stepResetNotify()
-
             true
         }
     }

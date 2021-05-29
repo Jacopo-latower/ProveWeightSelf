@@ -26,6 +26,9 @@ import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.user_frag_layout.*
 import java.math.RoundingMode
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 data class TipsItem(
     val text: String,
@@ -60,6 +63,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        homeTvStepCounter = findViewById(R.id.daily_steps)
         //Repository init
         val appId:String = "prova_weightself-jnubd"
         app = App(AppConfiguration.Builder(appId).build())
@@ -84,7 +88,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         //Tolgo le ombre sul tab delle icone
         bottomNavigationView.background = null
         bottomNavigationView.menu.getItem(2).isEnabled = false
-
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager //sensor manager for the stepcounter
 
@@ -170,6 +173,42 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             userTvDailyStepTarget?.text = ("$dailyStepsObjective")
             distanceKm?.text= ("$currentdistance")
         }
+
+        dataChangedCheck()
+    }
+
+    //Check if the last data is changed
+    private fun dataChangedCheck(){
+        val calendar: Calendar = Calendar.getInstance()
+        val today = calendar.get(Calendar.DAY_OF_YEAR)
+
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val lastDateInMillis = sharedPreferences?.getLong("LastDate", -1)
+        val lastCalendar: Calendar = Calendar.getInstance()
+        if (lastDateInMillis != null) {
+            lastCalendar.timeInMillis = lastDateInMillis
+        }
+        val lastDay = lastCalendar.get(Calendar.DAY_OF_YEAR)
+
+        if (lastDateInMillis != null) {
+            if(lastDateInMillis.compareTo(-1) == 0){
+                val editor = sharedPreferences.edit()
+                editor.putLong("LastDate",calendar.time.time)
+                editor.apply()
+                Log.v("EX","Data saved")
+            }
+        }
+
+        if(today>lastDay){
+            val editor = sharedPreferences?.edit()
+            editor?.putLong("LastDate",calendar.time.time)
+            editor?.apply()
+            Log.v("EX","Minute higher than last minute")
+            stepResetNotify()
+        }
+
+        Log.v("DATE","Today is:${calendar.time}")
+        Log.v("LAST DATE", "Last Date saved:${lastCalendar.time}")
     }
 
     //not used for the moment
@@ -181,6 +220,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     override fun stepResetNotify() {
         homeTvStepCounter = findViewById(R.id.daily_steps)
         previousTotalSteps = totalSteps
+        if(homeTvStepCounter==null){
+            Log.v("EX","TEXT VIEW NULL")
+        }
         homeTvStepCounter?.text = ("0")
         saveData()
     }
