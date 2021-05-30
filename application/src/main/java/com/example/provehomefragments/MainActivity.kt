@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             }
         }
 
-        if(today>lastDay){
+        if(today > lastDay){
             val editor = sharedPreferences?.edit()
             editor?.putLong("LastDate",calendar.time.time)
             editor?.apply()
@@ -281,17 +281,17 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             }
             if (trainingFragment != null) {
                 if(trainingFragment.isVisible){
-                    bottomNavigationView.menu.getItem(0).setCheckable(true).isChecked = true
+                    bottomNavigationView.menu.getItem(1).setCheckable(true).isChecked = true
                 }
             }
             if (recipeFragment != null) {
                 if(recipeFragment.isVisible){
-                    bottomNavigationView.menu.getItem(0).setCheckable(true).isChecked = true
+                    bottomNavigationView.menu.getItem(3).setCheckable(true).isChecked = true
                 }
             }
             if (userFragment != null) {
                 if(userFragment.isVisible){
-                    bottomNavigationView.menu.getItem(0).setCheckable(true).isChecked = true
+                    bottomNavigationView.menu.getItem(4).setCheckable(true).isChecked = true
                 }
             }
         }
