@@ -92,6 +92,7 @@
     <string name="save">Salva</string>
     <string name="option">Sali sulla bilancia</string>
     <string name="weightSaved">Il valore è stato salvato correttamente.</string>
+    <string name="weightNotSaved">Il valore non è stato salvato. Controlla la tua connessione a internet.</string>
 
     //MENU
     <string name="menu_namer">Recipe Name</string>

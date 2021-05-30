@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.realm.mongodb.App
 import io.realm.mongodb.AppConfiguration
@@ -117,16 +118,27 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
                 R.id.training_button -> setCurrentFragment(trainingFrag, TRAINING_FRAGMENT)
                 R.id.recipe_btn -> setCurrentFragment(recipeFrag, RECIPE_FRAGMENT)
                 R.id.user_button -> setCurrentFragment(userFrag, USER_FRAGMENT)
+                R.id.scale_button -> setCurrentFragment(scaleFrag, SCALE_FRAGMENT)
             }
             true
         }
+
 
         val scaleBtn : FloatingActionButton = findViewById(R.id.scale_button)
 
         scaleBtn.setOnClickListener {
             setCurrentFragment(scaleFrag, SCALE_FRAGMENT)
+            bottomNavigationView.uncheckAllItems()
         }
 
+    }
+
+    private fun BottomNavigationView.uncheckAllItems() {
+        menu.setGroupCheckable(0, true, false)
+        for (i in 0 until menu.size()) {
+            menu.getItem(i).isChecked = false
+        }
+        menu.setGroupCheckable(0, true, true)
     }
 
     fun setCurrentFragment(fragment : Fragment, name : String) =
@@ -277,6 +289,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             val trainingFragment : TrainingFragment? = supportFragmentManager.findFragmentByTag(TRAINING_FRAGMENT) as? TrainingFragment
             val recipeFragment : RecipeFragment? = supportFragmentManager.findFragmentByTag(RECIPE_FRAGMENT) as? RecipeFragment
             val userFragment : UserFragment? = supportFragmentManager.findFragmentByTag(USER_FRAGMENT) as? UserFragment
+            val scaleFragment : ScaleFragment? = supportFragmentManager.findFragmentByTag(SCALE_FRAGMENT) as? ScaleFragment
 
 
             if (homeFragment != null) {
@@ -287,6 +300,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             if (trainingFragment != null) {
                 if(trainingFragment.isResumed){
                     bottomNavigationView.menu.getItem(1).setCheckable(true).isChecked = true
+                }
+            }
+            if (scaleFragment != null) {
+                if(scaleFragment.isResumed){
+                    bottomNavigationView.menu.getItem(2).setCheckable(true).isChecked = true
                 }
             }
             if (recipeFragment != null) {

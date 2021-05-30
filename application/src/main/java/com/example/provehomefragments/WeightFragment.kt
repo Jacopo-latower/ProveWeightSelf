@@ -90,8 +90,8 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
         }
 
         /**
-         * la pressione del bottone Salva disattiva la connessione con la bilancia e,
-         * nonappena il dispositivo ritrova la connessione di rete, invia il peso al server
+         * la pressione del bottone Salva disattiva la connessione con la bilancia.
+         * Nonappena il dispositivo ritrova la connessione di rete invia il peso al server
          */
 
         saveBtn.setOnClickListener {
@@ -116,6 +116,10 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
 
                     delay(4000)
                 }
+
+                Toast.makeText(activity, getString(R.string.weightNotSaved), Toast.LENGTH_SHORT).show()
+                act.setCurrentFragment(HomeFragment(), "HomeFragment")
+
             }
         }
     }

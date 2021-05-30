@@ -95,6 +95,7 @@
     <string name="save">Save</string>
     <string name="option">Step on the scale</string>
     <string name="weightSaved">The value has been saved correctly.</string>
+    <string name="weightNotSaved">The value has not been saved. Please check your internet connection.</string>
 
     //MENU
     <string name="menu_namer">Nome Ricetta</string>
