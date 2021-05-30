@@ -26,6 +26,7 @@
         android:layout_height="262dp"
         android:background="@drawable/custom_circle"
         android:gravity="center"
+        android:padding="20dp"
         android:text="@string/option"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="30sp"

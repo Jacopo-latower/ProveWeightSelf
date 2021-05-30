@@ -33,13 +33,24 @@
     <string name="noSensor">Nessun sensore rilevato. Il contapassi è disabilitato.</string>
     <string name="longTapToReset">Tieni premuto per resettare.</string>
     <string name="pesatiGrafico">Pesati per riempire il grafico.</string>
+        //tips
+    <string name="obiettivi">Stabilisci degli obiettivi realistici</string>
+    <string name="idro">L\'idratazione è importante</string>
+    <string name="nuovo">Prova sempre qualcosa di nuovo</string>
+    <string name="riposo">Riposati e riprenditi dopo un allenamento</string>
+    <string name="routine">Definisci una routine quotidiana</string>
+    <string name="dieta">Segui una dieta sana e corretta</string>
+    <string name="stretching">Ricordati di fare stretching</string>
+    <string name="vegetables">Mangia molta frutta e verdura</string>
+    <string name="pasto">Non saltare mai un pasto</string>
+    <string name="stagionalità">Scegli sempre cibi freschi e di stagione</string>
 
     //TRAINING
     <string name="training">Allenamento</string>
     <string name="scelti_per_te">Scelti per te</string>
     <string name="all_training">Tutti gli allenamenti</string>
     <string name="fav_training">Allenamenti preferiti</string>
-    <string name="title_time">Tempo:</string>
+    <string name="title_time">Durata:</string>
     <string name="title_level">Livello:</string>
     <string name="title_equipment">Attrezzatura:</string>
     <string name="start_training">Inizia allenamento</string>
@@ -55,14 +66,14 @@
     <string name="fav_recipes">Ricette preferite</string>
     <string name="title_ingredients">Ingredienti</string>
     <string name="title_process">Procedimento</string>
-    <string name="search">Cerca ...</string>
+    <string name="search">Cerca…</string>
     <string name="eat_recipe">Mangia</string>
 
     //USER
     <string name="user">Profilo</string>
     <string name="last_weight_saved">Ultimo Peso Salvato</string>
     <string name="remaining_kcal">kCal da bruciare</string>
-    <string name="today_steps">Oggi hai totalizzato</string>
+    <string name="today_steps">I dati di oggi</string>
     <string name="steps_out_of">passi su</string>
     <string name="bmi_text">Indice di Massa Corporea</string>
             //bmi condition

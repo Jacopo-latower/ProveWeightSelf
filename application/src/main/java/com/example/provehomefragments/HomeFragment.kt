@@ -34,26 +34,15 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
 
 
 
-    var tips:List<TipsItem> = listOf(
 
-        TipsItem ("Stabilisciti degli obiettivi realistici", R.drawable.goals),
-        TipsItem ("L'idratazione è importante", R.drawable.tipsdrink),
-        TipsItem ("Prova sempre qualcosa di nuovo", R.drawable.benefici_stretching_fb),
-        TipsItem ("Riposati e riprenditi dopo un allenamento", R.drawable.relaxpost),
-        TipsItem ("Costruisciti una routine quotidiana", R.drawable.routine),
-        TipsItem ("Segui un'alimentazione corretta e sana", R.drawable.relax),
-        TipsItem ("Ricordati di fare stretching", R.drawable.stretching_statico_passivo),
-        TipsItem ("Mangia molta frutta e verdura", R.drawable.healtyfood),
-        TipsItem ("Non saltare mai un pasto", R.drawable.saltarepasto),
-        TipsItem ("Scegli sempre cibi freschi e di stagione", R.drawable.cibistagione)
-
-    )
 
     private var recipeHome : ImageView?= null
     private var trainHome : ImageView?= null
     private var lineChart : LineChart?= null
 
     private var weights : List<Weights>? = listOf()
+
+    private var tips : List<TipsItem>? = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,6 +53,37 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
     }
 
     override fun onViewCreated(view : View, savedInstanceState: Bundle?) {
+
+        tips = listOf(
+
+            /*
+            TipsItem ("Stabilisciti degli obiettivi realistici", R.drawable.goals),
+            TipsItem ("L'idratazione è importante", R.drawable.tipsdrink),
+            TipsItem ("Prova sempre qualcosa di nuovo", R.drawable.benefici_stretching_fb),
+            TipsItem ("Riposati e riprenditi dopo un allenamento", R.drawable.relaxpost),
+            TipsItem ("Costruisciti una routine quotidiana", R.drawable.routine),
+            TipsItem ("Segui un'alimentazione corretta e sana", R.drawable.relax),
+            TipsItem ("Ricordati di fare stretching", R.drawable.stretching_statico_passivo),
+            TipsItem ("Mangia molta frutta e verdura", R.drawable.healtyfood),
+            TipsItem ("Non saltare mai un pasto", R.drawable.saltarepasto),
+            TipsItem ("Scegli sempre cibi freschi e di stagione", R.drawable.cibistagione
+
+             */
+
+
+            TipsItem (getString(R.string.obiettivi), R.drawable.goals),
+            TipsItem (getString(R.string.idro), R.drawable.tipsdrink),
+            TipsItem (getString(R.string.nuovo), R.drawable.benefici_stretching_fb),
+            TipsItem (getString(R.string.riposo), R.drawable.relaxpost),
+            TipsItem (getString(R.string.routine), R.drawable.routine),
+            TipsItem (getString(R.string.dieta), R.drawable.relax),
+            TipsItem (getString(R.string.stretching), R.drawable.stretching_statico_passivo),
+            TipsItem (getString(R.string.vegetables), R.drawable.healtyfood),
+            TipsItem (getString(R.string.pasto), R.drawable.saltarepasto),
+            TipsItem (getString(R.string.stagionalità), R.drawable.cibistagione)
+
+
+        )
 
         val currentSteps = (activity as MainActivity).totalSteps.toInt() - (activity as MainActivity).previousTotalSteps.toInt()
 
@@ -80,11 +100,11 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         resetStepsInit()
 
         //set Tips random
-        val rnds = (tips.indices).random()
+        val rnds = (tips!!.indices).random()
         val imageTips :ImageView = view.findViewById(R.id.imageViewTips)
         val textTips : TextView = view.findViewById(R.id.tips_text)
-        imageTips.setImageResource(tips[rnds].image)
-        textTips.text = tips[rnds].text
+        imageTips.setImageResource(tips!![rnds].image)
+        textTips.text = tips!![rnds].text
 
         //Creazione Grafico
         lineChart = view.findViewById(R.id.line_chart)

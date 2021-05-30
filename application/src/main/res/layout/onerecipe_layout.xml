@@ -95,9 +95,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginRight="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginBottom="@dimen/_70sdp">
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_80sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,8 +120,8 @@
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:lineSpacingExtra="4sp"
                 android:gravity="center_horizontal"
+                android:lineSpacingExtra="4sp"
                 android:text="4 uova - 100 g di zucchero semolato - 500 g di mascarpone - 300 g di savoiardi - q.b. caffè non zuccherato - q.b. cacao amaro"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="18sp"
@@ -141,11 +141,11 @@
                 android:id="@+id/recipe_process"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="4sp"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:gravity="center_horizontal"
+                android:justificationMode="inter_word"
+                android:lineSpacingExtra="4sp"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi consequatur. Duis aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
                 android:textSize="18sp" />
 

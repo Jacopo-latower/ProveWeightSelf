@@ -36,18 +36,16 @@
     <string name="longTapToReset">Long tap to reset.</string>
     <string name="pesatiGrafico">Weigh yourself to fill the chart.</string>
         //tips
-    <!--
-    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
-    <string name="idro">L\'idratazione è importante.</string>
-    <string name="nuovo">Prova sempre qualcosa di nuovo.</string>
-    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
-    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
-    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
-    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
-    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
-    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
-    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
-    -->
+    <string name="obiettivi">Define achievable targets</string>
+    <string name="idro">Hydration is crucial</string>
+    <string name="nuovo">Try something new everyday</string>
+    <string name="riposo">Get some rest after a workout session</string>
+    <string name="routine">Try to define a daily routine</string>
+    <string name="dieta">Follow an healthy diet</string>
+    <string name="stretching">Don\'t start a workout session without stretching</string>
+    <string name="vegetables">Consider eating a lot of fruits and vegetables</string>
+    <string name="pasto">Do not skip meals</string>
+    <string name="stagionalità">Try to choose seasonal and fresh products.</string>
 
 
 
@@ -56,7 +54,7 @@
     <string name="scelti_per_te">Selected for you</string>
     <string name="all_training">All trainings</string>
     <string name="fav_training">Favourite trainings</string>
-    <string name="title_time">Time:</string>
+    <string name="title_time">Duration:</string>
     <string name="title_level">Level:</string>
     <string name="title_equipment">Equipment:</string>
     <string name="start_training">Start Training</string>
@@ -71,17 +69,16 @@
     <string name="fav_recipes">Favourite Recipes</string>
     <string name="title_ingredients">Ingredients</string>
     <string name="title_process">Process</string>
-    <string name="search">Search ...</string>
+    <string name="search">Search…</string>
     <string name="eat_recipe">Eat</string>
 
     //USER
     <string name="user">User</string>
     <string name="last_weight_saved">Last Saved Weight</string>
     <string name="remaining_kcal">kCal to burn</string>
-    <string name="today_steps">Today you have completed</string>
+    <string name="today_steps">Today\'s data</string>
     <string name="steps_out_of">steps out of</string>
     <string name="bmi_text">Body Mass Index</string>
-
         //bmi condition
     <string name="below18">Underweight</string>
     <string name="between1825">Normal Weight</string>

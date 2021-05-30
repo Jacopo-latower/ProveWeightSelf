@@ -184,7 +184,8 @@
         android:layout_marginRight="@dimen/_5sdp"
         android:gravity="center"
         android:text="@string/graficoPesi"
-        android:textSize="24sp" />
+        android:textSize="20sp"
+        android:textStyle="italic" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"
