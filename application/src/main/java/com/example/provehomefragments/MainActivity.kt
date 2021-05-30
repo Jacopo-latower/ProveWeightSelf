@@ -275,22 +275,22 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
 
 
             if (homeFragment != null) {
-                if(homeFragment.isVisible){
+                if(homeFragment.isResumed){
                     bottomNavigationView.menu.getItem(0).setCheckable(true).isChecked = true
                 }
             }
             if (trainingFragment != null) {
-                if(trainingFragment.isVisible){
+                if(trainingFragment.isResumed){
                     bottomNavigationView.menu.getItem(1).setCheckable(true).isChecked = true
                 }
             }
             if (recipeFragment != null) {
-                if(recipeFragment.isVisible){
+                if(recipeFragment.isResumed){
                     bottomNavigationView.menu.getItem(3).setCheckable(true).isChecked = true
                 }
             }
             if (userFragment != null) {
-                if(userFragment.isVisible){
+                if(userFragment.isResumed){
                     bottomNavigationView.menu.getItem(4).setCheckable(true).isChecked = true
                 }
             }
