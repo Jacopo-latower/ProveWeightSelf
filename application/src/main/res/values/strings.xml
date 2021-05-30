@@ -18,6 +18,8 @@
     <string name="matchingPassword">Passwords do not match.</string>
     <string name="invalidEmailAddress">Please use a valid email address.</string>
     <string name="loginError">Incorrect email address or password.</string>
+    <string name="compilaTutto">Every field is mandatory.</string>
+    <string name="passwordTooShort">Your password must be at least 6 letters long.</string>
 
     //HOME
     <string name="home">Home</string>
@@ -81,9 +83,6 @@
     <string name="save">Save</string>
     <string name="option">Step on the scale</string>
     <string name="weightSaved">The value has been saved correctly.</string>
-    <string name="loading1">Loading the value on the server.</string>
-    <string name="loading2">Loading the value on the server..</string>
-    <string name="loading3">Loading the value on the server...</string>
 
     //MENU
     <string name="menu_namer">Nome Ricetta</string>

@@ -60,7 +60,7 @@
             android:id="@+id/passwordC_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="@string/conferma_password"
             android:inputType="textPassword"
@@ -134,6 +134,22 @@
             android:text="@string/signup"
             android:textSize="18sp" />
 
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:visibility="visible"
+            app:cpb_background_progressbar_color="@color/trasparent"
+            app:cpb_background_progressbar_width="5dp"
+            app:cpb_indeterminate_mode="true"
+            app:cpb_progress_direction="to_right"
+            app:cpb_progressbar_color="#195288"
+            app:cpb_progressbar_width="5dp"
+            app:cpb_round_border="true" />
+
     </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

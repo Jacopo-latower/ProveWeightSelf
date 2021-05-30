@@ -26,8 +26,6 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
     private var bmiText : TextView? = null
     private var currentStep : TextView? = null
 
-    private var calories : Int? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,22 +40,17 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
         tvPesati.visibility = View.GONE
 
 
-        if(calories == null){
-            calories = 0
-        }
-
-
 
         val nameTv = activity?.findViewById<TextView>(R.id.usernameTextView)
         userData = RepositoryManager.instance.loadUserData()
         bmiCondition = activity?.findViewById(R.id.bmi_condition)
-        burnedCalories = activity?.findViewById<TextView>(R.id.kcal_burned) //0.5kcal * lastweight * kmpercorsi
-        gainedCalories = activity?.findViewById<TextView>(R.id.gain_calories)
-        lastWeight = activity?.findViewById<TextView>(R.id.last_weight_tv)
-        bmiText = activity?.findViewById<TextView>(R.id.bmi)
-        currentStep = activity?.findViewById<TextView>(R.id.userTvStepCounter)
+        burnedCalories = activity?.findViewById(R.id.kcal_burned) //0.5kcal * lastweight * kmpercorsi
+        gainedCalories = activity?.findViewById(R.id.gain_calories)
+        lastWeight = activity?.findViewById(R.id.last_weight_tv)
+        bmiText = activity?.findViewById(R.id.bmi)
+        currentStep = activity?.findViewById(R.id.userTvStepCounter)
 
-        gainedCalories?.text = calories.toString()
+        gainedCalories?.text = (activity as MainActivity).gainedCalories.toString()
 
         nameTv?.text = ("${userData!!["name"].toString()} ${userData!!["surname".toString()]}")
 
@@ -115,13 +108,6 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
         else{
             tvPesati.visibility = View.VISIBLE
         }
-    }
-
-    fun addDailyCalories(kcal : Int){
-        if(calories == null){
-            calories = 0
-        }
-        calories = calories!!.plus(kcal)
     }
 
 }

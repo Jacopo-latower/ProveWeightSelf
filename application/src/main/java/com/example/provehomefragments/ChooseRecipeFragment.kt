@@ -54,11 +54,11 @@ class ChooseRecipeFragment(objects: RecipeItem, var act: MainActivity) : Fragmen
 
         btn_back.setOnClickListener {
             val listRecipe= RecipeFragment()
-            act.setCurrentFragment(listRecipe)
+            act.setCurrentFragment(listRecipe, "RecipeFragment")
         }
 
         eat_recipe.setOnClickListener {
-            UserFragment().addDailyCalories(kcal)
+            act.refreshGainedCalories(kcal)
         }
 
     }

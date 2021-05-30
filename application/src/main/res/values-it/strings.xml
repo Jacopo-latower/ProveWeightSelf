@@ -17,6 +17,8 @@
     <string name="matchingPassword">Le password non corrispondono.</string>
     <string name="invalidEmailAddress">Il formato dell\'indirizzo email non è corretto.</string>
     <string name="loginError">Indirizzo email o password non corretti.</string>
+    <string name="compilaTutto">Tutti i campi sono obbligatori.</string>
+    <string name="passwordTooShort">La password deve essere composta da almeno 6 caratteri.</string>
 
     //HOME
     <string name="home">Home</string>
@@ -78,9 +80,6 @@
     <string name="save">Salva</string>
     <string name="option">Sali sulla bilancia</string>
     <string name="weightSaved">Il valore è stato salvato correttamente.</string>
-    <string name="loading1">Inserisco il peso sul server.</string>
-    <string name="loading2">Inserisco il peso sul server..</string>
-    <string name="loading3">Inserisco il peso sul server...</string>
 
     //MENU
     <string name="menu_namer">Recipe Name</string>

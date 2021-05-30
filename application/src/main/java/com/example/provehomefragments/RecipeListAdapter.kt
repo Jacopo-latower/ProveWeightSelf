@@ -67,7 +67,7 @@ class RecipeListAdapter(var data:MutableList<RecipeItem>, var act: MainActivity)
     private fun getRecipePage(pos:Int){
         var objects= data[pos]
         val chooseRecipe= ChooseRecipeFragment(objects, act)
-        act.setCurrentFragment(chooseRecipe)
+        act.setCurrentFragment(chooseRecipe, "ChooseRecipe")
     }
 
     //Sorting functions

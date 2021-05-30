@@ -56,7 +56,7 @@ class ChooseTrainingFragment(objects : TrainingItem, var act : MainActivity) : F
 
         btn_back.setOnClickListener {
             val listTrain = TrainingFragment()
-            act.setCurrentFragment(listTrain)
+            act.setCurrentFragment(listTrain, "TrainingFragment")
         }
     }
 }

@@ -54,11 +54,19 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
 
     private var dailyStepsObjective = 8000 //daily steps to reach for the user; //TODO: implement the User class to have the step objective
 
+    var gainedCalories : Int = 0
+
+    private val HOME_FRAGMENT : String = "HomeFragment"
+    private val TRAINING_FRAGMENT : String = "TrainingFragment"
+    private val RECIPE_FRAGMENT : String = "RecipeFragment"
+    private val USER_FRAGMENT : String = "UserFragment"
+    private val SCALE_FRAGMENT : String = "ScaleFragment"
+
+
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
 
         homeTvStepCounter = findViewById(R.id.daily_steps)
@@ -98,13 +106,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val userFrag = UserFragment()
         val scaleFrag = ScaleFragment(this)
 
-        setCurrentFragment(homeFrag)
+        setCurrentFragment(homeFrag, HOME_FRAGMENT)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.home_btn -> setCurrentFragment(homeFrag)
-                R.id.training_button -> setCurrentFragment(trainingFrag)
-                R.id.recipe_btn -> setCurrentFragment(recipeFrag)
-                R.id.user_button -> setCurrentFragment(userFrag)
+                R.id.home_btn -> setCurrentFragment(homeFrag, HOME_FRAGMENT)
+                R.id.training_button -> setCurrentFragment(trainingFrag, TRAINING_FRAGMENT)
+                R.id.recipe_btn -> setCurrentFragment(recipeFrag, RECIPE_FRAGMENT)
+                R.id.user_button -> setCurrentFragment(userFrag, USER_FRAGMENT)
             }
             true
         }
@@ -112,14 +120,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         val scaleBtn : FloatingActionButton = findViewById(R.id.scale_button)
 
         scaleBtn.setOnClickListener {
-            setCurrentFragment(scaleFrag)
+            setCurrentFragment(scaleFrag, SCALE_FRAGMENT)
         }
 
     }
 
-    fun setCurrentFragment(fragment : Fragment) =
+    fun setCurrentFragment(fragment : Fragment, name : String) =
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.login_fragment_container,fragment)
+                replace(R.id.login_fragment_container,fragment, name)
                 addToBackStack(null)
                 commit()
             }
@@ -162,14 +170,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             homeTvStepCounter = findViewById(R.id.daily_steps)
             userTvStepCounter = findViewById(R.id.userTvStepCounter)
             userTvDailyStepTarget = findViewById(R.id.userTvDailyStepTarget)
-            distanceKm= findViewById(R.id.distance_covered)
+            distanceKm = findViewById(R.id.distance_covered)
             totalSteps = event!!.values[0]
             val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
             val currentdistance: Double =  (currentSteps.toDouble()/1667).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
             homeTvStepCounter?.text = ("$currentSteps")
             userTvStepCounter?.text = ("$currentSteps")
             userTvDailyStepTarget?.text = ("$dailyStepsObjective")
-            distanceKm?.text= ("$currentdistance")
+            distanceKm?.text = ("$currentdistance")
         }
 
         dataChangedCheck()
@@ -218,7 +226,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     override fun stepResetNotify() {
         homeTvStepCounter = findViewById(R.id.daily_steps)
         previousTotalSteps = totalSteps
-        if(homeTvStepCounter==null){
+        if(homeTvStepCounter == null){
             Log.v("EX","TEXT VIEW NULL")
         }
         homeTvStepCounter?.text = ("0")
@@ -257,8 +265,36 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     }
 
     override fun onBackPressed() {
-        if(supportFragmentManager.backStackEntryCount>1)
+        if(supportFragmentManager.backStackEntryCount > 1) {
             super.onBackPressed()
+
+            val homeFragment : HomeFragment? = supportFragmentManager.findFragmentByTag(HOME_FRAGMENT) as? HomeFragment
+            val trainingFragment : TrainingFragment? = supportFragmentManager.findFragmentByTag(TRAINING_FRAGMENT) as? TrainingFragment
+            val recipeFragment : RecipeFragment? = supportFragmentManager.findFragmentByTag(RECIPE_FRAGMENT) as? RecipeFragment
+            val userFragment : UserFragment? = supportFragmentManager.findFragmentByTag(USER_FRAGMENT) as? UserFragment
+
+
+            if (homeFragment != null) {
+                if(homeFragment.isVisible){
+                    bottomNavigationView.menu.getItem(0).setCheckable(true).isChecked = true
+                }
+            }
+            if (trainingFragment != null) {
+                if(trainingFragment.isVisible){
+                    bottomNavigationView.menu.getItem(0).setCheckable(true).isChecked = true
+                }
+            }
+            if (recipeFragment != null) {
+                if(recipeFragment.isVisible){
+                    bottomNavigationView.menu.getItem(0).setCheckable(true).isChecked = true
+                }
+            }
+            if (userFragment != null) {
+                if(userFragment.isVisible){
+                    bottomNavigationView.menu.getItem(0).setCheckable(true).isChecked = true
+                }
+            }
+        }
     }
     //Close actives realm on app closing
     override fun onDestroy() {
@@ -266,5 +302,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         RepositoryManager.instance.onClear()
         super.onDestroy()
     }
+
+    fun refreshGainedCalories(kcal : Int){
+        gainedCalories += kcal
+    }
+
+
 
 }

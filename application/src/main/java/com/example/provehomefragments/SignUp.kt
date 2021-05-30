@@ -15,7 +15,9 @@ import io.realm.mongodb.User
 import io.realm.mongodb.mongo.MongoClient
 import io.realm.mongodb.mongo.MongoCollection
 import io.realm.mongodb.mongo.MongoDatabase
+import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.signup.*
+import kotlinx.android.synthetic.main.signup.progressBar
 import org.bson.Document
 import org.bson.types.ObjectId
 import java.util.regex.Pattern
@@ -51,24 +53,39 @@ class SignUp : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressBar.visibility = View.GONE
+
         val appId:String = "prova_weightself-jnubd"
         app = App(AppConfiguration.Builder(appId).build())
 
         save_register?.setOnClickListener {
 
-            if(!isValidEmail(email_register.text.toString())){
+            if(!checkCampi()){
+                Toast.makeText(activity, getString(R.string.compilaTutto), Toast.LENGTH_SHORT).show()
+            }
+
+            else if(!isValidEmail(email_register.text.toString())) {
                 Toast.makeText(activity, getString(R.string.invalidEmailAddress), Toast.LENGTH_SHORT).show()
             }
 
-            else{
-                val newUser= MyUser(email_register?.text.toString(), password_register?.text.toString())
+            else if(password_register.text.length < 6){
+                Toast.makeText(activity, getString(R.string.passwordTooShort), Toast.LENGTH_SHORT).show()
+            }
+
+            else {
+
+                save_register.visibility = View.GONE
+
+                progressBar.visibility = View.VISIBLE
+
+                val newUser = MyUser(email_register?.text.toString(), password_register?.text.toString())
                 newUser.height = height_register?.text.toString()
                 newUser.name = name_register?.text.toString()
                 newUser.surname = surname_register?.text.toString()
                 possibleUser = newUser
                 if(password_register.text.toString() == passwordC_register.text.toString())
                     addNewUser(possibleUser!!)
-                else{
+                else {
                     Log.i(
                         "Ex",
                         "Passwords do not match: ${passwordC_register.text} different from ${password_register.text} "
@@ -80,6 +97,16 @@ class SignUp : Fragment() {
 
         }
 
+    }
+
+    private fun checkCampi() : Boolean {
+        if(email_register.text.isEmpty() || password_register.text.isEmpty() ||
+            passwordC_register.text.isEmpty() || name_register.text.isEmpty() ||
+            surname_register.text.isEmpty() || height_register.text.isEmpty()) {
+                return false
+        }
+
+        return true
     }
 
     private fun addNewUser(u: MyUser){

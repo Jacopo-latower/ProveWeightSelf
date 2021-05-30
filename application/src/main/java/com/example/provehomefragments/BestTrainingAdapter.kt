@@ -72,7 +72,7 @@ class BestTrainingAdapter(var data:MutableList<TrainingItem>, var act: MainActiv
         val objects = data[p]
         val chooseTraining = ChooseTrainingFragment(objects,act)
         //MainActivity.setCurrentFragment(chooseRecipe)
-        act.setCurrentFragment(chooseTraining)
+        act.setCurrentFragment(chooseTraining, "ChooseTraining")
     }
 
     //Method for animate the elements of the recycler view

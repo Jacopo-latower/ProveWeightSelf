@@ -71,6 +71,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="#53c1e5"
             android:gravity="center"
+            android:hapticFeedbackEnabled="true"
             android:text="@string/login"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
@@ -107,6 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:hapticFeedbackEnabled="true"
             android:text="@string/signup"
             android:textSize="21sp" />
     </LinearLayout>
