@@ -78,6 +78,9 @@
     <string name="save">Salva</string>
     <string name="option">Sali sulla bilancia</string>
     <string name="weightSaved">Il valore è stato salvato correttamente.</string>
+    <string name="loading1">Inserisco il peso sul server.</string>
+    <string name="loading2">Inserisco il peso sul server..</string>
+    <string name="loading3">Inserisco il peso sul server...</string>
 
     //MENU
     <string name="menu_namer">Recipe Name</string>

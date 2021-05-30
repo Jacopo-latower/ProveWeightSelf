@@ -15,11 +15,11 @@ import kotlinx.android.synthetic.main.onerecipe_layout.*
 
 class ChooseRecipeFragment(objects: RecipeItem, var act: MainActivity) : Fragment() {
 
-    val imageUrl: String = objects.imageUrl
+    private val imageUrl: String = objects.imageUrl
     val name: String = objects.name
-    val ingredients: String = objects.ingredients
-    val process: String= objects.process
-    val kcal: String = ("${objects.kcal} kcal")
+    private val ingredients: String = objects.ingredients
+    private val process: String= objects.process
+    private val kcal : Int = objects.kcal
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +49,8 @@ class ChooseRecipeFragment(objects: RecipeItem, var act: MainActivity) : Fragmen
         Picasso.get().load(imageUrl).into(img)
         nam.text = name
         ingr.text = ingredients
-        proc.text= process
-        cal.text = kcal
+        proc.text = process
+        cal.text = kcal.toString().plus(" kcal")
 
         btn_back.setOnClickListener {
             val listRecipe= RecipeFragment()
@@ -58,7 +58,7 @@ class ChooseRecipeFragment(objects: RecipeItem, var act: MainActivity) : Fragmen
         }
 
         eat_recipe.setOnClickListener {
-            //TODO: incrementare le calorie acquisite
+            UserFragment().addDailyCalories(kcal)
         }
 
     }

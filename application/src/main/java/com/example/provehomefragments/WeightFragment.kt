@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import kotlinx.android.synthetic.main.fragment_weight_layout.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -38,8 +39,7 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
 
         saveBtn.isEnabled = false
 
-
-        progressBar.visibility = View.INVISIBLE
+        tv_loading.visibility = View.INVISIBLE
         weightSaved.visibility = View.INVISIBLE
 
 
@@ -97,24 +97,27 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
 
         saveBtn.setOnClickListener {
 
-            progressBar.visibility = View.VISIBLE
+            showLoading()
+
+            var c = 0
 
             connectivityManager.bindProcessToNetwork(null)
 
             nc?.let { connectivityManager.unregisterNetworkCallback(it) }
 
-
-
             runBlocking {
 
-                //TODO: sistemare la visibilità di textview e progressbar
+                for(i in 1..40){
 
-                for(i in 1..5){
+                    if(c == 3) c = 0
+
+                    if(c == 0) tv_loading.text = getString(R.string.loading1)
+                    if(c == 1) tv_loading.text = getString(R.string.loading2)
+                    else tv_loading.text = getString(R.string.loading3)
 
                     val activeNetwork : Network? = connectivityManager.activeNetwork
 
                     if(activeNetwork != null) {
-
                         RepositoryManager.instance.writeWeight(peso!!, this@WeightFragment)
 
                         delay(3000)
@@ -122,14 +125,13 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
                         break
                     }
 
-                    delay(4000)
+
+                    c++
+
+                    delay(500)
                 }
             }
-
-            act.setCurrentFragment(HomeFragment())
-
         }
-
     }
 
 
@@ -141,8 +143,14 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
     }
 
     override fun onAsyncLoadingFinished() {
-        progressBar.visibility = View.INVISIBLE
+        tv_loading.visibility = View.INVISIBLE
         weightSaved.visibility = View.VISIBLE
+
+        act.setCurrentFragment(HomeFragment())
+    }
+
+    private fun showLoading(){
+        tv_loading.visibility = View.VISIBLE
     }
 }
 

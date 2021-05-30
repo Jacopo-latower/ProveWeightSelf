@@ -43,13 +43,14 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         TipsItem ("Mangia molta frutta e verdura", R.drawable.healtyfood),
         TipsItem ("Non saltare mai un pasto", R.drawable.saltarepasto),
         TipsItem ("Scegli sempre cibi freschi e di stagione", R.drawable.cibistagione)
+
     )
 
-    private var recipeHome: ImageView?= null
-    private var trainHome: ImageView?= null
-    private var lineChart: LineChart?= null
+    private var recipeHome : ImageView?= null
+    private var trainHome : ImageView?= null
+    private var lineChart : LineChart?= null
 
-    private var weights:List<Weights>? = listOf()
+    private var weights : List<Weights>? = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +60,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         return inflater.inflate(R.layout.fragment_home_layout, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view : View, savedInstanceState: Bundle?) {
         stepCounter = view.findViewById(R.id.daily_steps)
         lastWeight = view.findViewById(R.id.last_weight)
 
@@ -72,10 +73,10 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
 
         //set Tips random
         val rnds = (tips.indices).random()
-        val imageTips:ImageView =view.findViewById(R.id.imageViewTips)
-        val textTips: TextView = view.findViewById(R.id.tips_text)
+        val imageTips :ImageView = view.findViewById(R.id.imageViewTips)
+        val textTips : TextView = view.findViewById(R.id.tips_text)
         imageTips.setImageResource(tips[rnds].image)
-        textTips.text=tips[rnds].text
+        textTips.text = tips[rnds].text
 
         //Creazione Grafico
         lineChart = view.findViewById(R.id.line_chart)

@@ -67,7 +67,7 @@
             android:id="@+id/btn_login"
             android:layout_width="99dp"
             android:layout_height="44dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="#53c1e5"
             android:gravity="center"
@@ -75,6 +75,24 @@
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="21sp" />
+
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="visible"
+            app:cpb_background_progressbar_color="@color/trasparent"
+            app:cpb_background_progressbar_width="5dp"
+            app:cpb_indeterminate_mode="true"
+            app:cpb_progress_direction="to_right"
+            app:cpb_progressbar_color="#195288"
+            app:cpb_progressbar_width="5dp"
+            app:cpb_round_border="true"
+            app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_result" />
 
         <TextView
             android:layout_width="wrap_content"

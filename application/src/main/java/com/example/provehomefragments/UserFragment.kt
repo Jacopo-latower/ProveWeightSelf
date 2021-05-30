@@ -20,10 +20,13 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
 
     private var bmiCondition : TextView? = null
     private var burnedCalories : TextView? = null
+    private var gainedCalories : TextView? = null
     private var userData : org.bson.Document? = null
     private var lastWeight : TextView? = null
-    private var bmiText : TextView?= null
-    private var currentStep : TextView?= null
+    private var bmiText : TextView? = null
+    private var currentStep : TextView? = null
+
+    private var calories : Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,13 +41,23 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
 
         tvPesati.visibility = View.GONE
 
+
+        if(calories == null){
+            calories = 0
+        }
+
+
+
         val nameTv = activity?.findViewById<TextView>(R.id.usernameTextView)
         userData = RepositoryManager.instance.loadUserData()
         bmiCondition = activity?.findViewById(R.id.bmi_condition)
         burnedCalories = activity?.findViewById<TextView>(R.id.kcal_burned) //0.5kcal * lastweight * kmpercorsi
+        gainedCalories = activity?.findViewById<TextView>(R.id.gain_calories)
         lastWeight = activity?.findViewById<TextView>(R.id.last_weight_tv)
         bmiText = activity?.findViewById<TextView>(R.id.bmi)
         currentStep = activity?.findViewById<TextView>(R.id.userTvStepCounter)
+
+        gainedCalories?.text = calories.toString()
 
         nameTv?.text = ("${userData!!["name"].toString()} ${userData!!["surname".toString()]}")
 
@@ -75,7 +88,7 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
     //Called in the repository manager when the data is loaded, so we can update the UI
     override fun onAsyncLoadingFinished() {
         //Calcolo BMI
-        val hx2 : Double = (Integer.parseInt(userData?.get("height")?.toString()) * (Integer.parseInt(userData?.get("height")?.toString()))).toDouble()
+        val hx2 : Double = (Integer.parseInt(userData?.get("height").toString()) * (Integer.parseInt(userData?.get("height").toString()))).toDouble()
         val weights = RepositoryManager.instance.dataWeights.sortedByDescending { it.date } //tutti i pesi ordinati per data discendente
 
         if(weights.isNotEmpty()){
@@ -102,7 +115,13 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
         else{
             tvPesati.visibility = View.VISIBLE
         }
+    }
 
+    fun addDailyCalories(kcal : Int){
+        if(calories == null){
+            calories = 0
+        }
+        calories = calories!!.plus(kcal)
     }
 
 }

@@ -26,6 +26,8 @@ class Login : Fragment() {
     private var emailInsert= String()
     private var passwordInsert= String()
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,15 +38,17 @@ class Login : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btn_login.isEnabled=false
+        btn_login.isEnabled = false
+
+        progressBar.visibility = View.INVISIBLE
 
         val appId:String = "prova_weightself-jnubd"
         app = App(AppConfiguration.Builder(appId).build())
 
         //save email
         email.doAfterTextChanged {
-            btn_login.isEnabled=false
-            emailInsert=email.text.toString()
+            btn_login.isEnabled = false
+            emailInsert = email.text.toString()
             if((email.text.toString().isNotEmpty()) && (password.text.toString().isNotEmpty())){
                 btn_login.isEnabled=true
             }
@@ -52,16 +56,20 @@ class Login : Fragment() {
 
         //save password
         password.doAfterTextChanged {
-            btn_login.isEnabled=false
-            passwordInsert=password.text.toString()
+            btn_login.isEnabled = false
+            passwordInsert = password.text.toString()
             if((email.text.toString().isNotEmpty()) && (password.text.toString().isNotEmpty())){
-                btn_login.isEnabled=true
+                btn_login.isEnabled = true
             }
         }
 
         //control with database
         //Click Login
         btn_login.setOnClickListener{
+
+            btn_login.isEnabled = false
+
+            progressBar.visibility = View.VISIBLE
             if(emailInsert.isNotEmpty() && passwordInsert.isNotEmpty())
             signInUser(emailInsert, passwordInsert)
         }

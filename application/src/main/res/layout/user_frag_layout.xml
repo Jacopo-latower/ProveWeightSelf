@@ -70,7 +70,6 @@
             android:layout_marginRight="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_2sdp"
             android:gravity="center"
-            android:text="-"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/white"
             android:textSize="@dimen/_30sdp"
@@ -188,7 +187,6 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_2sdp"
                 android:gravity="center"
-                android:text="-"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
@@ -233,7 +231,6 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_2sdp"
                 android:gravity="center"
-                android:text="-"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/white"
                 android:textStyle="bold" />

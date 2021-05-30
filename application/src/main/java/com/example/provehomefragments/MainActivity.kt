@@ -20,35 +20,37 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.realm.mongodb.App
 import io.realm.mongodb.AppConfiguration
 import io.realm.mongodb.User
-import io.realm.mongodb.sync.Sync
 import io.realm.mongodb.sync.SyncConfiguration
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.user_frag_layout.*
 import java.math.RoundingMode
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
+
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
 
 data class TipsItem(
     val text: String,
     val image: Int
 )
 
-class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver, UserFragObserver{
+class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver, UserFragObserver {
 
     private var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag, 3 -> userfrag
 
     private var ACTIVITY_PERMISSION_CODE = 1
-    private var sensorManager:SensorManager?= null
+    private var sensorManager  :SensorManager? = null
 
     private var running = false //the sensor/stepcounter is active or not
     private var totalSteps = 0f
     private var previousTotalSteps = 0f
 
 
-    private lateinit var currentUser:User
-    private lateinit var app: App
+    private lateinit var currentUser : User
+    private lateinit var app : App
 
     private var homeTvStepCounter : TextView? = null //textView for the step counter;
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
@@ -63,9 +65,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         homeTvStepCounter = findViewById(R.id.daily_steps)
         //Repository init
-        val appId:String = "prova_weightself-jnubd"
+        val appId = "prova_weightself-jnubd"
         app = App(AppConfiguration.Builder(appId).build())
         currentUser = app.currentUser()!!
 
