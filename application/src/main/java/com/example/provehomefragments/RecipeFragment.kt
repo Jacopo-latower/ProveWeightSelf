@@ -95,11 +95,15 @@ class RecipeFragment : Fragment(), RepositoryAsyncTaskObserver {
         popup.setOnMenuItemClickListener {item ->
             when (item.itemId) {
                 R.id.menu_namer -> {
-                    RecipeListAdapter(data2!!, activity as MainActivity).sortName()
+                    val recipeListAdapterByName = RecipeListAdapter(data2!!, activity as MainActivity)
+                    recipeListAdapterByName.sortName()
+                    recipeRv?.adapter = recipeListAdapterByName
                     true
                 };
                 R.id.menu_kcal -> {
-                    RecipeListAdapter(data2!!, activity as MainActivity).sortKcal()
+                    val recipeListAdapterByKcal = RecipeListAdapter(data2!!, activity as MainActivity)
+                    recipeListAdapterByKcal.sortName()
+                    recipeRv?.adapter = recipeListAdapterByKcal
                     true
                 };
                 else -> false
