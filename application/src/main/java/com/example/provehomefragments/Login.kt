@@ -66,10 +66,10 @@ class Login : Fragment() {
         //control with database
         //Click Login
         btn_login.setOnClickListener{
+            progressBar.visibility = View.VISIBLE
 
             btn_login.isEnabled = false
 
-            progressBar.visibility = View.VISIBLE
             if(emailInsert.isNotEmpty() && passwordInsert.isNotEmpty())
             signInUser(emailInsert, passwordInsert)
         }
@@ -83,6 +83,7 @@ class Login : Fragment() {
     }
 
     private fun signInUser(email:String, password:String){
+
         val creds : Credentials = Credentials.emailPassword(email, password)
         var user : User? = null
 
@@ -94,7 +95,9 @@ class Login : Fragment() {
                 Log.v("EXAMPLE", "Fetched custom user data: $customUserData")
                 val observer = activity as LogFragmentObserver
                 observer.loadNextActivity()
-            }else{
+            }
+            else{
+                progressBar.visibility = View.INVISIBLE
                 Log.e("AUTH", "Error in the login: ${it.error}")
                 Toast.makeText(activity, getString(R.string.loginError), Toast.LENGTH_SHORT).show()
             }

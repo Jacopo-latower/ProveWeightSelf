@@ -126,13 +126,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         android:gravity="center"
         android:text="@string/start_training"
         android:textSize="@dimen/_18sdp"
         app:backgroundTint="#00BCD4"
-        app:cornerRadius="@dimen/_10sdp"
-        />
+        app:cornerRadius="@dimen/_10sdp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/youtube" />
 
 
 </LinearLayout>

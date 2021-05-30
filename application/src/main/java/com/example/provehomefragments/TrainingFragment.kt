@@ -62,7 +62,9 @@ class TrainingFragment:Fragment(), RepositoryAsyncTaskObserver{
                 return false
             }
             override fun onQueryTextChange(newText: String?): Boolean {
-                BestTrainingAdapter(data2, activity as MainActivity).filter.filter(newText)
+                val trainingAdapterSearch = BestTrainingAdapter(data2, activity as MainActivity)
+                trainingAdapterSearch.filter.filter(newText)
+                rv_best_trainings.adapter = trainingAdapterSearch
                 return false
             }
         })
@@ -92,15 +94,21 @@ class TrainingFragment:Fragment(), RepositoryAsyncTaskObserver{
         popup.setOnMenuItemClickListener {item ->
             when (item.itemId) {
                 R.id.menu_namet -> {
-                    BestTrainingAdapter(data2, activity as MainActivity).sortName()
+                    val trainingAdapterByName = BestTrainingAdapter(data2, activity as MainActivity)
+                    trainingAdapterByName.sortName()
+                    rv_best_trainings.adapter = trainingAdapterByName
                     true
                 };
                 R.id.menu_level -> {
-                    BestTrainingAdapter(data2, activity as MainActivity).sortLevel()
+                    val trainingAdapterByLevel = BestTrainingAdapter(data2, activity as MainActivity)
+                    trainingAdapterByLevel.sortLevel()
+                    rv_best_trainings.adapter = trainingAdapterByLevel
                     true
                 };
                 R.id.menu_time -> {
-                    BestTrainingAdapter(data2, activity as MainActivity).sortTime()
+                    val trainingAdapterByTime = BestTrainingAdapter(data2, activity as MainActivity)
+                    trainingAdapterByTime.sortTime()
+                    rv_best_trainings.adapter = trainingAdapterByTime
                     true
                 };
                 else -> false

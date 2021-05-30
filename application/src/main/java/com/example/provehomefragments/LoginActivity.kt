@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import kotlin.system.exitProcess
 
 class LoginActivity : AppCompatActivity(), LogFragmentObserver {
 
@@ -34,11 +35,14 @@ class LoginActivity : AppCompatActivity(), LogFragmentObserver {
     }
 
     override fun onBackPressed() {
-        //TODO: specificare la condizione giusta con un if-else, dove nell'else abbiamo "super.OnBackPressed()"
-        if(supportFragmentManager.backStackEntryCount>0)
-            supportFragmentManager.popBackStack()
-        else
+        if(supportFragmentManager.backStackEntryCount > 1){
             super.onBackPressed()
+        }
+
+        else {
+            moveTaskToBack(true);
+            exitProcess(-1)
+        }
     }
 
 }

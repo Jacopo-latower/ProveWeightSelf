@@ -17,6 +17,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_home_layout.*
 import kotlinx.android.synthetic.main.user_frag_layout.*
+import java.math.RoundingMode
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -30,6 +31,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
 
     private var stepCounter:TextView? = null
     private var lastWeight:TextView? = null
+
+
 
     var tips:List<TipsItem> = listOf(
 
@@ -61,6 +64,11 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
     }
 
     override fun onViewCreated(view : View, savedInstanceState: Bundle?) {
+
+        val currentSteps = (activity as MainActivity).totalSteps.toInt() - (activity as MainActivity).previousTotalSteps.toInt()
+
+        distance_covered.text = (currentSteps.toDouble()/1667).toBigDecimal().setScale(2, RoundingMode.UP).toDouble().toString()
+
         stepCounter = view.findViewById(R.id.daily_steps)
         lastWeight = view.findViewById(R.id.last_weight)
 
@@ -92,7 +100,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout), RepositoryAsyncTas
         //rimuovo i pesi dalla lista tranne gli ultimi 7, per evitare null pointer nel grafico
 
         if(weights!!.isNotEmpty()){
-            val peso= weights!![weights!!.size - 1].weight.toString()
+            val peso = weights!![weights!!.size - 1].weight.toString()
             lastWeight?.text =  ("$peso Kg")
             weights!!.sortedBy { it.date }
             setLineChartData()

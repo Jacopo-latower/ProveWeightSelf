@@ -19,7 +19,7 @@ data class TrainingItem(
     val duration: Int,
     val difficulty: String,
     val equipement: String,
-    val video: String
+    val videoUrl: String
 )
 
 class BestTrainingAdapter(var data:MutableList<TrainingItem>, var act: MainActivity):RecyclerView.Adapter<BestTrainingAdapter.MyViewHolder>(),

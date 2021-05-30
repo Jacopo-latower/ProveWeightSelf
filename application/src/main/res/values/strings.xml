@@ -35,6 +35,20 @@
     <string name="noSensor">No sensor detected. Step counter is disabled.</string>
     <string name="longTapToReset">Long tap to reset.</string>
     <string name="pesatiGrafico">Weigh yourself to fill the chart.</string>
+        //tips
+    <!--
+    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
+    <string name="idro">L\'idratazione è importante.</string>
+    <string name="nuovo">Prova sempre qualcosa di nuovo.</string>
+    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
+    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
+    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
+    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
+    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
+    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
+    <string name="obiettivi">Stabilisci degli obiettivi realistici.</string>
+    -->
+
 
 
     //TRAINING
@@ -46,6 +60,7 @@
     <string name="title_level">Level:</string>
     <string name="title_equipment">Equipment:</string>
     <string name="start_training">Start Training</string>
+    <string name="youtube">By pressing this button you will be redirected to YouTube.com</string>
 
     //RECIPES
     <string name="gain_calories">Gained kCal</string>

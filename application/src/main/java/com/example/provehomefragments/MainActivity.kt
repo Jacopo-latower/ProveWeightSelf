@@ -16,14 +16,17 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.realm.mongodb.App
 import io.realm.mongodb.AppConfiguration
 import io.realm.mongodb.User
 import io.realm.mongodb.sync.SyncConfiguration
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home_layout.*
 import java.math.RoundingMode
 import java.util.*
+import kotlin.system.exitProcess
 
 
 data class TipsItem(
@@ -39,8 +42,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     private var sensorManager  :SensorManager? = null
 
     private var running = false //the sensor/stepcounter is active or not
-    private var totalSteps = 0f
-    private var previousTotalSteps = 0f
+    var totalSteps = 0f
+    var previousTotalSteps = 0f
 
 
     private lateinit var currentUser : User
@@ -50,7 +53,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     // !! this belongs to the HomeFragment, careful if it's destroyed in the switch!!
     private var userTvStepCounter : TextView? = null
     private var userTvDailyStepTarget : TextView? = null
-    private var distanceKm : TextView? = null
+    private var tvDistance : TextView? = null
+    private var currentdistance : Double = 0.0
 
     private var dailyStepsObjective = 8000 //daily steps to reach for the user; //TODO: implement the User class to have the step objective
 
@@ -129,6 +133,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.login_fragment_container,fragment, name)
                 addToBackStack(null)
+                setTransition(TRANSIT_FRAGMENT_FADE)
                 commit()
             }
 
@@ -170,14 +175,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             homeTvStepCounter = findViewById(R.id.daily_steps)
             userTvStepCounter = findViewById(R.id.userTvStepCounter)
             userTvDailyStepTarget = findViewById(R.id.userTvDailyStepTarget)
-            distanceKm = findViewById(R.id.distance_covered)
+            tvDistance = findViewById(R.id.distance_covered)
             totalSteps = event!!.values[0]
             val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
-            val currentdistance: Double =  (currentSteps.toDouble()/1667).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
+            currentdistance =  (currentSteps.toDouble()/1667).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
             homeTvStepCounter?.text = ("$currentSteps")
             userTvStepCounter?.text = ("$currentSteps")
             userTvDailyStepTarget?.text = ("$dailyStepsObjective")
-            distanceKm?.text = ("$currentdistance")
+            tvDistance?.text = ("$currentdistance")
         }
 
         dataChangedCheck()
@@ -185,7 +190,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
 
     //Check if the last data is changed to reset the steps
     private fun dataChangedCheck(){
-        val calendar: Calendar = Calendar.getInstance()
+        val calendar : Calendar = Calendar.getInstance()
         val today = calendar.get(Calendar.DAY_OF_YEAR)
 
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -211,6 +216,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             editor?.apply()
             Log.v("EX","Minute higher than last minute")
             stepResetNotify()
+            gainedCalories = 0
         }
 
         Log.v("DATE","Today is:${calendar.time}")
@@ -226,9 +232,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
     override fun stepResetNotify() {
         homeTvStepCounter = findViewById(R.id.daily_steps)
         previousTotalSteps = totalSteps
-        if(homeTvStepCounter == null){
-            Log.v("EX","TEXT VIEW NULL")
-        }
+        currentdistance = 0.0
+        distance_covered?.text = ("0")
         homeTvStepCounter?.text = ("0")
         saveData()
     }
@@ -294,6 +299,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
                     bottomNavigationView.menu.getItem(4).setCheckable(true).isChecked = true
                 }
             }
+        }
+        else {
+            moveTaskToBack(true);
+            exitProcess(-1)
         }
     }
     //Close actives realm on app closing

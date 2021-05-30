@@ -1,8 +1,11 @@
 package com.example.provehomefragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +14,18 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.onerecipe_layout.*
+import kotlinx.android.synthetic.main.onerecipe_layout.btn_back
+import kotlinx.android.synthetic.main.onetraining_layout.*
 
-class ChooseTrainingFragment(objects : TrainingItem, var act : MainActivity) : Fragment(){
+
+class ChooseTrainingFragment(objects: TrainingItem, var act: MainActivity) : Fragment(){
 
     private val imageUrl : String = objects.imageUrl
     private val type : String = objects.type
     private val difficulty : String = objects.difficulty
     private val time : String = ("${objects.duration} min")
     private val equipement : String = objects.equipement
+    private val videoUrl : String = objects.videoUrl
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +37,9 @@ class ChooseTrainingFragment(objects : TrainingItem, var act : MainActivity) : F
 
 
     override fun onCreateView(
-        inflater : LayoutInflater,
-        container : ViewGroup?,
-        savedInstanceState : Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.onetraining_layout, container, false)
     }
@@ -52,11 +58,19 @@ class ChooseTrainingFragment(objects : TrainingItem, var act : MainActivity) : F
         nam.text = type
         lev.text = difficulty
         dur.text = time
-        equip.text= equipement
+        equip.text = equipement
+
 
         btn_back.setOnClickListener {
             val listTrain = TrainingFragment()
             act.setCurrentFragment(listTrain, "TrainingFragment")
+        }
+
+        start_training.setOnClickListener {
+            val url = videoUrl
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
         }
     }
 }

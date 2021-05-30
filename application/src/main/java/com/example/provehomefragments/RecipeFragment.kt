@@ -58,7 +58,9 @@ class RecipeFragment : Fragment(), RepositoryAsyncTaskObserver {
                 return false
             }
             override fun onQueryTextChange(newText: String?): Boolean {
-                RecipeListAdapter(data2!!, activity as MainActivity).filter.filter(newText)
+                val recipeListAdapterSearch = RecipeListAdapter(data2!!, activity as MainActivity)
+                recipeListAdapterSearch.filter.filter(newText)
+                recipeRv?.adapter = recipeListAdapterSearch
                 return false
             }
         })
