@@ -123,6 +123,7 @@ class SignUp : Fragment() {
     private fun addNewUser(u: MyUser){
         app.emailPassword.registerUserAsync(u.email, u.password){
             if (it.isSuccess){
+
                 Log.i("Ex", "Registration Successful")
 
                 val creds : Credentials = Credentials.emailPassword(u.email, u.password)
@@ -157,6 +158,8 @@ class SignUp : Fragment() {
                                     //Logging Out once we've written the custom user data
                                     user?.logOutAsync{ res->
                                         if (res.isSuccess) {
+                                            Toast.makeText(activity, getString(R.string.signUpSuccessful), Toast.LENGTH_SHORT).show()
+
                                             Log.v("AUTH", "Successfully logged out.")
                                             val observer = activity as LogFragmentObserver
                                             observer.replaceFragment(Login.createInstance())
@@ -178,13 +181,14 @@ class SignUp : Fragment() {
                                         }}
                                 }
                             }
-                    }else{
+                    } else {
                         //IN CASE OF ERROR IN THE LOGIN PHASE: Set here the alert to warn the user
                         Log.e("AUTH", "Error in the login: ${it.error}")
                     }
                 }
-            }else{
+            } else {
                 //IN CASE OF ERROR IN THE SIGNUP PHASE
+                Toast.makeText(activity, getString(R.string.signUpNotSuccessful), Toast.LENGTH_SHORT).show()
                 Log.e("EX", "Failed to register user: ${it.error}")
             }
         }

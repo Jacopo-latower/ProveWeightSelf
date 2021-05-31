@@ -19,6 +19,8 @@
     <string name="loginError">Indirizzo email o password non corretti.</string>
     <string name="compilaTutto">Tutti i campi sono obbligatori.</string>
     <string name="passwordTooShort">La password deve essere composta da almeno 6 caratteri.</string>
+    <string name="signUpSuccessful">Registrazione completata con successo!</string>
+    <string name="signUpNotSuccessful">Registrazione non effettuata. Riprovare.</string>
 
     //HOME
     <string name="home">Home</string>

@@ -20,6 +20,8 @@
     <string name="loginError">Incorrect email address or password.</string>
     <string name="compilaTutto">Every field is mandatory.</string>
     <string name="passwordTooShort">Your password must be at least 6 letters long.</string>
+    <string name="signUpSuccessful">Successfully signed up!</string>
+    <string name="signUpNotSuccessful">Registration not completed. Please try again.</string>
 
     //HOME
     <string name="home">Home</string>
