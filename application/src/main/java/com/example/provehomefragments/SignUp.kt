@@ -60,23 +60,33 @@ class SignUp : Fragment() {
 
         save_register?.setOnClickListener {
 
+            save_register.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+
             if(!checkCampi()){
+                save_register.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+
                 Toast.makeText(activity, getString(R.string.compilaTutto), Toast.LENGTH_SHORT).show()
             }
 
             else if(!isValidEmail(email_register.text.toString())) {
+                save_register.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+
                 Toast.makeText(activity, getString(R.string.invalidEmailAddress), Toast.LENGTH_SHORT).show()
             }
 
             else if(password_register.text.length < 6){
+                save_register.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+
                 Toast.makeText(activity, getString(R.string.passwordTooShort), Toast.LENGTH_SHORT).show()
             }
 
             else {
 
-                save_register.visibility = View.GONE
 
-                progressBar.visibility = View.VISIBLE
 
                 val newUser = MyUser(email_register?.text.toString(), password_register?.text.toString())
                 newUser.height = height_register?.text.toString()
@@ -84,6 +94,7 @@ class SignUp : Fragment() {
                 newUser.surname = surname_register?.text.toString()
                 possibleUser = newUser
                 if(password_register.text.toString() == passwordC_register.text.toString())
+
                     addNewUser(possibleUser!!)
                 else {
                     Log.i(
