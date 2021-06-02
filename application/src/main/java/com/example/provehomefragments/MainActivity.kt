@@ -37,6 +37,8 @@ data class TipsItem(
 
 class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver, UserFragObserver {
 
+
+
     private var activeFrag = 0 //0 -> homefrag , 1 -> trainingfrag, 2 -> recipefrag, 3 -> userfrag
 
     private var ACTIVITY_PERMISSION_CODE = 1

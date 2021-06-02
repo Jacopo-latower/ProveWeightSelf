@@ -17,6 +17,7 @@
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
@@ -25,13 +26,14 @@
             android:src="@drawable/app_icon" />
 
         <TextView
+            android:id="@+id/weightself"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:gravity="center"
-            android:textSize="30sp"
             android:text="WEIGHTSELF"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/email"

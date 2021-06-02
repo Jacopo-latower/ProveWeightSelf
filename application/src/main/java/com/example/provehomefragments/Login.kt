@@ -7,6 +7,8 @@ import kotlinx.android.synthetic.main.login.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import io.realm.mongodb.App
@@ -16,6 +18,9 @@ import io.realm.mongodb.User
 import org.bson.Document
 
 class Login : Fragment() {
+
+    private var fogliaBottomAnim : Animation? = null;
+    private var textBottomAnim : Animation? = null;
 
     companion object{
         fun createInstance() = Login()
@@ -39,6 +44,13 @@ class Login : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_login.isEnabled = false
+
+
+        fogliaBottomAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.foglia_bottom_animation)
+        textBottomAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.text_bottom_animation)
+
+        logo?.animation = fogliaBottomAnim
+        weightself?.animation = textBottomAnim
 
         progressBar.visibility = View.INVISIBLE
 

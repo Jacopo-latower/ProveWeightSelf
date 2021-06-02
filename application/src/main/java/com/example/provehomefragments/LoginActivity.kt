@@ -8,9 +8,13 @@ import kotlin.system.exitProcess
 
 class LoginActivity : AppCompatActivity(), LogFragmentObserver {
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+
 
         if(savedInstanceState==null)
             replaceFragment(Login.createInstance())

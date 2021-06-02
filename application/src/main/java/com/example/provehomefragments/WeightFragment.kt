@@ -113,7 +113,6 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
                         RepositoryManager.instance.writeWeight(peso!!, this@WeightFragment)
                         break
                     }
-
                     delay(4000)
                 }
 
