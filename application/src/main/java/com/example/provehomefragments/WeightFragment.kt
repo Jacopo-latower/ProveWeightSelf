@@ -111,7 +111,6 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
 
                     if(activeNetwork != null) {
                         RepositoryManager.instance.writeWeight(peso!!, this@WeightFragment)
-                        break
                     }
                     delay(4000)
                 }
@@ -135,7 +134,6 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
         progressBar.visibility = View.INVISIBLE
 
         Toast.makeText(activity, getString(R.string.weightSaved), Toast.LENGTH_SHORT).show()
-
         act.setCurrentFragment(HomeFragment(), "HomeFragment")
     }
 
