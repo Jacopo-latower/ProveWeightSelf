@@ -18,6 +18,8 @@
             android:layout_width="@dimen/_255sdp"
             android:layout_height="wrap_content"
             android:background="@drawable/search_background"
+            android:iconifiedByDefault="false"
+            android:queryBackground="@null"
             android:queryHint="@string/search"
             android:textSize="21sp" />
 

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
@@ -59,6 +60,8 @@ class ChooseRecipeFragment(objects: RecipeItem, var act: MainActivity) : Fragmen
 
         eat_recipe.setOnClickListener {
             act.refreshGainedCalories(kcal)
+            eat_recipe.isEnabled = false
+            Toast.makeText(requireContext(), getString(R.string.gainedCalories), Toast.LENGTH_SHORT).show()
         }
 
     }

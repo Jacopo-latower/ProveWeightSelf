@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.user_frag_layout.*
 import java.math.RoundingMode
@@ -38,8 +39,6 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
         super.onViewCreated(view, savedInstanceState)
 
         tvPesati.visibility = View.GONE
-
-
 
         val nameTv = activity?.findViewById<TextView>(R.id.usernameTextView)
         userData = RepositoryManager.instance.loadUserData()
@@ -74,6 +73,8 @@ class UserFragment : Fragment(), RepositoryAsyncTaskObserver{
                     val intent = Intent(activity, LoginActivity::class.java)
                     startActivity(intent)
                 } else {
+                    btnLogout.isEnabled = true
+                    Toast.makeText(requireContext(), getString(R.string.errLogout), Toast.LENGTH_SHORT).show()
                     Log.e("AUTH", r.error.toString())
                 }}
     }

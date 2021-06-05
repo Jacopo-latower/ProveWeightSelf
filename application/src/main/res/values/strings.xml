@@ -73,6 +73,7 @@
     <string name="title_process">Process</string>
     <string name="search">Search…</string>
     <string name="eat_recipe">Eat</string>
+    <string name="gainedCalories">Gained calories updated.</string>
 
     //USER
     <string name="user">User</string>
@@ -81,6 +82,7 @@
     <string name="today_steps">Today\'s data</string>
     <string name="steps_out_of">steps out of</string>
     <string name="bmi_text">Body Mass Index</string>
+    <string name="errLogout" >Logout failed, check your Internet connection.</string>
         //bmi condition
     <string name="below18">Underweight</string>
     <string name="between1825">Normal Weight</string>
@@ -100,11 +102,11 @@
     <string name="weightNotSaved">The value has not been saved. Please check your internet connection.</string>
 
     //MENU
-    <string name="menu_namer">Nome Ricetta</string>
     <string name="menu_kcal">Kcal</string>
-    <string name="menu_namet">Nome Allenamento</string>
-    <string name="menu_level">Livello</string>
-    <string name="menu_time">Tempo</string>
+    <string name="menu_level">Level</string>
+    <string name="menu_time">Time</string>
+    <string name="menu_namet">Training Name</string>
+    <string name="menu_namer">Recipe Name</string>
 
 
 </resources>

@@ -86,21 +86,20 @@ class SignUp : Fragment() {
 
             else {
 
-
-
                 val newUser = MyUser(email_register?.text.toString(), password_register?.text.toString())
                 newUser.height = height_register?.text.toString()
                 newUser.name = name_register?.text.toString()
                 newUser.surname = surname_register?.text.toString()
                 possibleUser = newUser
                 if(password_register.text.toString() == passwordC_register.text.toString())
-
                     addNewUser(possibleUser!!)
                 else {
                     Log.i(
                         "Ex",
                         "Passwords do not match: ${passwordC_register.text} different from ${password_register.text} "
                     )
+                    save_register.visibility = View.VISIBLE
+                    progressBar.visibility = View.GONE
 
                     Toast.makeText(activity, getString(R.string.matchingPassword), Toast.LENGTH_SHORT).show()
                 }

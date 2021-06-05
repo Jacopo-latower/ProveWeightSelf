@@ -70,6 +70,7 @@
     <string name="title_process">Procedimento</string>
     <string name="search">Cerca…</string>
     <string name="eat_recipe">Mangia</string>
+    <string name="gainedCalories">Calorie assunte aggiornate.</string>
 
     //USER
     <string name="user">Profilo</string>
@@ -78,7 +79,8 @@
     <string name="today_steps">I dati di oggi</string>
     <string name="steps_out_of">passi su</string>
     <string name="bmi_text">Indice di Massa Corporea</string>
-            //bmi condition
+    <string name="errLogout" >Impossibile effettuare il logout, controlla la tua connessione a Internet.</string>
+        //bmi condition
     <string name="below18">Sottopeso</string>
     <string name="between1825">Normopeso</string>
     <string name="between2530">Pre-Obesità</string>
@@ -97,10 +99,11 @@
     <string name="weightNotSaved">Il valore non è stato salvato. Controlla la tua connessione a internet.</string>
 
     //MENU
-    <string name="menu_namer">Recipe Name</string>
+    <string name="menu_namer">Nome Ricetta</string>
     <string name="menu_kcal">Kcal</string>
-    <string name="menu_namet">Training Name</string>
-    <string name="menu_level">Level</string>
-    <string name="menu_time">Time</string>
+    <string name="menu_namet">Nome Allenamento</string>
+    <string name="menu_level">Livello</string>
+    <string name="menu_time">Tempo</string>
+
 
 </resources>

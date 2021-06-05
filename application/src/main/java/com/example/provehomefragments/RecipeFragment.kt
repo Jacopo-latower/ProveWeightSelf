@@ -104,7 +104,7 @@ class RecipeFragment : Fragment(), RepositoryAsyncTaskObserver {
                 };
                 R.id.menu_kcal -> {
                     val recipeListAdapterByKcal = RecipeListAdapter(data2!!, activity as MainActivity)
-                    recipeListAdapterByKcal.sortName()
+                    recipeListAdapterByKcal.sortKcal()
                     recipeRv?.adapter = recipeListAdapterByKcal
                     true
                 };

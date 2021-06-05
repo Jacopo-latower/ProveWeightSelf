@@ -75,6 +75,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val caloriesSaved = sharedPreferences.getInt("Gained Calories", 0)
+        if(caloriesSaved!=0){
+            gainedCalories = caloriesSaved
+        }else{
+            gainedCalories = 0
+        }
 
         homeTvStepCounter = findViewById(R.id.daily_steps)
         //Repository init
@@ -197,9 +204,19 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
             userTvStepCounter?.text = ("$currentSteps")
             userTvDailyStepTarget?.text = ("$dailyStepsObjective")
             tvDistance?.text = ("$currentdistance")
+            dataChangedCheck()
         }
 
-        dataChangedCheck()
+
+    }
+
+    //Update gained calories
+    fun refreshGainedCalories(kcal : Int){
+        gainedCalories += kcal
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putInt("Gained Calories", gainedCalories)
+        editor.apply()
     }
 
     //Check if the last data is changed to reset the steps
@@ -332,9 +349,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, FragHomeObserver,
         super.onDestroy()
     }
 
-    fun refreshGainedCalories(kcal : Int){
-        gainedCalories += kcal
-    }
 
 
 

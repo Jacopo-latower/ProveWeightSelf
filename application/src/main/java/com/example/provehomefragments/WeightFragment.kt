@@ -105,18 +105,23 @@ class WeightFragment(var act: MainActivity) : Fragment(), RepositoryAsyncTaskObs
 
             GlobalScope.launch(Dispatchers.Main){
 
+                var flag = false
                 for(i in 1..5){
 
                     val activeNetwork : Network? = connectivityManager.activeNetwork
 
                     if(activeNetwork != null) {
                         RepositoryManager.instance.writeWeight(peso!!, this@WeightFragment)
+                        flag=true
+                        break
                     }
                     delay(4000)
                 }
 
-                Toast.makeText(activity, getString(R.string.weightNotSaved), Toast.LENGTH_SHORT).show()
-                act.setCurrentFragment(HomeFragment(), "HomeFragment")
+                if (!flag){
+                    Toast.makeText(activity, getString(R.string.weightNotSaved), Toast.LENGTH_SHORT).show()
+                    act.setCurrentFragment(HomeFragment(), "HomeFragment")
+                }
 
             }
         }
